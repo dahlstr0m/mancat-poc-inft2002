@@ -1,0 +1,43 @@
+image: node:latest
+
+stages:
+  - build
+  - test
+
+build-client:
+  stage: build
+  script:
+    - cd client
+    - npm install
+  artifacts:
+    paths:
+      - ./client/node_modules
+
+build-server:
+  stage: build
+  script:
+    - cd server
+    - npm install
+  artifacts:
+    paths:
+      - ./server/node_modules
+
+prettier-client:
+  stage: test
+  script:
+    - ./client/node_modules/.bin/prettier --check client/src/*.js client/test/*.js
+    
+prettier-server:
+  stage: test
+  script:
+    - ./server/node_modules/.bin/prettier --check server/src/*.js server/test/*.js
+
+flow-client:
+  stage: test
+  script:
+    - ./client/node_modules/.bin/flow check client
+
+flow-server:
+  stage: test
+  script:
+    - ./server/node_modules/.bin/flow check server

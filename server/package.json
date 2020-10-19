@@ -1,0 +1,34 @@
+{
+  "name": "portfolio-server",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon src/server.js --exec \"babel-node --require ./src/config\"",
+    "test": "jest --setupFiles ./test/config"
+  },
+  "browserslist": [
+    "maintained node versions"
+  ],
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverage": true
+  },
+  "dependencies": {
+    "axios": "^0.20.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.1",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-flow": "^7.12.1",
+    "babel-jest": "^26.5.2",
+    "flow-bin": "^0.136.0",
+    "jest": "^26.5.3",
+    "nodemon": "^2.0.5",
+    "prettier": "^2.1.2"
+  }
+}

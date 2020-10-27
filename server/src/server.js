@@ -11,5 +11,5 @@ app.use(express.static(path.join(__dirname, '/../../client/public')));
 
 const port = 3000;
 app.listen(port, () => {
-  console.info(`Server running on port ${port}`);
+  console.info(`Server running on ports ${port}`);
 });

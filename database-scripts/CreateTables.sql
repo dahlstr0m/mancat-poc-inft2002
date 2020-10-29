@@ -29,7 +29,7 @@ END;
 IF NOT EXISTS
 (
     SELECT 
-		 *
+		*
     FROM   
 	    [sysobjects]
     WHERE  [name] = 'ProjectCategories'
@@ -41,6 +41,7 @@ IF NOT EXISTS
 				,[CategoryName] nvarchar(50) NOT NULL
 	   );
 END;
+
 IF NOT EXISTS
 (
     SELECT 
@@ -56,6 +57,7 @@ IF NOT EXISTS
 				,[EmployerName] nvarchar(50) NOT NULL
 	   );
 END;
+
 IF NOT EXISTS
 (
     SELECT 
@@ -74,12 +76,12 @@ IF NOT EXISTS
 				,[CategoryId]  int
 				,[EmployerId]  int
 				,[Active]      bit
-				,[Ranking]     int CONSTRAINT [FK_CategoryProject] FOREIGN KEY([CategoryId]) REFERENCES [ProjectCategories](
-																					   [CategoryId])
-				,CONSTRAINT [FK_EmployerProject] FOREIGN KEY([EmployerId]) REFERENCES [Employers](
-																		[EmployerId])
+				,[Ranking]     int 
+				CONSTRAINT [FK_CategoryProject] FOREIGN KEY([CategoryId]) REFERENCES [ProjectCategories]([CategoryId])
+				,CONSTRAINT [FK_EmployerProject] FOREIGN KEY([EmployerId]) REFERENCES [Employers]([EmployerId])
 	   );
 END;
+
 IF NOT EXISTS
 (
     SELECT 
@@ -94,10 +96,10 @@ IF NOT EXISTS
 				 [PosterId]    int IDENTITY(1,1) PRIMARY KEY
 				,[ProjectId]   int NOT NULL
 				,[Description] nvarchar(100)
-				,[Url]         nvarchar(100) CONSTRAINT [FK_PosterProject] FOREIGN KEY([ProjectId]) REFERENCES [Projects](
-																							[ProjectId])
+				,[Url]         nvarchar(100) CONSTRAINT [FK_PosterProject] FOREIGN KEY([ProjectId]) REFERENCES [Projects]([ProjectId])
 	   );
 END;
+
 IF NOT EXISTS
 (
     SELECT 
@@ -111,7 +113,6 @@ IF NOT EXISTS
 	   (
 				 [ThumbnailId] int IDENTITY(1,1) PRIMARY KEY
 				,[PosterId]    int NOT NULL
-				,[Url]         nvarchar(100) CONSTRAINT [FK_ThumbnailProject] FOREIGN KEY([PosterId]) REFERENCES [Posters](
-																							  [PosterId])
+				,[Url]         nvarchar(100) CONSTRAINT [FK_ThumbnailProject] FOREIGN KEY([PosterId]) REFERENCES [Posters]([PosterId])
 	   );
 END;

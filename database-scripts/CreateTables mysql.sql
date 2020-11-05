@@ -60,7 +60,7 @@ CREATE TABLE Thumbnails
 	(
 	ThumbnailId int UNSIGNED AUTO_INCREMENT  PRIMARY KEY
 	,PosterId    int UNSIGNED NOT NULL
-	,PosterUrl   varchar(100) 
+	,ThumbnailUrl   varchar(100) 
 	,CONSTRAINT FK_ThumbnailProject
 		FOREIGN KEY(PosterId) 
 		REFERENCES Posters(PosterId)

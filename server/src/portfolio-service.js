@@ -1,31 +1,37 @@
 // @flow
 
-const { poolPromise, sql } = require('./mssql-pool');
+import pool from './mysql-pool';
+
+export type Project = {
+  projectid: number,
+  title: string,
+  description: string,
+  projectDate: number,
+  categoryId: number,
+  employerid: number,
+  active: boolean,
+  ranking: boolean,
+};
 
 class PortfolioService {
-  async getProjects() {
-    try {
-      const pool = await poolPromise;
-      const result = await pool.request().query('SELECT * FROM dbo.Projects');
+  getProjects() {
+    return new Promise<Project[]>((resolve, reject) => {
+      pool.query('SELECT * FROM Projects', (error, results) => {
+        if (error) return reject(error);
 
-      return result.recordset;
-    } catch (err) {
-      throw err;
-    }
+        resolve(results);
+      });
+    });
   }
 
-  async getProject(id: number) {
-    try {
-      const pool = await poolPromise;
-      const result = await pool
-        .request()
-        .input('project_id', sql.Int, id)
-        .query('SELECT * FROM dbo.Projects WHERE ProjectId = @project_id');
+  getProject(id: number) {
+    return new Promise<?Project>((resolve, reject) => {
+      pool.query('SELECT * FROM Projects WHERE id = ?', [id], (error, results: Project[]) => {
+        if (error) return reject(error);
 
-      return result.recordset;
-    } catch (err) {
-      throw err;
-    }
+        resolve(results[0]);
+      });
+    });
   }
 }
 

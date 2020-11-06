@@ -1,32 +1,25 @@
 // @flow
 import express from 'express';
-import portfolioService from './portfolio-service';
 
-/**
- * Express router containing portfolio methods.
- */
+import portfolioService, { type Project } from './portfolio-service';
+
 const router: express$Router<> = express.Router();
 
-router.get('/projects', async (req, res) => {
-  try {
-    const result = await portfolioService.getProjects();
-    res.send(result);
-  } catch (err) {
-    res.status(500);
-    res.send(err.message);
-  }
+router.get('/projects', (request, response) => {
+  portfolioService
+    .getProjects()
+    .then((rows) => response.send(rows))
+    .catch((error: Error) => response.status(500).send(error));
 });
 
-router.get('/projects/:id', async (req, res) => {
-  try {
-    const id = Number(req.params.id);
-    const result = await portfolioService.getProject(id);
-
-    result.length > 0 ? res.send(result) : res.status(404).send('Project not found.');
-  } catch (err) {
-    res.status(500);
-    res.send(err.message);
-  }
+router.get('/projects/:id', (request, response) => {
+  const id = Number(request.params.id);
+  portfolioService
+    .getProject(id)
+    .then((project) =>
+      project ? response.send(project) : response.status(404).send('Project not found')
+    )
+    .catch((error: Error) => response.status(500).send(error));
 });
 
 export default router;

@@ -1,6 +1,6 @@
 // @flow
 
-process.env.MSSQL_USER = 'portfolio-dbadm';
-process.env.MSSQL_PASSWORD = 'eT6_8$Eyx';
-process.env.MSSQL_SERVER = 'hpbastiansen.com';
-process.env.MSSQL_DATABASE = 'portfolio';
+process.env.MYSQL_USER = 'portfolio-dbadm';
+process.env.MYSQL_PASSWORD = 'eT6_8$Eyx';
+process.env.MYSQL_HOST = 'hpbastiansen.com';
+process.env.MYSQL_DATABASE = 'portfolio-testing';

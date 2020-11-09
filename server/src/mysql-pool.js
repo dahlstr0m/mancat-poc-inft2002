@@ -7,7 +7,6 @@ const pool = mysql.createPool({
   user: process.env.MYSQL_USER ?? '', // Use empty string if MYSQL_USER is not set
   password: process.env.MYSQL_PASSWORD ?? '', // Use empty string if MYSQL_PASSWORD is not set
   database: process.env.MYSQL_DATABASE,
-  // Reduce load on NTNU MySQL server
   connectionLimit: 1,
   // Convert MySQL boolean values to JavaScript boolean values
   typeCast: (field, next) =>

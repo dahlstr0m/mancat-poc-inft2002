@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { HashRouter, Route } from 'react-router-dom';
-import { NavBar, Card, Alert } from './widgets';
+import { NavBar, Card, Alert, ContactCard, FooterCard } from './widgets';
 import { Portfoliolisting, ProjectDetails } from './components';
 
 class Topbar extends Component {
@@ -21,13 +21,18 @@ class Topbar extends Component {
 
 class Contact extends Component {
   render() {
-    return <Card title="Contact">This is contactinfo</Card>;
+    return (
+        <ContactCard title="Contact">This is contactinfo</ContactCard>
+    );
   }
 }
 
 class Footer extends Component {
   render() {
-    return <Card title="Footer"></Card>;
+    return (
+        <FooterCard title="Footer">
+            Laget av Kevin, Hans Petter, Henrik, Bjarne og Mathias
+        </FooterCard>);
   }
 }
 

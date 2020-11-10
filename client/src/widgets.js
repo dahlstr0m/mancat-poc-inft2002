@@ -46,12 +46,13 @@ export class ProjectCard extends Component<{
   projectdate?: React.Node,
   category?: React.Node,
   employer?: React.Node,
+  children?: React.Node
 }> {
   render() {
     const displaystyleDev2 ={
       width:'100%',
       height:'80%',
-      backgroundColor: 'lightgrey',
+      backgroundColor: 'lightgreen',
       margin:'20px'
     }
     return (
@@ -89,6 +90,54 @@ export class PosterCard extends Component<{
           <p>Url: {this.props.posterUrl}</p>
           <p>ThumbnailUrl: {this.props.posterThumbnailUrl}</p>
           <hr></hr>
+        </div>
+      </>
+    );
+  }
+}
+
+/**
+ * Renders a ContactCard
+ */
+export class ContactCard extends Component<{
+  title?: React.Node,
+  children?: React.Node
+}> {
+  render() {
+    const displaystyleDev ={
+      width:'100%',
+      height:'250px',
+      backgroundColor: 'lightgreen',
+      margin:'20px'
+    }
+    return (
+      <>
+       <div id={'Contact'} style={displaystyleDev}>
+          <h1>{this.props.title}</h1>
+          <div>{this.props.children}</div>
+        </div>
+      </>
+    );
+  }
+}
+
+/**
+ * Renders a Footer
+ */
+export class FooterCard extends Component<{
+  title?: React.Node,
+  children?: React.Node
+}> {
+  render() {
+    const displaystyleDev4 ={
+      width:'100%',
+      margin:'20px'
+    }
+    return (
+      <>
+       <div id={'Footer'} style={displaystyleDev4}>
+          <h1>{this.props.title}</h1>
+          <div>{this.props.children}</div>
         </div>
       </>
     );

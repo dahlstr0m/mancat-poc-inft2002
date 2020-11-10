@@ -21,18 +21,15 @@ class Topbar extends Component {
 
 class Contact extends Component {
   render() {
-    return (
-        <ContactCard title="Contact">This is contactinfo</ContactCard>
-    );
+    return <ContactCard title="Contact">This is contactinfo</ContactCard>;
   }
 }
 
 class Footer extends Component {
   render() {
     return (
-        <FooterCard title="Footer">
-            Laget av Kevin, Hans Petter, Henrik, Bjarne og Mathias
-        </FooterCard>);
+      <FooterCard title="Footer">Laget av Kevin, Hans Petter, Henrik, Bjarne og Mathias</FooterCard>
+    );
   }
 }
 

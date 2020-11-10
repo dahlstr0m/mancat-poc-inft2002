@@ -12,20 +12,22 @@ export class PortfolioCard extends Component<{
   title?: React.Node,
   link?: React.Node,
   imageurl?: React.Node,
-  children?: React.Node
+  children?: React.Node,
 }> {
   render() {
-    const displaystyleDev ={
-      width:'200px',
-      height:'250px',
+    const displaystyleDev = {
+      width: '200px',
+      height: '250px',
       backgroundColor: 'lightgrey',
-      margin:'20px'
-    }
+      margin: '20px',
+    };
     return (
       <>
-       <div id={'PortfolioCard'+this.props.projectid} style={displaystyleDev}>
+        <div id={'PortfolioCard' + this.props.projectid} style={displaystyleDev}>
           <p>Prosjekttittel: {this.props.title}</p>
-          <p>Link til prosjekt: <NavLink to={this.props.link}>HER</NavLink></p>
+          <p>
+            Link til prosjekt: <NavLink to={this.props.link}>HER</NavLink>
+          </p>
           <p>ImageUrl: {this.props.imageurl}</p>
           <p>Data(?): {this.props.children}</p>
           <p>Link til prosjektvisning: {this.props.children}</p>
@@ -46,18 +48,18 @@ export class ProjectCard extends Component<{
   projectdate?: React.Node,
   category?: React.Node,
   employer?: React.Node,
-  children?: React.Node
+  children?: React.Node,
 }> {
   render() {
-    const displaystyleDev2 ={
-      width:'100%',
-      height:'80%',
+    const displaystyleDev2 = {
+      width: '100%',
+      height: '80%',
       backgroundColor: 'lightgreen',
-      margin:'20px'
-    }
+      margin: '20px',
+    };
     return (
       <>
-       <div id={this.props.projectid} style={displaystyleDev2}>
+        <div id={this.props.projectid} style={displaystyleDev2}>
           <p>Tittel: {this.props.title}</p>
           <p>Beskrivelse: {this.props.projectdescription}</p>
           <p>Dato: {this.props.projectdate}</p>
@@ -81,10 +83,9 @@ export class PosterCard extends Component<{
   posterThumbnailUrl?: React.Node,
 }> {
   render() {
-
     return (
       <>
-       <div id={this.props.posterId}>
+        <div id={this.props.posterId}>
           <p>Poster: {this.props.posterId}</p>
           <p>Beskrivelse: {this.props.posterDescription}</p>
           <p>Url: {this.props.posterUrl}</p>
@@ -101,18 +102,18 @@ export class PosterCard extends Component<{
  */
 export class ContactCard extends Component<{
   title?: React.Node,
-  children?: React.Node
+  children?: React.Node,
 }> {
   render() {
-    const displaystyleDev ={
-      width:'100%',
-      height:'250px',
+    const displaystyleDev = {
+      width: '100%',
+      height: '250px',
       backgroundColor: 'lightgreen',
-      margin:'20px'
-    }
+      margin: '20px',
+    };
     return (
       <>
-       <div id={'Contact'} style={displaystyleDev}>
+        <div id={'Contact'} style={displaystyleDev}>
           <h1>{this.props.title}</h1>
           <div>{this.props.children}</div>
         </div>
@@ -126,16 +127,16 @@ export class ContactCard extends Component<{
  */
 export class FooterCard extends Component<{
   title?: React.Node,
-  children?: React.Node
+  children?: React.Node,
 }> {
   render() {
-    const displaystyleDev4 ={
-      width:'100%',
-      margin:'20px'
-    }
+    const displaystyleDev4 = {
+      width: '100%',
+      margin: '20px',
+    };
     return (
       <>
-       <div id={'Footer'} style={displaystyleDev4}>
+        <div id={'Footer'} style={displaystyleDev4}>
           <h1>{this.props.title}</h1>
           <div>{this.props.children}</div>
         </div>

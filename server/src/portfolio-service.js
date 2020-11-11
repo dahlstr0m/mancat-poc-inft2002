@@ -23,17 +23,12 @@ export type Poster = {
   projectId: number,
   description: string,
   url: string,
+  thumbnailUrl: string,
 };
 
 export type Employer = {
   employerId: number,
   name: string,
-};
-
-export type Thumbnail = {
-  thumbnailId: number,
-  posterId: number,
-  url: string,
 };
 
 class ProjectService {
@@ -357,28 +352,8 @@ class EmployerService {
   }
 }
 
-class ThumbnailService {
-  getProjectThumbnails(projectId: number) {
-    return new Promise<Thumbnail[]>((resolve, reject) => {
-      pool.query(
-        `SELECT Thumbnails.thumbnailId, Thumbnails.posterId, Thumbnails.url 
-        FROM Thumbnails INNER JOIN Posters 
-        ON Thumbnails.posterId = Posters.posterId 
-        WHERE Posters.projectId = ?`,
-        [projectId],
-        (error, results) => {
-          if (error) return reject(error);
-
-          resolve(results);
-        }
-      );
-    });
-  }
-}
-
 const projectService = new ProjectService();
 const categoryService = new CategoryService();
 const posterService = new PosterService();
 const employerService = new EmployerService();
-const thumbnailService = new ThumbnailService();
-export { projectService, categoryService, posterService, employerService, thumbnailService };
+export { projectService, categoryService, posterService, employerService };

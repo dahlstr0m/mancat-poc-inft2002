@@ -21,12 +21,10 @@ import {
   categoryService,
   posterService,
   employerService,
-  thumbnailService,
   type Project,
   type Category,
   type Poster,
   type Employer,
-  type Thumbnail,
 } from './portfolio-service';
 
 const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
@@ -53,7 +51,8 @@ export class PortfolioListing extends Component {
               link={'/projects/' + project.projectId}
               imageUrl={
                 this.posters.find((poster) => poster.projectId === project.projectId)
-                  ? this.posters.find((poster) => poster.projectId === project.projectId).url
+                  ? this.posters.find((poster) => poster.projectId === project.projectId)
+                      .thumbnailUrl
                   : ''
               }
             >
@@ -94,7 +93,6 @@ export class ProjectDetails extends Component<{ match: { params: { id: number } 
   category: Category = { categoryId: 0, name: '' };
   employer: Employer = { employerId: 0, name: '' };
   posters: Poster[] = [];
-  thumbnails: Thumbnail[] = [];
 
   render() {
     return (
@@ -112,7 +110,7 @@ export class ProjectDetails extends Component<{ match: { params: { id: number } 
               posterId={poster.posterId}
               description={poster.description}
               url={poster.url}
-              thumbnailUrl={this.thumbnails.map((t) => t.url)}
+              thumbnailUrl={poster.thumbnailUrl}
             >
               {'ingen data'}
             </PosterCard>
@@ -141,10 +139,5 @@ export class ProjectDetails extends Component<{ match: { params: { id: number } 
       .getProjectPosters(this.props.match.params.id)
       .then((posters) => (this.posters = posters))
       .catch((error: Error) => Alert.danger('Error getting posters: ' + error.message));
-
-    thumbnailService
-      .getProjectThumbnails(this.props.match.params.id)
-      .then((thumbnails) => (this.thumbnails = thumbnails))
-      .catch((error: Error) => Alert.danger('Error getting thumbnails: ' + error.message));
   }
 }

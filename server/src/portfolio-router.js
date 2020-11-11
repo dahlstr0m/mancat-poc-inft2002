@@ -58,14 +58,6 @@ router.get('/projects/:id/posters', (req, res) => {
     .catch((error: Error) => res.status(500).send(error));
 });
 
-router.get('/projects/:id/thumbnails', (req, res) => {
-  const id = Number(req.params.id);
-  thumbnailService
-    .getProjectThumbnails(id)
-    .then((thumbnails) => res.send(thumbnails))
-    .catch((error: Error) => res.status(500).send(error));
-});
-
 router.post('/projects', (req, res) => {
   const data = req.body;
   if (

@@ -24,17 +24,12 @@ export type Poster = {
   projectId: number,
   description: string,
   url: string,
+  thumbnailUrl: string,
 };
 
 export type Employer = {
   employerId: number,
   name: string,
-};
-
-export type Thumbnail = {
-  thumbnailId: number,
-  posterId: number,
-  url: string,
 };
 
 class ProjectService {
@@ -145,39 +140,8 @@ class EmployerService {
   }
 }
 
-class ThumbnailService {
-  getThumbnails() {
-    return axios.get<Thumbnail[]>('/thumbnails').then((response) => response.data);
-  }
-
-  getThumbnail(thumbnailId: number) {
-    return axios.get<Thumbnail>('/thumbnails/' + thumbnailId).then((response) => response.data);
-  }
-
-  getProjectThumbnails(projectId: number) {
-    return axios
-      .get<Thumbnail[]>(`/projects/${projectId}/thumbnails`)
-      .then((response) => response.data);
-  }
-
-  createThumbnail(thumbnail: Thumbnail) {
-    return axios
-      .post<Thumbnail, { thumbnailId: number }>('/thumbnails', thumbnail)
-      .then((response) => response.data);
-  }
-
-  updateThumbnail(thumbnail: Thumbnail) {
-    return axios.put<Thumbnail, void>('/thumbnails', thumbnail).then((response) => response.data);
-  }
-
-  deleteThumbnail(thumbnailId: number) {
-    return axios.delete<void>('/thumbnails/' + thumbnailId).then((response) => response.data);
-  }
-}
-
 const projectService = new ProjectService();
 const categoryService = new CategoryService();
 const posterService = new PosterService();
 const employerService = new EmployerService();
-const thumbnailService = new ThumbnailService();
-export { projectService, categoryService, posterService, employerService, thumbnailService };
+export { projectService, categoryService, posterService, employerService };

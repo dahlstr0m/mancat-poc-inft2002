@@ -148,14 +148,11 @@ export class ProjectDetails extends Component<{ match: { params: { id: number } 
 }
 
 export class OtherManagement extends Component {
-  employers: Employer[] = [];
-  categories: Category[] = [];
-
   render() {
     return (
       <CardPlain>
         <CardBody title="Manage categories">
-          <Button.Success>Manage</Button.Success>
+          <Button.Success onClick={() => history.push('/admin/categories')}>Manage</Button.Success>
         </CardBody>
         <hr />
         <CardBody title="Manage employers">
@@ -167,6 +164,61 @@ export class OtherManagement extends Component {
         </CardBody>
       </CardPlain>
     );
+  }
+}
+
+export class ManageCategories extends Component {
+  categories: Category[] = [];
+  category: Category = { categoryId: 0, name: '' };
+
+  render() {
+    return (
+      <CardPlain>
+        {this.categories.map((category) => (
+          <CardBody key={category.categoryId} title={category.name}>
+            <Row>
+              <Column width={2}>
+                <Form.Label>Category name:</Form.Label>
+              </Column>
+              <Column>
+                <Form.Input
+                  type="text"
+                  value={category.title}
+                  onChange={(event) => (this.category.title = event.currentTarget.value)}
+                />
+              </Column>
+            </Row>
+            <Button.Success
+              onClick={() =>
+                categoryService
+                  .updateCategory(this.category)
+                  .then(() => history.push('/admin'))
+                  .catch((error: Error) => Alert.danger('Error updating category: ' + error))
+              }
+            >
+              Update category
+            </Button.Success>
+            <Button.Danger
+              onClick={() =>
+                categoryService
+                  .deleteCategory(this.category.categoryId)
+                  .then(() => history.push('/admin'))
+                  .catch((error: Error) => Alert.danger('Error deleting category: ' + error))
+              }
+            >
+              Delete category
+            </Button.Danger>
+          </CardBody>
+        ))}
+      </CardPlain>
+    );
+  }
+
+  mounted() {
+    categoryService
+      .getCategories()
+      .then((categories) => (this.categories = categories))
+      .catch((error: Error) => Alert.danger('Error getting categories: ' + error));
   }
 }
 

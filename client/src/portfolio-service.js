@@ -79,7 +79,7 @@ class CategoryService {
     return axios.put<Category, void>('/categories', category).then((response) => response.data);
   }
 
-  deleteProject(categoryId: number) {
+  deleteCategory(categoryId: number) {
     return axios.delete<void>('/categories/' + categoryId).then((response) => response.data);
   }
 }

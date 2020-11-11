@@ -5,7 +5,13 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { HashRouter, Route } from 'react-router-dom';
 import { NavBar, Card, Alert, ContactCard, FooterCard } from './widgets';
-import { OtherManagement, PortfolioListing, ProjectDetails, ProjectManagement } from './components';
+import {
+  OtherManagement,
+  ManageCategories,
+  PortfolioListing,
+  ProjectDetails,
+  ProjectManagement,
+} from './components';
 
 class Topbar extends Component {
   render() {
@@ -56,6 +62,7 @@ if (root)
         <Route exact path="/projects" component={PortfolioListing} />
         <Route exact path="/admin" component={AdminPage} />
         <Route exact path="/admin/projects/:id(\d+)" component={Contact} />
+        <Route exact path="/admin/categories" component={ManageCategories} />
         <Footer />
       </div>
     </HashRouter>,

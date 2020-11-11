@@ -271,7 +271,7 @@ export class CardColumn extends Component<{
   children?: React.Node,
 }> {
   render() {
-    return <div class="col mb-4">{this.props.children}</div>;
+    return <div className="col mb-4">{this.props.children}</div>;
   }
 }
 

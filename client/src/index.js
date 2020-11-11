@@ -33,6 +33,22 @@ class Footer extends Component {
   }
 }
 
+class Admin extends Component {
+  render() {
+    return (
+      <Card title="Mancat admin">
+        This is adminpage
+        <NavBar brand="Rediger:">
+          <NavBar.Link to="/">Prosjekt</NavBar.Link>
+          <NavBar.Link to="/">Plakater</NavBar.Link>
+          <NavBar.Link to="/">Portfolio</NavBar.Link>
+          <NavBar.Link to="/">Visningsrekkefølge</NavBar.Link>
+        </NavBar>
+      </Card>
+    );
+  }
+}
+
 const root = document.getElementById('root');
 if (root)
   ReactDOM.render(
@@ -71,6 +87,17 @@ if (root)
               <Alert />
               <ProjectDetails pathid={props.match.params.id} />
               <Portfoliolisting />
+              <Footer />
+            </div>
+          )}
+        />
+        <Route //Admin page
+          exact
+          path="/login"
+          component={() => (
+            <div>
+              <Alert />
+              <Admin />
               <Footer />
             </div>
           )}

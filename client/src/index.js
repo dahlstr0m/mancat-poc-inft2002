@@ -71,7 +71,7 @@ if (root)
             <div>
               <Topbar />
               <Alert />
-              <Portfoliolisting />
+              <PortfolioListing />
               <Footer />
             </div>
           )}
@@ -95,24 +95,22 @@ if (root)
             <div>
               <Topbar />
               <Alert />
-              <ProjectDetails pathid={props.match.params.id} />
-              <Portfoliolisting />
+              <ProjectDetails pathId={props.match.params.id} />
+              <PortfolioListing />
               <Footer />
             </div>
           )}
         />
         <Route //Admin page
           exact
-          path="/login"
+          path="/admin"
           component={() => (
             <div>
               <Alert />
-              <Admin />
-              <Footer />
+              <AdminPage />
             </div>
           )}
         />
-        <Route exact path="/admin" component={AdminPage} />
         <Route exact path="/admin/projects/:id(\d+)" component={Contact} />
         <Route exact path="/admin/categories" component={ManageCategories} />
       </div>

@@ -45,7 +45,7 @@ export class PortfolioListing extends Component {
     return (
       <>
         {this.projects
-          .filter((project) => project.active === true) // Filter to ensure only Active projects to be displayed
+          .filter((project) => project.active === true) // Filter to ensure only Active projects will be displayed
           .sort((projectA, projectB) => projectA.ranking - projectB.ranking) // Sorting to display by asc ranking
           .map((
             project // Mapping to display all left projects with PortfolioCard widget & fetching correct corresponding thumbnail for url attrib.
@@ -84,7 +84,7 @@ export class PortfolioListing extends Component {
 /**
  * Renders project details.
  */
-export class ProjectDetails extends Component<{ match: { params: { id: number } } }> {
+export class ProjectDetails extends Component<{ pathId: number }> {
   project: Project = {
     projectId: 0,
     title: '',
@@ -126,22 +126,22 @@ export class ProjectDetails extends Component<{ match: { params: { id: number } 
   }
   mounted() {
     projectService
-      .getProject(this.props.match.params.id)
+      .getProject(this.pathId)
       .then((project) => (this.project = project))
       .catch((error: Error) => Alert.danger('Error getting project: ' + error.message));
 
     categoryService
-      .getProjectCategory(this.props.match.params.id)
+      .getProjectCategory(this.pathId)
       .then((category) => (this.category = category))
       .catch((error: Error) => Alert.danger('Error getting category: ' + error.message));
 
     employerService
-      .getProjectEmployer(this.props.match.params.id)
+      .getProjectEmployer(this.pathId)
       .then((employer) => (this.employer = employer))
       .catch((error: Error) => Alert.danger('Error getting employer: ' + error.message));
 
     posterService
-      .getProjectPosters(this.props.match.params.id)
+      .getProjectPosters(this.pathId)
       .then((posters) => (this.posters = posters))
       .catch((error: Error) => Alert.danger('Error getting posters: ' + error.message));
   }

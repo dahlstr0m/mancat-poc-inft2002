@@ -18,7 +18,7 @@ class Topbar extends Component {
     return (
       <NavBar brand="Mancat">
         <NavBar.Link to="/">Sorter</NavBar.Link>
-        <NavBar.Link to="/projects">Portfolio</NavBar.Link>
+        <NavBar.Link to="/">Portfolio</NavBar.Link>
         <NavBar.Link to="/contact">Contact</NavBar.Link>
       </NavBar>
     );
@@ -90,7 +90,7 @@ if (root)
         />
         <Route //Project page
           exact
-          path="/project/:id(\d+)"
+          path="/projects/:id(\d+)"
           component={(props) => (
             <div>
               <Topbar />

@@ -126,22 +126,22 @@ export class ProjectDetails extends Component<{ pathId: number }> {
   }
   mounted() {
     projectService
-      .getProject(this.pathId)
+      .getProject(this.props.pathId)
       .then((project) => (this.project = project))
       .catch((error: Error) => Alert.danger('Error getting project: ' + error.message));
 
     categoryService
-      .getProjectCategory(this.pathId)
+      .getProjectCategory(this.props.pathId)
       .then((category) => (this.category = category))
       .catch((error: Error) => Alert.danger('Error getting category: ' + error.message));
 
     employerService
-      .getProjectEmployer(this.pathId)
+      .getProjectEmployer(this.props.pathId)
       .then((employer) => (this.employer = employer))
       .catch((error: Error) => Alert.danger('Error getting employer: ' + error.message));
 
     posterService
-      .getProjectPosters(this.pathId)
+      .getProjectPosters(this.props.pathId)
       .then((posters) => (this.posters = posters))
       .catch((error: Error) => Alert.danger('Error getting posters: ' + error.message));
   }

@@ -6,10 +6,12 @@ import {
   categoryService,
   posterService,
   employerService,
+  thumbnailService,
   type Project,
   type Category,
   type Poster,
   type Employer,
+  type Thumbnail,
 } from './portfolio-service';
 
 const router: express$Router<> = express.Router();
@@ -32,6 +34,38 @@ router.get('/projects/:id', (req, res) => {
     .catch((error: Error) => res.status(500).send(error));
 });
 
+router.get('/projects/:id/category', (req, res) => {
+  const id = Number(req.params.id);
+  categoryService
+    .getProjectCategory(id)
+    .then((category) => (category ? res.send(category) : res.status(404).send('Project not found')))
+    .catch((error: Error) => res.status(500).send(error));
+});
+
+router.get('/projects/:id/employer', (req, res) => {
+  const id = Number(req.params.id);
+  employerService
+    .getProjectEmployer(id)
+    .then((employer) => (employer ? res.send(employer) : res.status(404).send('Project not found')))
+    .catch((error: Error) => res.status(500).send(error));
+});
+
+router.get('/projects/:id/posters', (req, res) => {
+  const id = Number(req.params.id);
+  posterService
+    .getProjectPosters(id)
+    .then((posters) => res.send(posters))
+    .catch((error: Error) => res.status(500).send(error));
+});
+
+router.get('/projects/:id/thumbnails', (req, res) => {
+  const id = Number(req.params.id);
+  thumbnailService
+    .getProjectThumbnails(id)
+    .then((thumbnails) => res.send(thumbnails))
+    .catch((error: Error) => res.status(500).send(error));
+});
+
 router.post('/projects', (req, res) => {
   const data = req.body;
   if (
@@ -40,8 +74,8 @@ router.post('/projects', (req, res) => {
     data.title.length != 0 &&
     typeof data.description == 'string' &&
     data.description.length != 0 &&
-    typeof data.projectDate == 'string' &&
-    data.projectDate.length != 0 &&
+    typeof data.date == 'string' &&
+    data.date.length != 0 &&
     typeof data.categoryId == 'number' &&
     !isNaN(data.categoryId) &&
     typeof data.employerId == 'number' &&
@@ -54,7 +88,7 @@ router.post('/projects', (req, res) => {
       projectId: 0,
       title: data.title,
       description: data.description,
-      projectDate: data.projectDate,
+      date: data.date,
       categoryId: data.categoryId,
       employerId: data.employerId,
       ranking: data.ranking,
@@ -79,8 +113,8 @@ router.put('/projects/:id', (req, res) => {
     data.title.length != 0 &&
     typeof data.description == 'string' &&
     data.description.length != 0 &&
-    typeof data.projectDate == 'string' &&
-    data.projectDate.length != 0 &&
+    typeof data.date == 'string' &&
+    data.date.length != 0 &&
     typeof data.categoryId == 'number' &&
     !isNaN(data.categoryId) &&
     typeof data.employerId == 'number' &&
@@ -93,7 +127,7 @@ router.put('/projects/:id', (req, res) => {
       projectId: id,
       title: data.title,
       description: data.description,
-      projectDate: data.projectDate,
+      date: data.date,
       categoryId: data.categoryId,
       employerId: data.employerId,
       ranking: data.ranking,

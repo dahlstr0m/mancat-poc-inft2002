@@ -6,7 +6,7 @@ export type Project = {
   projectId: number,
   title: string,
   description: string,
-  projectDate: string,
+  date: string,
   categoryId: number,
   employerId: number,
   ranking: number,
@@ -28,6 +28,12 @@ export type Poster = {
 export type Employer = {
   employerId: number,
   name: string,
+};
+
+export type Thumbnail = {
+  thumbnailId: number,
+  posterId: number,
+  url: string,
 };
 
 class ProjectService {
@@ -62,7 +68,7 @@ class ProjectService {
         [
           project.title,
           project.description,
-          project.projectDate,
+          project.date,
           project.categoryId,
           project.employerId,
           Number(project.active),
@@ -85,7 +91,7 @@ class ProjectService {
         [
           project.title,
           project.description,
-          project.projectDate,
+          project.date,
           project.categoryId,
           project.employerId,
           project.active,
@@ -130,6 +136,23 @@ class CategoryService {
       pool.query(
         'SELECT * FROM ProjectCategories WHERE CategoryId = ?',
         [id],
+        (error, results: Category[]) => {
+          if (error) return reject(error);
+
+          resolve(results[0]);
+        }
+      );
+    });
+  }
+
+  getProjectCategory(projectId: number) {
+    return new Promise<?Category>((resolve, reject) => {
+      pool.query(
+        `SELECT ProjectCategories.CategoryId, ProjectCategories.CategoryName 
+        FROM Projects INNER JOIN ProjectCategories ON 
+        Projects.CategoryId = ProjectCategories.CategoryId 
+        WHERE Projects.ProjectId = ?`,
+        [projectId],
         (error, results: Category[]) => {
           if (error) return reject(error);
 
@@ -189,6 +212,20 @@ class PosterService {
 
         resolve(results);
       });
+    });
+  }
+
+  getProjectPosters(projectId: number) {
+    return new Promise<Poster[]>((resolve, reject) => {
+      pool.query(
+        `SELECT * FROM Posters WHERE Posters.ProjectId = ?`,
+        [projectId],
+        (error, results) => {
+          if (error) return reject(error);
+
+          resolve(results);
+        }
+      );
     });
   }
 
@@ -269,6 +306,23 @@ class EmployerService {
     });
   }
 
+  getProjectEmployer(projectId: number) {
+    return new Promise<?Employer>((resolve, reject) => {
+      pool.query(
+        `SELECT Employers.EmployerId, Employers.EmployerName 
+        FROM Projects INNER JOIN Employers 
+        ON Projects.EmployerId = Employers.EmployerId
+        WHERE Projects.EmployerId = ?`,
+        [projectId],
+        (error, results: Employer[]) => {
+          if (error) return reject(error);
+
+          resolve(results[0]);
+        }
+      );
+    });
+  }
+
   createEmployer(employer: Employer) {
     return new Promise<number>((resolve, reject) => {
       pool.query('INSERT INTO Employers SET EmployerName=?', [employer.name], (error, results) => {
@@ -307,8 +361,28 @@ class EmployerService {
   }
 }
 
+class ThumbnailService {
+  getProjectThumbnails(projectId: number) {
+    return new Promise<Thumbnail[]>((resolve, reject) => {
+      pool.query(
+        `SELECT Thumbnails.ThumbnailId, Thumbnails.PosterId, Thumbnails.ThumbnailUrl 
+        FROM Thumbnails INNER JOIN Posters 
+        ON Thumbnails.PosterId = Posters.PosterId 
+        WHERE Posters.ProjectId = ?`,
+        [projectId],
+        (error, results) => {
+          if (error) return reject(error);
+
+          resolve(results);
+        }
+      );
+    });
+  }
+}
+
 const projectService = new ProjectService();
 const categoryService = new CategoryService();
 const posterService = new PosterService();
 const employerService = new EmployerService();
-export { projectService, categoryService, posterService, employerService };
+const thumbnailService = new ThumbnailService();
+export { projectService, categoryService, posterService, employerService, thumbnailService };

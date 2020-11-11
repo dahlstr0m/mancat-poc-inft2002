@@ -41,28 +41,25 @@ export class PortfolioListing extends Component {
   render() {
     return (
       <>
-        <div>
-          {this.projects.map((project) => {
-            <div>{project.title}</div>;
-          })}
-        </div>
-        {/* {this.projects
+        {this.projects
           .filter((project) => project.active === true) // Filter to ensure only Active projects to be displayed
           .sort((projectA, projectB) => projectA.ranking - projectB.ranking) // Sorting to display by asc ranking
           .map((
-            project // Maping to display all left projects with PortfolioCard widget & fetching correct corresponding thumbnail for url attrib.
+            project // Mapping to display all left projects with PortfolioCard widget & fetching correct corresponding thumbnail for url attrib.
           ) => (
             <PortfolioCard
-              projectid={project.projectId}
+              projectId={project.projectId}
               title={project.title}
-              link={'/project/' + project.projectId}
-              imageurl={
-                ''
+              link={'/projects/' + project.projectId}
+              imageUrl={
+                this.posters.find((poster) => poster.projectId === project.projectId)
+                  ? this.posters.find((poster) => poster.projectId === project.projectId).url
+                  : ''
               }
             >
               {'ingen data'}
             </PortfolioCard>
-          ))} */}
+          ))}
       </>
     );
   }
@@ -71,13 +68,12 @@ export class PortfolioListing extends Component {
     projectService
       .getProjects()
       .then((projects) => (this.projects = projects))
-      .then(() => console.log(this.projects))
       .catch((error: Error) => Alert.danger('Error getting projects: ' + error.message));
 
-    /* posterService
+    posterService
       .getPosters()
       .then((posters) => (this.posters = posters))
-      .catch((error: Error) => Alert.danger('Error getting posters: ' + error.message)); */
+      .catch((error: Error) => Alert.danger('Error getting posters: ' + error.message));
   }
 }
 
@@ -111,14 +107,12 @@ export class ProjectDetails extends Component<{ match: { params: { id: number } 
           category={this.category.name}
           employer={this.employer.name}
         >
-          {this.posters.map((
-            p // Maping to display all left projects with PosterCard widget & fetching correct corresponding thumbnail for url attrib.
-          ) => (
+          {this.posters.map((poster) => (
             <PosterCard
-              posterId={p.posterId}
-              posterDescription={p.description}
-              posterUrl={p.url}
-              posterThumbnailUrl={this.thumbnails.map((t) => t.url)}
+              posterId={poster.posterId}
+              description={poster.description}
+              url={poster.url}
+              thumbnailUrl={this.thumbnails.map((t) => t.url)}
             >
               {'ingen data'}
             </PosterCard>
@@ -128,7 +122,7 @@ export class ProjectDetails extends Component<{ match: { params: { id: number } 
     );
   }
   mounted() {
-    /* projectService
+    projectService
       .getProject(this.props.match.params.id)
       .then((project) => (this.project = project))
       .catch((error: Error) => Alert.danger('Error getting project: ' + error.message));
@@ -151,6 +145,6 @@ export class ProjectDetails extends Component<{ match: { params: { id: number } 
     thumbnailService
       .getProjectThumbnails(this.props.match.params.id)
       .then((thumbnails) => (this.thumbnails = thumbnails))
-      .catch((error: Error) => Alert.danger('Error getting thumbnails: ' + error.message)); */
+      .catch((error: Error) => Alert.danger('Error getting thumbnails: ' + error.message));
   }
 }

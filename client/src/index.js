@@ -4,13 +4,14 @@ import ReactDOM from 'react-dom';
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { HashRouter, Route } from 'react-router-dom';
-import { NavBar, Card, Alert, ContactCard, FooterCard } from './widgets';
+import { NavBar, Card, Alert, ContactCard, FooterCard, TitleCard, CardPlain } from './widgets';
 import {
   OtherManagement,
   ManageCategories,
   PortfolioListing,
   ProjectDetails,
   ProjectManagement,
+  BackToAdmin,
 } from './components';
 
 class Topbar extends Component {
@@ -43,17 +44,12 @@ class AdminPage extends Component {
   render() {
     return (
       <>
-        <Card title="Mancat admin">
-          This is adminpage
-          <NavBar brand="Rediger:">
-            <NavBar.Link to="/">Prosjekt</NavBar.Link>
-            <NavBar.Link to="/">Plakater</NavBar.Link>
-            <NavBar.Link to="/">Portfolio</NavBar.Link>
-            <NavBar.Link to="/">Visningsrekkefølge</NavBar.Link>
-          </NavBar>
-        </Card>
-        <OtherManagement />
-        <ProjectManagement />
+        <CardPlain>
+          <TitleCard img="mancatsrc">Mancat admin</TitleCard>
+          <OtherManagement />
+          <hr />
+          <ProjectManagement />
+        </CardPlain>
       </>
     );
   }
@@ -96,7 +92,7 @@ if (root)
               <Topbar />
               <Alert />
               <ProjectDetails pathId={props.match.params.id} />
-              <PortfolioListing />
+              <PortfolioListing sortBy={props.match.params.sortBy} />
               <Footer />
             </div>
           )}
@@ -111,8 +107,28 @@ if (root)
             </div>
           )}
         />
-        <Route exact path="/admin/projects/:id(\d+)" component={Contact} />
-        <Route exact path="/admin/categories" component={ManageCategories} />
+        <Route
+          exact
+          path="/admin/projects/:id(\d+)"
+          component={() => (
+            <div>
+              <BackToAdmin />
+              <Alert />
+              <Contact />
+            </div>
+          )}
+        />
+        <Route
+          exact
+          path="/admin/categories"
+          component={() => (
+            <div>
+              <BackToAdmin />
+              <Alert />
+              <ManageCategories />
+            </div>
+          )}
+        />
       </div>
     </HashRouter>,
     root

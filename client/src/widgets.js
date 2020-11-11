@@ -230,7 +230,26 @@ export class Card extends Component<{ title?: React.Node, children?: React.Node 
 
 export class CardPlain extends Component<{ children?: React.Node }> {
   render() {
-    return <div className="card">{this.props.children}</div>;
+    return (
+      <div className="card">
+        <div className="card-body">
+          <div className="card-text">{this.props.children}</div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export class TitleCard extends Component<{ img?: React.Node, children?: React.Node }> {
+  render() {
+    return (
+      <div className="card">
+        <h1>
+          <img src={this.props.img} alt={'-No img-'} />
+          {this.props.children}
+        </h1>
+      </div>
+    );
   }
 }
 
@@ -247,7 +266,7 @@ export class CardBody extends Component<{ title?: React.Node, children?: React.N
 
 export class CardImage extends Component<{
   img?: React.Node,
-  alt?: React.Node,
+  imgAlt?: React.Node,
   title?: React.Node,
   buttonText?: React.Node,
   buttonOnClick?: React.Node,

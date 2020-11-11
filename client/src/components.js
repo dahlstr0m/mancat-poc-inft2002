@@ -52,7 +52,7 @@ export class PortfolioListing extends Component {
           ) => (
             <PortfolioCard
               projectId={project.projectId}
-              title={project.title}
+              title={project.title + this.props.sortBy}
               link={'/projects/' + project.projectId}
               imageUrl={
                 this.posters.find((poster) => poster.projectId === project.projectId)
@@ -150,19 +150,29 @@ export class ProjectDetails extends Component<{ pathId: number }> {
 export class OtherManagement extends Component {
   render() {
     return (
-      <CardPlain>
-        <CardBody title="Manage categories">
-          <Button.Success onClick={() => history.push('/admin/categories')}>Manage</Button.Success>
-        </CardBody>
-        <hr />
-        <CardBody title="Manage employers">
-          <Button.Success>Manage</Button.Success>
-        </CardBody>
-        <hr />
-        <CardBody title="Add new project">
-          <Button.Success>Manage</Button.Success>
-        </CardBody>
-      </CardPlain>
+      <CardGrid>
+        <CardColumn>
+          <CardBody title="Add new project">
+            <Button.Success>Manage</Button.Success>
+          </CardBody>
+          <CardBody title="Add new poster">
+            <Button.Success>Manage</Button.Success>
+          </CardBody>
+        </CardColumn>
+        <CardColumn>
+          <CardBody title="Employers">
+            <Button.Danger>Manage</Button.Danger>
+          </CardBody>
+          <CardBody title="Posters">
+            <Button.Danger>Manage</Button.Danger>
+          </CardBody>
+        </CardColumn>
+        <CardColumn>
+          <CardBody title="Categories">
+            <Button.Danger onClick={() => history.push('/admin/categories')}>Manage</Button.Danger>
+          </CardBody>
+        </CardColumn>
+      </CardGrid>
     );
   }
 }
@@ -241,7 +251,7 @@ export class ProjectManagement extends Component {
                     : ''
                 }
                 title={project.title}
-                alt={project.title}
+                imgAlt={project.title}
                 buttonText={'Manage project'}
                 buttonOnClick={() => history.push(`/admin/projects/${project.projectId}`)}
               >
@@ -264,5 +274,15 @@ export class ProjectManagement extends Component {
       .getPosters()
       .then((posters) => (this.posters = posters))
       .catch((error: Error) => Alert.danger('Error getting posters: ' + error));
+  }
+}
+
+export class BackToAdmin extends Component {
+  render() {
+    return (
+      <CardPlain>
+        <Button.Light onClick={() => history.push('/admin/')}>Back to admin</Button.Light>
+      </CardPlain>
+    );
   }
 }

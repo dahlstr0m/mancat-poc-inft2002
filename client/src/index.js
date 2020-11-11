@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { HashRouter, Route } from 'react-router-dom';
 import { NavBar, Card, Alert, ContactCard, FooterCard } from './widgets';
-import { PortfolioListing, ProjectDetails } from './components';
+import { OtherManagement, PortfolioListing, ProjectDetails, ProjectManagement } from './components';
 
 class Topbar extends Component {
   render() {
@@ -33,6 +33,17 @@ class Footer extends Component {
   }
 }
 
+class AdminPage extends Component {
+  render() {
+    return (
+      <>
+        <OtherManagement />
+        <ProjectManagement />
+      </>
+    );
+  }
+}
+
 const root = document.getElementById('root');
 if (root)
   ReactDOM.render(
@@ -43,6 +54,8 @@ if (root)
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/projects/:id(\d+)" component={ProjectDetails} />
         <Route exact path="/projects" component={PortfolioListing} />
+        <Route exact path="/admin" component={AdminPage} />
+        <Route exact path="/admin/projects/:id(\d+)" component={Contact} />
         <Footer />
       </div>
     </HashRouter>,

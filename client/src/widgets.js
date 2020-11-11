@@ -228,6 +228,77 @@ export class Card extends Component<{ title?: React.Node, children?: React.Node 
   }
 }
 
+export class CardPlain extends Component<{ children?: React.Node }> {
+  render() {
+    return <div className="card">{this.props.children}</div>;
+  }
+}
+
+export class CardBody extends Component<{ title?: React.Node, children?: React.Node }> {
+  render() {
+    return (
+      <div className="card-body">
+        <h5 className="card-title">{this.props.title}</h5>
+        <div className="card-text">{this.props.children}</div>
+      </div>
+    );
+  }
+}
+
+export class CardImage extends Component<{
+  img?: React.Node,
+  alt?: React.Node,
+  title?: React.Node,
+  buttonText?: React.Node,
+  buttonOnClick?: React.Node,
+  children?: React.Node,
+}> {
+  render() {
+    return (
+      <div className="card">
+        <img src={this.props.img} className="card-img-top" alt={this.props.imgAlt} />
+        <div className="card-body">
+          <h5 className="card-title">{this.props.title}</h5>
+          <div className="card-text">{this.props.children}</div>
+          <Button.Danger onClick={this.props.buttonOnClick}>{this.props.buttonText}</Button.Danger>
+        </div>
+      </div>
+    );
+  }
+}
+
+export class CardColumn extends Component<{
+  children?: React.Node,
+}> {
+  render() {
+    return <div class="col mb-4">{this.props.children}</div>;
+  }
+}
+
+export class CardGrid extends Component<{
+  columns: React.Node,
+  columnsSm?: React.Node,
+  columnsMd?: React.Node,
+  columnsLg?: React.Node,
+  children?: React.Node,
+}> {
+  render() {
+    return (
+      <div
+        className={
+          'row row-cols-' +
+          this.props.columns +
+          (this.props.columnsSm ? ' row-cols-sm-' + this.props.columnsSm : '') +
+          (this.props.columnsMd ? ' row-cols-md-' + this.props.columnsMd : '') +
+          (this.props.columnsLg ? ' row-cols-lg-' + this.props.columnsLg : '')
+        }
+      >
+        {this.props.children}
+      </div>
+    );
+  }
+}
+
 /**
  * Renders a row using Bootstrap classes.
  */

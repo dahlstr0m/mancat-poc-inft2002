@@ -15,6 +15,11 @@ import {
   PortfolioCard,
   ProjectCard,
   PosterCard,
+  CardImage,
+  CardColumn,
+  CardGrid,
+  CardPlain,
+  CardBody,
 } from './widgets';
 import {
   projectService,
@@ -139,5 +144,73 @@ export class ProjectDetails extends Component<{ match: { params: { id: number } 
       .getProjectPosters(this.props.match.params.id)
       .then((posters) => (this.posters = posters))
       .catch((error: Error) => Alert.danger('Error getting posters: ' + error.message));
+  }
+}
+
+export class OtherManagement extends Component {
+  employers: Employer[] = [];
+  categories: Category[] = [];
+
+  render() {
+    return (
+      <CardPlain>
+        <CardBody title="Manage categories">
+          <Button.Success>Manage</Button.Success>
+        </CardBody>
+        <hr />
+        <CardBody title="Manage employers">
+          <Button.Success>Manage</Button.Success>
+        </CardBody>
+        <hr />
+        <CardBody title="Add new project">
+          <Button.Success>Manage</Button.Success>
+        </CardBody>
+      </CardPlain>
+    );
+  }
+}
+
+export class ProjectManagement extends Component {
+  projects: Project[] = [];
+  posters: Poster[] = [];
+
+  render() {
+    return (
+      <>
+        <h1>Project management</h1>
+        <CardGrid columns={1} columnsSm={2} columnsMd={4}>
+          {this.projects.map((project) => (
+            <CardColumn>
+              <CardImage
+                img={
+                  this.posters.find((poster) => poster.projectId === project.projectId)
+                    ? this.posters.find((poster) => poster.projectId === project.projectId)
+                        .thumbnailUrl
+                    : ''
+                }
+                title={project.title}
+                alt={project.title}
+                buttonText={'Manage project'}
+                buttonOnClick={() => history.push(`/admin/projects/${project.projectId}`)}
+              >
+                {project.description}
+              </CardImage>
+            </CardColumn>
+          ))}
+        </CardGrid>
+      </>
+    );
+  }
+
+  mounted() {
+    projectService
+      .getProjects()
+      .then((projects) => (this.projects = projects))
+      .catch((error: Error) => Alert.danger('Error getting projects: ' + error));
+
+    posterService
+      .getPosters()
+      .then((posters) => (this.posters = posters))
+      .catch((error: Error) => Alert.danger('Error getting posters: ' + error));
   }
 }

@@ -6,7 +6,7 @@ export type Project = {
   projectId: number,
   title: string,
   description: string,
-  projectDate: string,
+  date: string,
   categoryId: number,
   employerId: number,
   ranking: number,
@@ -23,6 +23,7 @@ export type Poster = {
   projectId: number,
   description: string,
   url: string,
+  thumbnailUrl: string,
 };
 
 export type Employer = {
@@ -58,11 +59,11 @@ class ProjectService {
   createProject(project: Project) {
     return new Promise<number>((resolve, reject) => {
       pool.query(
-        'INSERT INTO Projects SET ProjectTitle=?, ProjectDescription=?, ProjectDate=?, CategoryId=?, EmployerId=?, Active=?, Ranking=?',
+        'INSERT INTO Projects SET title=?, description=?, date=?, categoryId=?, employerId=?, active=?, ranking=?',
         [
           project.title,
           project.description,
-          project.projectDate,
+          project.date,
           project.categoryId,
           project.employerId,
           Number(project.active),
@@ -81,11 +82,11 @@ class ProjectService {
   updateProject(project: Project) {
     return new Promise<void>((resolve, reject) => {
       pool.query(
-        'UPDATE Projects SET ProjectTitle=?, ProjectDescription=?, ProjectDate=?, CategoryId=?, EmployerId=?, Active=?, Ranking=? WHERE ProjectId=?',
+        'UPDATE Projects SET title=?, description=?, date=?, categoryId=?, employerId=?, active=?, ranking=? WHERE projectId=?',
         [
           project.title,
           project.description,
-          project.projectDate,
+          project.date,
           project.categoryId,
           project.employerId,
           project.active,
@@ -104,7 +105,7 @@ class ProjectService {
 
   deleteProject(id: number) {
     return new Promise<void>((resolve, reject) => {
-      pool.query('DELETE FROM Projects WHERE ProjectId=?', [id], (error, results) => {
+      pool.query('DELETE FROM Projects WHERE projectId=?', [id], (error, results) => {
         if (error) return reject(error);
         if (!results.affectedRows) reject(new Error('No rows deleted'));
 
@@ -128,8 +129,25 @@ class CategoryService {
   getCategory(id: number) {
     return new Promise<?Category>((resolve, reject) => {
       pool.query(
-        'SELECT * FROM ProjectCategories WHERE CategoryId = ?',
+        'SELECT * FROM ProjectCategories WHERE categoryId = ?',
         [id],
+        (error, results: Category[]) => {
+          if (error) return reject(error);
+
+          resolve(results[0]);
+        }
+      );
+    });
+  }
+
+  getProjectCategory(projectId: number) {
+    return new Promise<?Category>((resolve, reject) => {
+      pool.query(
+        `SELECT ProjectCategories.categoryId, ProjectCategories.name 
+        FROM Projects INNER JOIN ProjectCategories ON 
+        Projects.categoryId = ProjectCategories.categoryId 
+        WHERE Projects.projectId = ?`,
+        [projectId],
         (error, results: Category[]) => {
           if (error) return reject(error);
 
@@ -141,23 +159,19 @@ class CategoryService {
 
   createCategory(category: Category) {
     return new Promise<number>((resolve, reject) => {
-      pool.query(
-        'INSERT INTO ProjectCategories SET CategoryName=?',
-        [category.name],
-        (error, results) => {
-          if (error) return reject(error);
-          if (!results.insertId) return reject(new Error('No row inserted'));
+      pool.query('INSERT INTO ProjectCategories SET name=?', [category.name], (error, results) => {
+        if (error) return reject(error);
+        if (!results.insertId) return reject(new Error('No row inserted'));
 
-          resolve(Number(results.insertId));
-        }
-      );
+        resolve(Number(results.insertId));
+      });
     });
   }
 
   updateCategory(category: Category) {
     return new Promise<void>((resolve, reject) => {
       pool.query(
-        'UPDATE ProjectCategories SET CategoryName=? WHERE CategoryId=?',
+        'UPDATE ProjectCategories SET name=? WHERE categoryId=?',
         [category.name, category.categoryId],
         (error, results) => {
           if (error) return reject(error);
@@ -171,7 +185,7 @@ class CategoryService {
 
   deleteCategory(id: number) {
     return new Promise<void>((resolve, reject) => {
-      pool.query('DELETE FROM ProjectCategories WHERE CategoryId=?', [id], (error, results) => {
+      pool.query('DELETE FROM ProjectCategories WHERE categoryId=?', [id], (error, results) => {
         if (error) return reject(error);
         if (!results.affectedRows) reject(new Error('No rows deleted'));
 
@@ -192,9 +206,23 @@ class PosterService {
     });
   }
 
+  getProjectPosters(projectId: number) {
+    return new Promise<Poster[]>((resolve, reject) => {
+      pool.query(
+        `SELECT * FROM Posters WHERE Posters.projectId = ?`,
+        [projectId],
+        (error, results) => {
+          if (error) return reject(error);
+
+          resolve(results);
+        }
+      );
+    });
+  }
+
   getPoster(id: number) {
     return new Promise<?Poster>((resolve, reject) => {
-      pool.query('SELECT * FROM Posters WHERE PosterId = ?', [id], (error, results: Poster[]) => {
+      pool.query('SELECT * FROM Posters WHERE posterId = ?', [id], (error, results: Poster[]) => {
         if (error) return reject(error);
 
         resolve(results[0]);
@@ -205,7 +233,7 @@ class PosterService {
   createPoster(poster: Poster) {
     return new Promise<number>((resolve, reject) => {
       pool.query(
-        'INSERT INTO Posters SET ProjectId=?, PosterDescription=?, PosterUrl=?',
+        'INSERT INTO Posters SET projectId=?, description=?, url=?',
         [poster.projectId, poster.description, poster.url],
         (error, results) => {
           if (error) return reject(error);
@@ -220,7 +248,7 @@ class PosterService {
   updatePoster(poster: Poster) {
     return new Promise<void>((resolve, reject) => {
       pool.query(
-        'UPDATE Posters SET ProjectId=?, PosterDescription=?, PosterUrl=? WHERE PosterId=?',
+        'UPDATE Posters SET projectId=?, description=?, url=? WHERE posterId=?',
         [poster.projectId, poster.description, poster.url, poster.posterId],
         (error, results) => {
           if (error) return reject(error);
@@ -234,7 +262,7 @@ class PosterService {
 
   deletePoster(id: number) {
     return new Promise<void>((resolve, reject) => {
-      pool.query('DELETE FROM Posters WHERE PosterId=?', [id], (error, results) => {
+      pool.query('DELETE FROM Posters WHERE posterId=?', [id], (error, results) => {
         if (error) return reject(error);
         if (!results.affectedRows) reject(new Error('No rows deleted'));
 
@@ -258,8 +286,25 @@ class EmployerService {
   getEmployer(id: number) {
     return new Promise<?Employer>((resolve, reject) => {
       pool.query(
-        'SELECT * FROM Employers WHERE EmployerId = ?',
+        'SELECT * FROM Employers WHERE employerId = ?',
         [id],
+        (error, results: Employer[]) => {
+          if (error) return reject(error);
+
+          resolve(results[0]);
+        }
+      );
+    });
+  }
+
+  getProjectEmployer(projectId: number) {
+    return new Promise<?Employer>((resolve, reject) => {
+      pool.query(
+        `SELECT Employers.employerId, Employers.name 
+        FROM Projects INNER JOIN Employers 
+        ON Projects.employerId = Employers.employerId
+        WHERE Projects.employerId = ?`,
+        [projectId],
         (error, results: Employer[]) => {
           if (error) return reject(error);
 
@@ -271,7 +316,7 @@ class EmployerService {
 
   createEmployer(employer: Employer) {
     return new Promise<number>((resolve, reject) => {
-      pool.query('INSERT INTO Employers SET EmployerName=?', [employer.name], (error, results) => {
+      pool.query('INSERT INTO Employers SET name=?', [employer.name], (error, results) => {
         if (error) return reject(error);
         if (!results.insertId) return reject(new Error('No row inserted'));
 
@@ -283,7 +328,7 @@ class EmployerService {
   updateEmployer(employer: Employer) {
     return new Promise<void>((resolve, reject) => {
       pool.query(
-        'UPDATE Employers SET EmployerName=? WHERE EmployerId=?',
+        'UPDATE Employers SET name=? WHERE employerId=?',
         [employer.name, employer.employerId],
         (error, results) => {
           if (error) return reject(error);
@@ -297,7 +342,7 @@ class EmployerService {
 
   deleteEmployer(id: number) {
     return new Promise<void>((resolve, reject) => {
-      pool.query('DELETE FROM Employers WHERE EmployerId=?', [id], (error, results) => {
+      pool.query('DELETE FROM Employers WHERE employerId=?', [id], (error, results) => {
         if (error) return reject(error);
         if (!results.affectedRows) reject(new Error('No rows deleted'));
 

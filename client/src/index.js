@@ -5,14 +5,20 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { HashRouter, Route } from 'react-router-dom';
 import { NavBar, Card, Alert, ContactCard, FooterCard } from './widgets';
-import { Portfoliolisting, ProjectDetails } from './components';
+import {
+  OtherManagement,
+  ManageCategories,
+  PortfolioListing,
+  ProjectDetails,
+  ProjectManagement,
+} from './components';
 
 class Topbar extends Component {
   render() {
     return (
       <NavBar brand="Mancat">
         <NavBar.Link to="/">Sorter</NavBar.Link>
-        <NavBar.Link to="/">Portfolio</NavBar.Link>
+        <NavBar.Link to="/projects">Portfolio</NavBar.Link>
         <NavBar.Link to="/contact">Contact</NavBar.Link>
       </NavBar>
     );
@@ -33,18 +39,22 @@ class Footer extends Component {
   }
 }
 
-class Admin extends Component {
+class AdminPage extends Component {
   render() {
     return (
-      <Card title="Mancat admin">
-        This is adminpage
-        <NavBar brand="Rediger:">
-          <NavBar.Link to="/">Prosjekt</NavBar.Link>
-          <NavBar.Link to="/">Plakater</NavBar.Link>
-          <NavBar.Link to="/">Portfolio</NavBar.Link>
-          <NavBar.Link to="/">Visningsrekkefølge</NavBar.Link>
-        </NavBar>
-      </Card>
+      <>
+        <Card title="Mancat admin">
+          This is adminpage
+          <NavBar brand="Rediger:">
+            <NavBar.Link to="/">Prosjekt</NavBar.Link>
+            <NavBar.Link to="/">Plakater</NavBar.Link>
+            <NavBar.Link to="/">Portfolio</NavBar.Link>
+            <NavBar.Link to="/">Visningsrekkefølge</NavBar.Link>
+          </NavBar>
+        </Card>
+        <OtherManagement />
+        <ProjectManagement />
+      </>
     );
   }
 }
@@ -102,6 +112,9 @@ if (root)
             </div>
           )}
         />
+        <Route exact path="/admin" component={AdminPage} />
+        <Route exact path="/admin/projects/:id(\d+)" component={Contact} />
+        <Route exact path="/admin/categories" component={ManageCategories} />
       </div>
     </HashRouter>,
     root

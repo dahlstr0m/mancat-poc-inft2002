@@ -8,9 +8,9 @@ import { NavLink } from 'react-router-dom';
  * Renders a PortfolioCard for portfoliolisting
  */
 export class PortfolioCard extends Component<{
-  projectid?: React.Node,
-  title?: React.Node,
-  link?: React.Node,
+  projectid: number,
+  title: React.Node,
+  link: string,
   imageurl?: React.Node,
   children?: React.Node,
 }> {
@@ -23,12 +23,12 @@ export class PortfolioCard extends Component<{
     };
     return (
       <>
-        <div id={'PortfolioCard' + this.props.projectid} style={displaystyleDev}>
+        <div id={'PortfolioCard' + this.props.projectId} style={displaystyleDev}>
           <p>Prosjekttittel: {this.props.title}</p>
           <p>
             Link til prosjekt: <NavLink to={this.props.link}>HER</NavLink>
           </p>
-          <p>ImageUrl: {this.props.imageurl}</p>
+          <p>ImageUrl: {this.props.imageUrl}</p>
           <p>Data(?): {this.props.children}</p>
           <p>Link til prosjektvisning: {this.props.children}</p>
         </div>
@@ -42,10 +42,10 @@ export class PortfolioCard extends Component<{
  */
 
 export class ProjectCard extends Component<{
-  projectid?: React.Node,
+  projectId?: React.Node,
   title?: React.Node,
-  projectdescription?: React.Node,
-  projectdate?: React.Node,
+  description?: React.Node,
+  date?: React.Node,
   category?: React.Node,
   employer?: React.Node,
   children?: React.Node,
@@ -59,10 +59,10 @@ export class ProjectCard extends Component<{
     };
     return (
       <>
-        <div id={this.props.projectid} style={displaystyleDev2}>
+        <div id={this.props.projectId} style={displaystyleDev2}>
           <p>Tittel: {this.props.title}</p>
-          <p>Beskrivelse: {this.props.projectdescription}</p>
-          <p>Dato: {this.props.projectdate}</p>
+          <p>Beskrivelse: {this.props.description}</p>
+          <p>Dato: {this.props.date}</p>
           <p>Kategori: {this.props.category}</p>
           <p>Employer: {this.props.employer}</p>
           <div>{this.props.children}</div>
@@ -78,19 +78,19 @@ export class ProjectCard extends Component<{
 
 export class PosterCard extends Component<{
   posterId?: React.Node,
-  posterDescription?: React.Node,
-  posterUrl?: React.Node,
-  posterThumbnailUrl?: React.Node,
+  description?: React.Node,
+  url?: React.Node,
+  thumbnailUrl?: React.Node,
 }> {
   render() {
     return (
       <>
         <div id={this.props.posterId}>
           <p>Poster: {this.props.posterId}</p>
-          <p>Beskrivelse: {this.props.posterDescription}</p>
-          <p>Url: {this.props.posterUrl}</p>
-          <p>ThumbnailUrl: {this.props.posterThumbnailUrl}</p>
-          <hr></hr>
+          <p>Beskrivelse: {this.props.description}</p>
+          <p>Url: {this.props.url}</p>
+          <p>ThumbnailUrl: {this.props.thumbnailUrl}</p>
+          <hr />
         </div>
       </>
     );
@@ -223,6 +223,77 @@ export class Card extends Component<{ title?: React.Node, children?: React.Node 
           <h5 className="card-title">{this.props.title}</h5>
           <div className="card-text">{this.props.children}</div>
         </div>
+      </div>
+    );
+  }
+}
+
+export class CardPlain extends Component<{ children?: React.Node }> {
+  render() {
+    return <div className="card">{this.props.children}</div>;
+  }
+}
+
+export class CardBody extends Component<{ title?: React.Node, children?: React.Node }> {
+  render() {
+    return (
+      <div className="card-body">
+        <h5 className="card-title">{this.props.title}</h5>
+        <div className="card-text">{this.props.children}</div>
+      </div>
+    );
+  }
+}
+
+export class CardImage extends Component<{
+  img?: React.Node,
+  alt?: React.Node,
+  title?: React.Node,
+  buttonText?: React.Node,
+  buttonOnClick?: React.Node,
+  children?: React.Node,
+}> {
+  render() {
+    return (
+      <div className="card">
+        <img src={this.props.img} className="card-img-top" alt={this.props.imgAlt} />
+        <div className="card-body">
+          <h5 className="card-title">{this.props.title}</h5>
+          <div className="card-text">{this.props.children}</div>
+          <Button.Danger onClick={this.props.buttonOnClick}>{this.props.buttonText}</Button.Danger>
+        </div>
+      </div>
+    );
+  }
+}
+
+export class CardColumn extends Component<{
+  children?: React.Node,
+}> {
+  render() {
+    return <div className="col mb-4">{this.props.children}</div>;
+  }
+}
+
+export class CardGrid extends Component<{
+  columns: React.Node,
+  columnsSm?: React.Node,
+  columnsMd?: React.Node,
+  columnsLg?: React.Node,
+  children?: React.Node,
+}> {
+  render() {
+    return (
+      <div
+        className={
+          'row row-cols-' +
+          this.props.columns +
+          (this.props.columnsSm ? ' row-cols-sm-' + this.props.columnsSm : '') +
+          (this.props.columnsMd ? ' row-cols-md-' + this.props.columnsMd : '') +
+          (this.props.columnsLg ? ' row-cols-lg-' + this.props.columnsLg : '')
+        }
+      >
+        {this.props.children}
       </div>
     );
   }

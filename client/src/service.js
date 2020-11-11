@@ -3,6 +3,40 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:3000';
 
+export type ProjectCategories = {
+  categoryid: number,
+  categoryName: string,
+};
+
+class categoriesService {
+  //Get project using Categoryid
+  get(categoryid: number) {
+    return axios
+      .get<ProjectCategories>('/categories/' + categoryid)
+      .then((response) => response.data);
+  }
+  //Get all employers
+  getAll() {
+    return axios.get<ProjectCategories[]>('/categories').then((response) => response.data);
+  }
+}
+
+export type Employers = {
+  employerid: number,
+  employerName: string,
+};
+
+class EmployerService {
+  //Get project using employerid
+  get(employerid: number) {
+    return axios.get<Employers>('/employer/' + employerid).then((response) => response.data);
+  }
+  //Get all employers
+  getAll() {
+    return axios.get<Employers[]>('/employer').then((response) => response.data);
+  }
+}
+
 export type Project = {
   projectid: number,
   title: string,
@@ -58,6 +92,12 @@ class PosterService {
   get(posterid: number) {
     return axios.get<Poster>('/posters/' + posterid).then((response) => response.data);
   }
+
+  //Get posters using projectid
+  get(projectid: number) {
+    return axios.get<Poster>('/posters/' + projectid).then((response) => response.data);
+  }
+
   //Get all posters
   getAll() {
     return axios.get<Poster[]>('/posters').then((response) => response.data);
@@ -88,6 +128,14 @@ export type Thumbnails = {
 };
 
 class ThumbnailService {
+  //Get project using thumbnailsid
+  get(thumbnailid: number) {
+    return axios.get<Thumbnails>('/thumbnails/' + thumbnailid).then((response) => response.data);
+  }
+  //Get all thumbnails
+  getAll() {
+    return axios.get<Thumbnails[]>('/thumbnails').then((response) => response.data);
+  }
   //  Deletes a project based on thumbnail id
   delete(thumbnailid: number) {
     return axios.delete<Project>('/thumbnails/' + thumbnailid).then((response) => response.data);
@@ -98,6 +146,12 @@ class ThumbnailService {
     return axios.put<Thumbnails, void>('/thumbnails', thumbnails).then((response) => response.data);
   }
 }
+
+const categoriesservice = new categoriesService();
+export { categoriesservice };
+
+const employerservice = new EmployerService();
+export { employerservice };
 
 const projectservice = new ProjectService();
 export { projectservice };

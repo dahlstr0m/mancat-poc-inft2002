@@ -38,7 +38,19 @@ if (root)
   ReactDOM.render(
     <HashRouter>
       <div>
-        <Route
+        <Route // Main page
+          exact
+          path="/"
+          component={() => (
+            <div>
+              <Topbar />
+              <Alert />
+              <Portfoliolisting />
+              <Footer />
+            </div>
+          )}
+        />
+        <Route // Contact page
           exact
           path="/contact"
           component={() => (
@@ -50,7 +62,7 @@ if (root)
             </div>
           )}
         />
-        <Route
+        <Route //Project page
           exact
           path="/project/:id(\d+)"
           component={(props) => (
@@ -58,18 +70,6 @@ if (root)
               <Topbar />
               <Alert />
               <ProjectDetails pathid={props.match.params.id} />
-              <Portfoliolisting />
-              <Footer />
-            </div>
-          )}
-        />
-        <Route
-          exact
-          path="/"
-          component={() => (
-            <div>
-              <Topbar />
-              <Alert />
               <Portfoliolisting />
               <Footer />
             </div>

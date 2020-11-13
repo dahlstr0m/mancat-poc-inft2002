@@ -6,12 +6,13 @@ import { Component } from 'react-simplified';
 import { HashRouter, Route } from 'react-router-dom';
 import { NavBar, Card, Alert, ContactCard, FooterCard, TitleCard, CardPlain } from './widgets';
 import {
-  OtherManagement,
+  AllManagement,
   ManageCategories,
   PortfolioListing,
   ProjectDetails,
-  ProjectManagement,
+  ProjectListingManagement,
   BackToAdmin,
+  NewProject,
 } from './components';
 
 class Topbar extends Component {
@@ -46,9 +47,9 @@ class AdminPage extends Component {
       <>
         <CardPlain>
           <TitleCard img="mancatsrc">Mancat admin</TitleCard>
-          <OtherManagement />
+          <AllManagement />
           <hr />
-          <ProjectManagement />
+          <ProjectListingManagement />
         </CardPlain>
       </>
     );
@@ -92,7 +93,7 @@ if (root)
               <Topbar />
               <Alert />
               <ProjectDetails pathId={props.match.params.id} />
-              <PortfolioListing sortBy={props.match.params.sortBy} />
+              <PortfolioListing />
               <Footer />
             </div>
           )}
@@ -107,14 +108,14 @@ if (root)
             </div>
           )}
         />
-        <Route
+        <Route //New project
           exact
-          path="/admin/projects/:id(\d+)"
+          path="/admin/projects/new"
           component={() => (
             <div>
               <BackToAdmin />
               <Alert />
-              <Contact />
+              <NewProject />
             </div>
           )}
         />

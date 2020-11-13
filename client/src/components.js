@@ -52,7 +52,7 @@ export class PortfolioListing extends Component {
           ) => (
             <PortfolioCard
               projectId={project.projectId}
-              title={project.title + this.props.sortBy}
+              title={project.title}
               link={'/projects/' + project.projectId}
               imageUrl={
                 this.posters.find((poster) => poster.projectId === project.projectId)
@@ -147,14 +147,21 @@ export class ProjectDetails extends Component<{ pathId: number }> {
   }
 }
 
-export class OtherManagement extends Component {
+/**
+ * Renders All management menu .
+ */
+export class AllManagement extends Component {
   render() {
     return (
       <CardGrid>
         <CardColumn>
           <CardBody title="Add new project">
-            <Button.Success>Manage</Button.Success>
+            <Button.Success onClick={() => history.push('/admin/categories')}>
+              Manage
+            </Button.Success>
           </CardBody>
+        </CardColumn>
+        <CardColumn>
           <CardBody title="Add new poster">
             <Button.Success>Manage</Button.Success>
           </CardBody>
@@ -163,6 +170,8 @@ export class OtherManagement extends Component {
           <CardBody title="Employers">
             <Button.Danger>Manage</Button.Danger>
           </CardBody>
+        </CardColumn>
+        <CardColumn>
           <CardBody title="Posters">
             <Button.Danger>Manage</Button.Danger>
           </CardBody>
@@ -177,6 +186,9 @@ export class OtherManagement extends Component {
   }
 }
 
+/**
+ * Renders manage categories page
+ */
 export class ManageCategories extends Component {
   categories: Category[] = [];
   category: Category = { categoryId: 0, name: '' };
@@ -232,7 +244,10 @@ export class ManageCategories extends Component {
   }
 }
 
-export class ProjectManagement extends Component {
+/**
+ * Renders project listing in management
+ */
+export class ProjectListingManagement extends Component {
   projects: Project[] = [];
   posters: Poster[] = [];
 
@@ -241,24 +256,28 @@ export class ProjectManagement extends Component {
       <>
         <h1>Project management</h1>
         <CardGrid columns={1} columnsSm={2} columnsMd={4}>
-          {this.projects.map((project) => (
-            <CardColumn>
-              <CardImage
-                img={
-                  this.posters.find((poster) => poster.projectId === project.projectId)
-                    ? this.posters.find((poster) => poster.projectId === project.projectId)
-                        .thumbnailUrl
-                    : ''
-                }
-                title={project.title}
-                imgAlt={project.title}
-                buttonText={'Manage project'}
-                buttonOnClick={() => history.push(`/admin/projects/${project.projectId}`)}
-              >
-                {project.description}
-              </CardImage>
-            </CardColumn>
-          ))}
+          {this.projects
+            .sort((projectA, projectB) => projectA.ranking - projectB.ranking) // Sorting to display by asc ranking
+            .map((project) => (
+              <CardColumn>
+                <CardImage
+                  img={
+                    this.posters.find((poster) => poster.projectId === project.projectId)
+                      ? this.posters.find((poster) => poster.projectId === project.projectId)
+                          .thumbnailUrl
+                      : ''
+                  }
+                  title={project.title}
+                  imgAlt={'Missing thumbnail for ' + project.title}
+                  buttonText={'Manage project'}
+                  buttonOnClick={() => history.push(`/admin/projects/${project.projectId}`)}
+                >
+                  Description: {project.description}
+                  <br />
+                  Status: {project.active == true ? 'Active' : 'Disabled'}
+                </CardImage>
+              </CardColumn>
+            ))}
         </CardGrid>
       </>
     );
@@ -277,6 +296,9 @@ export class ProjectManagement extends Component {
   }
 }
 
+/**
+ * Renders back to admin button-module
+ */
 export class BackToAdmin extends Component {
   render() {
     return (
@@ -284,5 +306,71 @@ export class BackToAdmin extends Component {
         <Button.Light onClick={() => history.push('/admin/')}>Back to admin</Button.Light>
       </CardPlain>
     );
+  }
+}
+
+/**
+ * Renders page to add New Project
+ */
+export class NewProject extends Component<{ pathId: number }> {
+  project: Project = {
+    projectId: 0,
+    title: '',
+    description: '',
+    date: '',
+    categoryId: 0,
+    employerId: 0,
+    active: false,
+    ranking: 0,
+  };
+  category: Category = { categoryId: 0, name: '' };
+  employer: Employer = { employerId: 0, name: '' };
+  posters: Poster[] = [];
+
+  render() {
+    return (
+      <>
+        <ProjectCard
+          projectId={this.project.projectId}
+          title={this.project.title}
+          description={this.project.description}
+          date={this.project.date}
+          category={this.category.name}
+          employer={this.employer.name}
+        >
+          {this.posters.map((poster) => (
+            <PosterCard
+              posterId={poster.posterId}
+              description={poster.description}
+              url={poster.url}
+              thumbnailUrl={poster.thumbnailUrl}
+            >
+              {'ingen data'}
+            </PosterCard>
+          ))}
+        </ProjectCard>
+      </>
+    );
+  }
+  mounted() {
+    projectService
+      .getProject(this.props.pathId)
+      .then((project) => (this.project = project))
+      .catch((error: Error) => Alert.danger('Error getting project: ' + error.message));
+
+    categoryService
+      .getProjectCategory(this.props.pathId)
+      .then((category) => (this.category = category))
+      .catch((error: Error) => Alert.danger('Error getting category: ' + error.message));
+
+    employerService
+      .getProjectEmployer(this.props.pathId)
+      .then((employer) => (this.employer = employer))
+      .catch((error: Error) => Alert.danger('Error getting employer: ' + error.message));
+
+    posterService
+      .getProjectPosters(this.props.pathId)
+      .then((posters) => (this.posters = posters))
+      .catch((error: Error) => Alert.danger('Error getting posters: ' + error.message));
   }
 }

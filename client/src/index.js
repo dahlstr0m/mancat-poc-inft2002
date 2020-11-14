@@ -55,12 +55,10 @@ class AdminPage extends Component {
   render() {
     return (
       <>
-        <CardPlain>
-          <TitleCard img="mancatsrc">Mancat admin</TitleCard>
-          <ManagementMenu />
-          <hr />
-          <ProjectListingManagement />
-        </CardPlain>
+        <TitleCard img="https://portfolio.hpbastiansen.com/other/logo.png">Mancat admin</TitleCard>
+        <ManagementMenu />
+        <hr />
+        <ProjectListingManagement />
       </>
     );
   }
@@ -103,7 +101,7 @@ if (root)
             <div>
               <Topbar />
               <Alert />
-              <ProjectDetails />
+              <ProjectDetails pathId={props.match.params.id} />
               <MainPage />
               <Footer />
             </div>

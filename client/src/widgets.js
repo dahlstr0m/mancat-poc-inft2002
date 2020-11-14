@@ -245,8 +245,8 @@ export class TitleCard extends Component<{ img?: React.Node, children?: React.No
     return (
       <div className="card">
         <h1>
-          <img src={this.props.img} alt={'-No img-'} />
-          {this.props.children}
+          <img src={this.props.img} alt={'-No img-'} width={140} height={140} />
+          {'         ' + this.props.children}
         </h1>
       </div>
     );

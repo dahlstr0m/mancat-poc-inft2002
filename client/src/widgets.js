@@ -17,7 +17,6 @@ export class PortfolioCard extends Component<{
   render() {
     const displaystyleDev = {
       width: '200px',
-      height: '250px',
       backgroundColor: 'lightgrey',
       margin: '20px',
     };
@@ -29,6 +28,7 @@ export class PortfolioCard extends Component<{
             Link til prosjekt: <NavLink to={this.props.link}>HER</NavLink>
           </p>
           <p>ImageUrl: {this.props.imageUrl}</p>
+          <img src={this.props.imageUrl} alt={'Thumbnail kan ikke vises for ' + this.props.title} />
           <p>Data(?): {this.props.children}</p>
           <p>Link til prosjektvisning: {this.props.children}</p>
         </div>
@@ -87,6 +87,7 @@ export class PosterCard extends Component<{
       <>
         <div id={this.props.posterId}>
           <p>Poster: {this.props.posterId}</p>
+          <img src={this.props.url} alt={''} />
           <p>Beskrivelse: {this.props.description}</p>
           <p>Url: {this.props.url}</p>
           <p>ThumbnailUrl: {this.props.thumbnailUrl}</p>
@@ -267,6 +268,8 @@ export class CardBody extends Component<{ title?: React.Node, children?: React.N
 export class CardImage extends Component<{
   img?: React.Node,
   imgAlt?: React.Node,
+  imgWidth?: number,
+  imgHeight?: numer,
   title?: React.Node,
   buttonText?: React.Node,
   buttonOnClick?: React.Node,
@@ -275,9 +278,16 @@ export class CardImage extends Component<{
   render() {
     return (
       <div className="card">
-        <img src={this.props.img} className="card-img-top" alt={this.props.imgAlt} />
         <div className="card-body">
-          <h5 className="card-title">{this.props.title}</h5>
+          <img
+            src={this.props.img}
+            class="rounded mx-auto d-block"
+            alt={this.props.imgAlt}
+            width={this.props.imgWidth}
+            height={this.props.imgHeight}
+          />
+          <hr />
+          <h5 className="card-title mx-auto d-block">{this.props.title}</h5>
           <div className="card-text">{this.props.children}</div>
           <Button.Danger onClick={this.props.buttonOnClick}>{this.props.buttonText}</Button.Danger>
         </div>

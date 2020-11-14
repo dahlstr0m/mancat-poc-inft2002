@@ -150,7 +150,7 @@ export class ProjectDetails extends Component<{ pathId: number }> {
 /**
  * Renders All management menu .
  */
-export class AllManagement extends Component {
+export class ManagementMenu extends Component {
   render() {
     return (
       <CardGrid>
@@ -167,18 +167,24 @@ export class AllManagement extends Component {
           </CardBody>
         </CardColumn>
         <CardColumn>
-          <CardBody title="Employers">
-            <Button.Danger>Manage</Button.Danger>
-          </CardBody>
-        </CardColumn>
-        <CardColumn>
           <CardBody title="Posters">
             <Button.Danger>Manage</Button.Danger>
           </CardBody>
         </CardColumn>
         <CardColumn>
+          <CardBody title="Employers">
+            <Button.Danger>Manage</Button.Danger>
+          </CardBody>
+        </CardColumn>
+
+        <CardColumn>
           <CardBody title="Categories">
             <Button.Danger onClick={() => history.push('/admin/categories')}>Manage</Button.Danger>
+          </CardBody>
+        </CardColumn>
+        <CardColumn>
+          <CardBody title="Vieworder">
+            <Button.Danger>Manage</Button.Danger>
           </CardBody>
         </CardColumn>
       </CardGrid>

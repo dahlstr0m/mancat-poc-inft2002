@@ -6,7 +6,7 @@ import { Component } from 'react-simplified';
 import { HashRouter, Route } from 'react-router-dom';
 import { NavBar, Card, Alert, ContactCard, FooterCard, TitleCard, CardPlain } from './widgets';
 import {
-  AllManagement,
+  ManagementMenu,
   ManageCategories,
   PortfolioListing,
   ProjectDetails,
@@ -41,13 +41,23 @@ class Footer extends Component {
   }
 }
 
+class MainPage extends Component {
+  render() {
+    return (
+      <>
+        <PortfolioListing />
+      </>
+    );
+  }
+}
+
 class AdminPage extends Component {
   render() {
     return (
       <>
         <CardPlain>
           <TitleCard img="mancatsrc">Mancat admin</TitleCard>
-          <AllManagement />
+          <ManagementMenu />
           <hr />
           <ProjectListingManagement />
         </CardPlain>
@@ -68,7 +78,7 @@ if (root)
             <div>
               <Topbar />
               <Alert />
-              <PortfolioListing />
+              <MainPage />
               <Footer />
             </div>
           )}
@@ -81,6 +91,7 @@ if (root)
               <Topbar />
               <Alert />
               <Contact />
+              <MainPage />
               <Footer />
             </div>
           )}
@@ -92,8 +103,8 @@ if (root)
             <div>
               <Topbar />
               <Alert />
-              <ProjectDetails pathId={props.match.params.id} />
-              <PortfolioListing />
+              <ProjectDetails />
+              <MainPage />
               <Footer />
             </div>
           )}

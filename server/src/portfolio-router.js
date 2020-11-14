@@ -6,12 +6,10 @@ import {
   categoryService,
   posterService,
   employerService,
-  thumbnailService,
   type Project,
   type Category,
   type Poster,
   type Employer,
-  type Thumbnail,
 } from './portfolio-service';
 
 const router: express$Router<> = express.Router();
@@ -233,13 +231,16 @@ router.post('/posters', (req, res) => {
     typeof data.description == 'string' &&
     data.description.length != 0 &&
     typeof data.url == 'string' &&
-    data.url.length != 0
+    data.url.length != 0 &&
+    typeof data.thumbnailUrl == 'string' &&
+    data.thumbnailUrl.length != 0
   ) {
     const poster: Poster = {
       posterId: 0,
       projectId: data.projectId,
       description: data.description,
       url: data.url,
+      thumbnailUrl: data.thumbnailUrl,
     };
 
     posterService
@@ -261,13 +262,16 @@ router.put('/posters/:id', (req, res) => {
     typeof data.description == 'string' &&
     data.description.length != 0 &&
     typeof data.url == 'string' &&
-    data.url.length != 0
+    data.url.length != 0 &&
+    typeof data.thumbnailUrl == 'string' &&
+    data.thumbnailUrl.length != 0
   ) {
     const poster: Poster = {
       posterId: id,
       projectId: data.projectId,
       description: data.description,
       url: data.url,
+      thumbnailUrl: data.thumbnailUrl,
     };
 
     posterService

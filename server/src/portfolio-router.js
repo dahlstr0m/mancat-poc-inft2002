@@ -62,10 +62,10 @@ router.post('/projects', (req, res) => {
     data &&
     typeof data.title == 'string' &&
     data.title.length != 0 &&
-    typeof data.description == 'string' &&
-    data.description.length != 0 &&
-    typeof data.date == 'string' &&
-    data.date.length != 0 &&
+    typeof data.projectDescription == 'string' &&
+    data.projectDescription.length != 0 &&
+    typeof data.projectDate == 'string' &&
+    data.projectDate.length != 0 &&
     typeof data.categoryId == 'number' &&
     !isNaN(data.categoryId) &&
     typeof data.employerId == 'number' &&
@@ -77,8 +77,8 @@ router.post('/projects', (req, res) => {
     const project: Project = {
       projectId: 0,
       title: data.title,
-      description: data.description,
-      date: data.date,
+      projectDescription: data.projectDescription,
+      projectDate: data.projectDate,
       categoryId: data.categoryId,
       employerId: data.employerId,
       ranking: data.ranking,
@@ -101,10 +101,10 @@ router.put('/projects/:id', (req, res) => {
     data &&
     typeof data.title == 'string' &&
     data.title.length != 0 &&
-    typeof data.description == 'string' &&
-    data.description.length != 0 &&
-    typeof data.date == 'string' &&
-    data.date.length != 0 &&
+    typeof data.projectDescription == 'string' &&
+    data.projectDescription.length != 0 &&
+    typeof data.projectDate == 'string' &&
+    data.projectDate.length != 0 &&
     typeof data.categoryId == 'number' &&
     !isNaN(data.categoryId) &&
     typeof data.employerId == 'number' &&
@@ -116,8 +116,8 @@ router.put('/projects/:id', (req, res) => {
     const project: Project = {
       projectId: id,
       title: data.title,
-      description: data.description,
-      date: data.date,
+      projectDescription: data.projectDescription,
+      projectDate: data.projectDate,
       categoryId: data.categoryId,
       employerId: data.employerId,
       ranking: data.ranking,
@@ -163,10 +163,10 @@ router.get('/categories/:id', (req, res) => {
 
 router.post('/categories', (req, res) => {
   const data = req.body;
-  if (data && typeof data.name == 'string' && data.name.length != 0) {
+  if (data && typeof data.categoryName == 'string' && data.categoryName.length != 0) {
     const category: Category = {
       categoryId: 0,
-      name: data.name,
+      categoryName: data.categoryName,
     };
 
     categoryService
@@ -181,10 +181,10 @@ router.post('/categories', (req, res) => {
 router.put('/categories/:id', (req, res) => {
   const data = req.body;
   const id = Number(req.params.id);
-  if (data && typeof data.name == 'string' && data.name.length != 0) {
+  if (data && typeof data.categoryName == 'string' && data.categoryName.length != 0) {
     const category: Category = {
       categoryId: id,
-      name: data.name,
+      categoryName: data.categoryName,
     };
 
     categoryService
@@ -228,18 +228,18 @@ router.post('/posters', (req, res) => {
     data &&
     typeof data.projectId == 'number' &&
     !isNaN(data.projectId) &&
-    typeof data.description == 'string' &&
-    data.description.length != 0 &&
-    typeof data.url == 'string' &&
-    data.url.length != 0 &&
+    typeof data.posterDescription == 'string' &&
+    data.posterDescription.length != 0 &&
+    typeof data.posterUrl == 'string' &&
+    data.posterUrl.length != 0 &&
     typeof data.thumbnailUrl == 'string' &&
     data.thumbnailUrl.length != 0
   ) {
     const poster: Poster = {
       posterId: 0,
       projectId: data.projectId,
-      description: data.description,
-      url: data.url,
+      posterDescription: data.posterDescription,
+      posterUrl: data.posterUrl,
       thumbnailUrl: data.thumbnailUrl,
     };
 
@@ -259,18 +259,18 @@ router.put('/posters/:id', (req, res) => {
     data &&
     typeof data.projectId == 'number' &&
     !isNaN(data.projectId) &&
-    typeof data.description == 'string' &&
-    data.description.length != 0 &&
-    typeof data.url == 'string' &&
-    data.url.length != 0 &&
+    typeof data.posterDescription == 'string' &&
+    data.posterDescription.length != 0 &&
+    typeof data.posterUrl == 'string' &&
+    data.posterUrl.length != 0 &&
     typeof data.thumbnailUrl == 'string' &&
     data.thumbnailUrl.length != 0
   ) {
     const poster: Poster = {
       posterId: id,
       projectId: data.projectId,
-      description: data.description,
-      url: data.url,
+      posterDescription: data.posterDescription,
+      posterUrl: data.posterUrl,
       thumbnailUrl: data.thumbnailUrl,
     };
 
@@ -313,10 +313,10 @@ router.get('/employers/:id', (req, res) => {
 
 router.post('/employers', (req, res) => {
   const data = req.body;
-  if (data && typeof data.name == 'string' && data.name.length != 0) {
+  if (data && typeof data.employerName == 'string' && data.employerName.length != 0) {
     const employer: Employer = {
       employerId: 0,
-      name: data.name,
+      employerName: data.employerName,
     };
 
     employerService
@@ -331,10 +331,10 @@ router.post('/employers', (req, res) => {
 router.put('/employers/:id', (req, res) => {
   const data = req.body;
   const id = Number(req.params.id);
-  if (data && typeof data.name == 'string' && data.name.length != 0) {
+  if (data && typeof data.employerName == 'string' && data.employerName.length != 0) {
     const employer: Employer = {
       employerId: id,
-      name: data.name,
+      employerName: data.employerName,
     };
 
     employerService

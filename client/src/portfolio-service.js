@@ -6,8 +6,8 @@ axios.defaults.baseURL = 'http://localhost:3000/api/v1';
 export type Project = {
   projectId: number,
   title: string,
-  description: string,
-  date: string,
+  projectDescription: string,
+  projectDate: string,
   categoryId: number,
   employerId: number,
   ranking: number,
@@ -16,20 +16,20 @@ export type Project = {
 
 export type Category = {
   categoryId: number,
-  name: string,
+  categoryName: string,
 };
 
 export type Poster = {
   posterId: number,
   projectId: number,
-  description: string,
-  url: string,
+  posterDescription: string,
+  posterUrl: string,
   thumbnailUrl: string,
 };
 
 export type Employer = {
   employerId: number,
-  name: string,
+  employerName: string,
 };
 
 class ProjectService {

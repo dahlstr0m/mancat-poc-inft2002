@@ -88,15 +88,15 @@ export class ProjectDetails extends Component<{ pathId: number }> {
   project: Project = {
     projectId: 0,
     title: '',
-    description: '',
-    date: '',
+    projectDescription: '',
+    projectDate: '',
     categoryId: 0,
     employerId: 0,
     active: false,
     ranking: 0,
   };
-  category: Category = { categoryId: 0, name: '' };
-  employer: Employer = { employerId: 0, name: '' };
+  category: Category = { categoryId: 0, categoryName: '' };
+  employer: Employer = { employerId: 0, employerName: '' };
   posters: Poster[] = [];
 
   render() {
@@ -105,16 +105,16 @@ export class ProjectDetails extends Component<{ pathId: number }> {
         <ProjectCard
           projectId={this.project.projectId}
           title={this.project.title}
-          description={this.project.description}
-          date={this.project.date}
-          category={this.category.name}
-          employer={this.employer.name}
+          description={this.project.projectDescription}
+          date={this.project.projectDate}
+          category={this.category.categoryName}
+          employer={this.employer.employerName}
         >
           {this.posters.map((poster) => (
             <PosterCard
               posterId={poster.posterId}
-              description={poster.description}
-              url={poster.url}
+              description={poster.posterDescription}
+              url={poster.posterUrl}
               thumbnailUrl={poster.thumbnailUrl}
             >
               {'ingen data'}
@@ -197,13 +197,13 @@ export class ManagementMenu extends Component {
  */
 export class ManageCategories extends Component {
   categories: Category[] = [];
-  category: Category = { categoryId: 0, name: '' };
+  category: Category = { categoryId: 0, categoryName: '' };
 
   render() {
     return (
       <CardPlain>
         {this.categories.map((category) => (
-          <CardBody key={category.categoryId} title={category.name}>
+          <CardBody key={category.categoryId} title={category.categoryName}>
             <Row>
               <Column width={2}>
                 <Form.Label>Category name:</Form.Label>
@@ -211,8 +211,8 @@ export class ManageCategories extends Component {
               <Column>
                 <Form.Input
                   type="text"
-                  value={category.title}
-                  onChange={(event) => (this.category.title = event.currentTarget.value)}
+                  value={category.categoryName}
+                  onChange={(event) => (this.category.categoryName = event.currentTarget.value)}
                 />
               </Column>
             </Row>
@@ -278,7 +278,7 @@ export class ProjectListingManagement extends Component {
                   buttonText={'Manage project'}
                   buttonOnClick={() => history.push(`/admin/projects/${project.projectId}`)}
                 >
-                  Description: {project.description}
+                  Description: {project.projectDescription}
                   <br />
                   Status: {project.active == true ? 'Active' : 'Disabled'}
                 </CardImage>
@@ -322,15 +322,15 @@ export class NewProject extends Component<{ pathId: number }> {
   project: Project = {
     projectId: 0,
     title: '',
-    description: '',
-    date: '',
+    projectDescription: '',
+    projectDate: '',
     categoryId: 0,
     employerId: 0,
     active: false,
     ranking: 0,
   };
-  category: Category = { categoryId: 0, name: '' };
-  employer: Employer = { employerId: 0, name: '' };
+  category: Category = { categoryId: 0, categoryName: '' };
+  employer: Employer = { employerId: 0, employerName: '' };
   posters: Poster[] = [];
 
   render() {
@@ -339,16 +339,16 @@ export class NewProject extends Component<{ pathId: number }> {
         <ProjectCard
           projectId={this.project.projectId}
           title={this.project.title}
-          description={this.project.description}
-          date={this.project.date}
-          category={this.category.name}
-          employer={this.employer.name}
+          description={this.project.projectDescription}
+          date={this.project.projectDate}
+          category={this.category.categoryName}
+          employer={this.employer.employerName}
         >
           {this.posters.map((poster) => (
             <PosterCard
               posterId={poster.posterId}
-              description={poster.description}
-              url={poster.url}
+              description={poster.posterDescription}
+              url={poster.posterUrl}
               thumbnailUrl={poster.thumbnailUrl}
             >
               {'ingen data'}

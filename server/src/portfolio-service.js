@@ -5,8 +5,8 @@ import pool from './mysql-pool';
 export type Project = {
   projectId: number,
   title: string,
-  description: string,
-  date: string,
+  projectDescription: string,
+  projectDate: string,
   categoryId: number,
   employerId: number,
   ranking: number,
@@ -15,20 +15,20 @@ export type Project = {
 
 export type Category = {
   categoryId: number,
-  name: string,
+  categoryName: string,
 };
 
 export type Poster = {
   posterId: number,
   projectId: number,
-  description: string,
-  url: string,
+  posterDescription: string,
+  posterUrl: string,
   thumbnailUrl: string,
 };
 
 export type Employer = {
   employerId: number,
-  name: string,
+  employerName: string,
 };
 
 class ProjectService {
@@ -59,11 +59,11 @@ class ProjectService {
   createProject(project: Project) {
     return new Promise<number>((resolve, reject) => {
       pool.query(
-        'INSERT INTO Projects SET title=?, description=?, date=?, categoryId=?, employerId=?, active=?, ranking=?',
+        'INSERT INTO Projects SET title=?, projectDescription=?, projectDate=?, categoryId=?, employerId=?, active=?, ranking=?',
         [
           project.title,
-          project.description,
-          project.date,
+          project.projectDescription,
+          project.projectDate,
           project.categoryId,
           project.employerId,
           Number(project.active),
@@ -82,11 +82,11 @@ class ProjectService {
   updateProject(project: Project) {
     return new Promise<void>((resolve, reject) => {
       pool.query(
-        'UPDATE Projects SET title=?, description=?, date=?, categoryId=?, employerId=?, active=?, ranking=? WHERE projectId=?',
+        'UPDATE Projects SET title=?, projectDescription=?, projectDate=?, categoryId=?, employerId=?, active=?, ranking=? WHERE projectId=?',
         [
           project.title,
-          project.description,
-          project.date,
+          project.projectDescription,
+          project.projectDate,
           project.categoryId,
           project.employerId,
           project.active,
@@ -143,7 +143,7 @@ class CategoryService {
   getProjectCategory(projectId: number) {
     return new Promise<?Category>((resolve, reject) => {
       pool.query(
-        `SELECT ProjectCategories.categoryId, ProjectCategories.name 
+        `SELECT ProjectCategories.categoryId, ProjectCategories.categoryName 
         FROM Projects INNER JOIN ProjectCategories ON 
         Projects.categoryId = ProjectCategories.categoryId 
         WHERE Projects.projectId = ?`,
@@ -159,20 +159,24 @@ class CategoryService {
 
   createCategory(category: Category) {
     return new Promise<number>((resolve, reject) => {
-      pool.query('INSERT INTO ProjectCategories SET name=?', [category.name], (error, results) => {
-        if (error) return reject(error);
-        if (!results.insertId) return reject(new Error('No row inserted'));
+      pool.query(
+        'INSERT INTO ProjectCategories SET categoryName=?',
+        [category.categoryName],
+        (error, results) => {
+          if (error) return reject(error);
+          if (!results.insertId) return reject(new Error('No row inserted'));
 
-        resolve(Number(results.insertId));
-      });
+          resolve(Number(results.insertId));
+        }
+      );
     });
   }
 
   updateCategory(category: Category) {
     return new Promise<void>((resolve, reject) => {
       pool.query(
-        'UPDATE ProjectCategories SET name=? WHERE categoryId=?',
-        [category.name, category.categoryId],
+        'UPDATE ProjectCategories SET categoryName=? WHERE categoryId=?',
+        [category.categoryName, category.categoryId],
         (error, results) => {
           if (error) return reject(error);
           if (!results.affectedRows) reject(new Error('No rows updated'));
@@ -233,8 +237,8 @@ class PosterService {
   createPoster(poster: Poster) {
     return new Promise<number>((resolve, reject) => {
       pool.query(
-        'INSERT INTO Posters SET projectId=?, description=?, url=?',
-        [poster.projectId, poster.description, poster.url],
+        'INSERT INTO Posters SET projectId=?, posterDescription=?, posterUrl=?, thumbnailUrl=?',
+        [poster.projectId, poster.posterDescription, poster.posterUrl, poster.thumbnailUrl],
         (error, results) => {
           if (error) return reject(error);
           if (!results.insertId) return reject(new Error('No row inserted'));
@@ -248,8 +252,14 @@ class PosterService {
   updatePoster(poster: Poster) {
     return new Promise<void>((resolve, reject) => {
       pool.query(
-        'UPDATE Posters SET projectId=?, description=?, url=? WHERE posterId=?',
-        [poster.projectId, poster.description, poster.url, poster.posterId],
+        'UPDATE Posters SET projectId=?, posterDescription=?, posterUrl=?, thumbnailUrl=? WHERE posterId=?',
+        [
+          poster.projectId,
+          poster.posterDescription,
+          poster.posterUrl,
+          poster.posterId,
+          poster.thumbnailUrl,
+        ],
         (error, results) => {
           if (error) return reject(error);
           if (!results.affectedRows) reject(new Error('No rows updated'));
@@ -300,10 +310,10 @@ class EmployerService {
   getProjectEmployer(projectId: number) {
     return new Promise<?Employer>((resolve, reject) => {
       pool.query(
-        `SELECT Employers.employerId, Employers.name 
+        `SELECT Employers.employerId, Employers.employerName 
         FROM Projects INNER JOIN Employers 
         ON Projects.employerId = Employers.employerId
-        WHERE Projects.employerId = ?`,
+        WHERE Projects.projectId = ?`,
         [projectId],
         (error, results: Employer[]) => {
           if (error) return reject(error);
@@ -316,20 +326,24 @@ class EmployerService {
 
   createEmployer(employer: Employer) {
     return new Promise<number>((resolve, reject) => {
-      pool.query('INSERT INTO Employers SET name=?', [employer.name], (error, results) => {
-        if (error) return reject(error);
-        if (!results.insertId) return reject(new Error('No row inserted'));
+      pool.query(
+        'INSERT INTO Employers SET employerName=?',
+        [employer.employerName],
+        (error, results) => {
+          if (error) return reject(error);
+          if (!results.insertId) return reject(new Error('No row inserted'));
 
-        resolve(Number(results.insertId));
-      });
+          resolve(Number(results.insertId));
+        }
+      );
     });
   }
 
   updateEmployer(employer: Employer) {
     return new Promise<void>((resolve, reject) => {
       pool.query(
-        'UPDATE Employers SET name=? WHERE employerId=?',
-        [employer.name, employer.employerId],
+        'UPDATE Employers SET employerName=? WHERE employerId=?',
+        [employer.employerName, employer.employerId],
         (error, results) => {
           if (error) return reject(error);
           if (!results.affectedRows) reject(new Error('No rows updated'));

@@ -1,2 +1,5 @@
 [options]
 types_first=false
+[ignore]
+.*/node_modules/.*[^e]\.json$
+.*/node_modules/.*\(lib\|test\).*\.json$

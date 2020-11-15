@@ -257,8 +257,8 @@ class PosterService {
           poster.projectId,
           poster.posterDescription,
           poster.posterUrl,
-          poster.posterId,
           poster.thumbnailUrl,
+          poster.posterId,
         ],
         (error, results) => {
           if (error) return reject(error);

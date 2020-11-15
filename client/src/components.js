@@ -216,7 +216,7 @@ export class ProjectListingManagement extends Component {
     return (
       <>
         <h1>Project management</h1>
-        <CardGrid columns={1} columnsSm={2} columnsMd={4}>
+        <CardGrid columns={1} columnsSm={2} columnsMd={3} columnsLg={4}>
           {this.projects
             .sort((projectA, projectB) => projectA.ranking - projectB.ranking) // Sorting to display by asc ranking
             .map((project) => (
@@ -328,15 +328,13 @@ export class NewProject extends Component {
           <Form.Input
             type="date"
             value={this.project.projectDate.substring(0, 10)}
-            onChange={(event) =>
-              (this.project.projectDate = event.currentTarget.value + 'T12:00:00Z')
-            }
+            onChange={(event) => (this.project.projectDate = event.currentTarget.value)}
           ></Form.Input>
           <br />
           <Form.Label> Category:</Form.Label>
           <Form.Select
             value={this.project.categoryId}
-            onChange={(event) => (this.project.categoryId = event.currentTarget.value)}
+            onChange={(event) => (this.project.categoryId = parseInt(event.currentTarget.value))}
           >
             {this.categories.map((category) => (
               <option value={category.categoryId}>{category.categoryName}</option>
@@ -346,7 +344,7 @@ export class NewProject extends Component {
           <Form.Label> Employer:</Form.Label>
           <Form.Select
             value={this.project.employerId}
-            onChange={(event) => (this.project.employerId = event.currentTarget.value)}
+            onChange={(event) => (this.project.employerId = parseInt(event.currentTarget.value))}
           >
             {this.employers.map((employer) => (
               <option value={employer.employerId}>{employer.employerName}</option>
@@ -419,7 +417,7 @@ export class NewPoster extends Component {
           <Form.Label> Connect to project:</Form.Label>
           <Form.Select
             value={this.poster.projectId}
-            onChange={(event) => (this.poster.projectId = event.currentTarget.value)}
+            onChange={(event) => (this.poster.projectId = parseInt(event.currentTarget.value))}
           >
             {this.projects.map((project) => (
               <option value={project.projectId}>{project.title}</option>

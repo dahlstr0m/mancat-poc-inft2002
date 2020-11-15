@@ -76,7 +76,9 @@ class CategoryService {
   }
 
   updateCategory(category: Category) {
-    return axios.put<Category, void>('/categories', category).then((response) => response.data);
+    return axios
+      .put<Category, void>(`/categories/${category.categoryId}`, category)
+      .then((response) => response.data);
   }
 
   deleteCategory(categoryId: number) {
@@ -104,7 +106,9 @@ class PosterService {
   }
 
   updatePoster(poster: Poster) {
-    return axios.put<Poster, void>('/posters', poster).then((response) => response.data);
+    return axios
+      .put<Poster, void>(`/posters/${poster.posterId}`, poster)
+      .then((response) => response.data);
   }
 
   deleteProject(posterId: number) {
@@ -132,7 +136,9 @@ class EmployerService {
   }
 
   updateEmployer(employer: Employer) {
-    return axios.put<Employer, void>('/employers', employer).then((response) => response.data);
+    return axios
+      .put<Employer, void>(`/employers/${employer.employerId}`, employer)
+      .then((response) => response.data);
   }
 
   deleteEmployer(employerId: number) {

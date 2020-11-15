@@ -7,12 +7,15 @@ import { HashRouter, Route } from 'react-router-dom';
 import { NavBar, Card, Alert, ContactCard, FooterCard, TitleCard, CardPlain } from './widgets';
 import {
   ManagementMenu,
-  ManageCategories,
   PortfolioListing,
   ProjectDetails,
   ProjectListingManagement,
   BackToAdmin,
   NewProject,
+  NewPoster,
+  ManagePosters,
+  ManageCategories,
+  ManageEmployers,
 } from './components';
 
 class Topbar extends Component {
@@ -128,6 +131,39 @@ if (root)
             </div>
           )}
         />
+        <Route //New poster
+          exact
+          path="/admin/posters/new"
+          component={() => (
+            <div>
+              <BackToAdmin />
+              <Alert />
+              <NewPoster />
+            </div>
+          )}
+        />
+        <Route //Manage posters
+          exact
+          path="/admin/posters/manage"
+          component={() => (
+            <div>
+              <BackToAdmin />
+              <Alert />
+              <ManagePosters />
+            </div>
+          )}
+        />
+        <Route //Manage project
+          exact
+          path="/admin/projects/:id(\d+)"
+          component={() => (
+            <div>
+              <BackToAdmin />
+              <Alert />
+              <ManageProject pathId={props.match.params.id} />
+            </div>
+          )}
+        />
         <Route
           exact
           path="/admin/categories"
@@ -136,6 +172,17 @@ if (root)
               <BackToAdmin />
               <Alert />
               <ManageCategories />
+            </div>
+          )}
+        />
+        <Route
+          exact
+          path="/admin/employers"
+          component={() => (
+            <div>
+              <BackToAdmin />
+              <Alert />
+              <ManageEmployers />
             </div>
           )}
         />

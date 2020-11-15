@@ -515,12 +515,27 @@ class FormTextarea extends React.Component<{
 class FormCheckbox extends Component<{
   checked: React.Node,
   onChange: (SyntheticEvent<HTMLInputElement>) => mixed,
+  labeling: React.Node,
 }> {
   render() {
     // ...rest will contain extra passed attributes such as disabled, required, width, height, pattern
     // For further information, see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
-    const { checked, onChange, ...rest } = this.props;
-    return <input {...rest} type="checkbox" checked={checked} onChange={onChange} />;
+    const { labeling, checked, onChange, ...rest } = this.props;
+    return (
+      <div class="custom-control custom-checkbox">
+        <input
+          {...rest}
+          type="checkbox"
+          class="custom-control-input"
+          id="customCheck"
+          checked={checked}
+          onChange={onChange}
+        />
+        <label class="custom-control-label" for="customCheck">
+          {labeling}
+        </label>
+      </div>
+    );
   }
 }
 
@@ -545,6 +560,30 @@ class FormSelect extends Component<{
 }
 
 /**
+ * Renders a form date using Bootstrap styles.
+ */
+class FormDate extends Component<{
+  type: string,
+  value: React.Node,
+  onChange: (SyntheticEvent<HTMLInputElement>) => mixed,
+}> {
+  render() {
+    // ...rest will contain extra passed attributes such as disabled, required, width, height, pattern
+    // For further information, see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+    const { type, value, onChange, ...rest } = this.props;
+    return (
+      <input
+        {...rest}
+        className="form-control"
+        type={this.props.type}
+        value={this.props.value}
+        onChange={this.props.onChange}
+      />
+    );
+  }
+}
+
+/**
  * Renders form components using Bootstrap styles.
  */
 export class Form {
@@ -553,4 +592,5 @@ export class Form {
   static Textarea = FormTextarea;
   static Checkbox = FormCheckbox;
   static Select = FormSelect;
+  static Date = FormDate;
 }

@@ -135,7 +135,7 @@ class EmployerService {
     return axios.put<Employer, void>('/employers', employer).then((response) => response.data);
   }
 
-  deleteProject(employerId: number) {
+  deleteEmployer(employerId: number) {
     return axios.delete<void>('/employers/' + employerId).then((response) => response.data);
   }
 }

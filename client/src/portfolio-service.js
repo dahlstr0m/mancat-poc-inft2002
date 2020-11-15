@@ -111,7 +111,7 @@ class PosterService {
       .then((response) => response.data);
   }
 
-  deleteProject(posterId: number) {
+  deletePoster(posterId: number) {
     return axios.delete<void>('/posters/' + posterId).then((response) => response.data);
   }
 }

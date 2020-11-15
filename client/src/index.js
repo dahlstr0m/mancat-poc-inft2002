@@ -13,6 +13,7 @@ import {
   BackToAdmin,
   NewProject,
   NewPoster,
+  ManageProject,
   ManagePosters,
   ManageCategories,
   ManageEmployers,
@@ -131,6 +132,17 @@ if (root)
             </div>
           )}
         />
+        <Route //Manage project
+          exact
+          path="/admin/projects/:id(\d+)"
+          component={(props) => (
+            <div>
+              <BackToAdmin />
+              <Alert />
+              <ManageProject pathId={props.match.params.id} />
+            </div>
+          )}
+        />
         <Route //New poster
           exact
           path="/admin/posters/new"
@@ -150,17 +162,6 @@ if (root)
               <BackToAdmin />
               <Alert />
               <ManagePosters />
-            </div>
-          )}
-        />
-        <Route //Manage project
-          exact
-          path="/admin/projects/:id(\d+)"
-          component={() => (
-            <div>
-              <BackToAdmin />
-              <Alert />
-              <ManageProject pathId={props.match.params.id} />
             </div>
           )}
         />

@@ -275,6 +275,8 @@ export class ProjectListingManagement extends Component {
                   }
                   title={project.title}
                   imgAlt={'Missing thumbnail for ' + project.title}
+                  imgWidth={210}
+                  imgHeight={300}
                   buttonText={'Manage project'}
                   buttonOnClick={() => history.push(`/admin/projects/${project.projectId}`)}
                 >

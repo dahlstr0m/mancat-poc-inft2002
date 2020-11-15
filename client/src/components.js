@@ -489,7 +489,7 @@ export class ManageProject extends Component<{ pathId: number }> {
           <Button.Danger
             onClick={() =>
               projectService
-                .deleteProject(this.project)
+                .deleteProject(this.project.projectId)
                 .then(() => {
                   history.push('/admin');
                   Alert.success('Project successfully deleted');
@@ -507,6 +507,7 @@ export class ManageProject extends Component<{ pathId: number }> {
     projectService
       .getProject(this.props.pathId)
       .then((project) => (this.project = project))
+      .then(() => (this.project.projectDate = this.project.projectDate.substring(0, 10)))
       .catch((error: Error) => Alert.danger('Error getting project: ' + error));
     categoryService
       .getCategories()

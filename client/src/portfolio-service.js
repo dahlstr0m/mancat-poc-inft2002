@@ -48,7 +48,9 @@ class ProjectService {
   }
 
   updateProject(project: Project) {
-    return axios.put<Project, void>('/projects', project).then((response) => response.data);
+    return axios
+      .put<Project, void>(`/projects/${project.projectId}`, project)
+      .then((response) => response.data);
   }
 
   deleteProject(projectId: number) {

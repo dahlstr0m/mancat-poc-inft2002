@@ -4,12 +4,7 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { ProjectCard, PosterCard } from './Card';
 import { Alert } from './Widgets';
-import {
-  projectService,
-  posterService,
-  categoryService,
-  employerService,
-} from '../portfolio-service';
+import { projectService, posterService, categoryService, employerService } from '../services';
 
 /**
  * Renders project details.

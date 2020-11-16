@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { projectService, posterService } from '../portfolio-service';
+import { projectService, posterService } from '../services';
 import { PortfolioCard } from './Card';
 import { Alert } from './Widgets';
 

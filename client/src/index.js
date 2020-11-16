@@ -16,10 +16,13 @@ import NewPoster from './components/NewPoster';
 import ManageProject from './components/ManageProject';
 import ManagePosters from './components/ManagePosters';
 import ManageCategories from './components/ManageCategories';
+import LoginPage from './components/LoginPage';
+import { ProtectedRoute } from './components/ProtectedRoute';
 import Button from './components/Button';
 import { Card, ContactCard, FooterCard, TitleCard, CardPlain } from './components/Card';
 import { NavBar, Alert } from './components/Widgets';
 
+import { authService } from './services';
 // Create and export history
 import { createHashHistory } from 'history';
 export const history = createHashHistory();
@@ -31,6 +34,7 @@ class Topbar extends Component {
         <NavBar.Link to="/">Sorter</NavBar.Link>
         <NavBar.Link to="/">Portfolio</NavBar.Link>
         <NavBar.Link to="/contact">Contact</NavBar.Link>
+        <NavBar.Link to="/admin">Admin</NavBar.Link>
       </NavBar>
     );
   }
@@ -100,6 +104,15 @@ if (root)
             </div>
           )}
         />
+        <Route // Main page
+          exact
+          path="/login"
+          component={() => (
+            <div>
+              <LoginPage />
+            </div>
+          )}
+        />
         <Route // Contact page
           exact
           path="/contact"
@@ -126,7 +139,7 @@ if (root)
             </div>
           )}
         />
-        <Route //Admin page
+        <ProtectedRoute //Admin page
           exact
           path="/admin"
           component={() => (
@@ -136,7 +149,7 @@ if (root)
             </div>
           )}
         />
-        <Route //New project
+        <ProtectedRoute //New project
           exact
           path="/admin/projects/new"
           component={() => (
@@ -147,7 +160,7 @@ if (root)
             </div>
           )}
         />
-        <Route //Manage project
+        <ProtectedRoute //Manage project
           exact
           path="/admin/projects/:id(\d+)"
           component={(props) => (
@@ -158,7 +171,7 @@ if (root)
             </div>
           )}
         />
-        <Route //New poster
+        <ProtectedRoute //New poster
           exact
           path="/admin/posters/new"
           component={() => (
@@ -169,7 +182,7 @@ if (root)
             </div>
           )}
         />
-        <Route //Manage posters
+        <ProtectedRoute //Manage posters
           exact
           path="/admin/posters/manage"
           component={() => (
@@ -180,7 +193,7 @@ if (root)
             </div>
           )}
         />
-        <Route
+        <ProtectedRoute
           exact
           path="/admin/categories"
           component={() => (
@@ -191,7 +204,7 @@ if (root)
             </div>
           )}
         />
-        <Route
+        <ProtectedRoute
           exact
           path="/admin/employers"
           component={() => (

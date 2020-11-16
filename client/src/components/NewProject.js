@@ -7,7 +7,7 @@ import { Card } from './Card';
 import Form from './Form';
 import Button from './Button';
 import { Alert } from './Widgets';
-import { categoryService, employerService } from '../portfolio-service';
+import { categoryService, employerService } from '../services';
 
 /**
  * Renders page to add New Project

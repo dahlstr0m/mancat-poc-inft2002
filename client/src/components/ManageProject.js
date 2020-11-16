@@ -7,7 +7,7 @@ import Button from './Button';
 import Form from './Form';
 import { Card } from './Card';
 import { Alert } from './Widgets';
-import { projectService, categoryService, employerService } from '../portfolio-service';
+import { projectService, categoryService, employerService } from '../services';
 
 /**
  * Renders page to Mange Project

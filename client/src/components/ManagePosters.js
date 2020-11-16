@@ -7,7 +7,7 @@ import Button from './Button';
 import Form from './Form';
 import { Card, CardPlain } from './Card';
 import { Row, Column, Alert } from './Widgets';
-import { projectService, posterService } from '../portfolio-service';
+import { projectService, posterService } from '../services';
 
 /**
  * Manage posters page

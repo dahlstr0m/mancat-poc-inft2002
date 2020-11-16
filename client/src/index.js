@@ -4,20 +4,25 @@ import ReactDOM from 'react-dom';
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { HashRouter, Route } from 'react-router-dom';
-import { NavBar, Card, Alert, ContactCard, FooterCard, TitleCard, CardPlain } from './widgets';
-import {
-  ManagementMenu,
-  PortfolioListing,
-  ProjectDetails,
-  ProjectListingManagement,
-  BackToAdmin,
-  NewProject,
-  NewPoster,
-  ManageProject,
-  ManagePosters,
-  ManageCategories,
-  ManageEmployers,
-} from './components';
+
+// Component imports
+import ManageEmployers from './components/ManageEmployers';
+import ManagementMenu from './components/ManagementMenu';
+import PortfolioListing from './components/PortfolioListing';
+import ProjectDetails from './components/ProjectDetails';
+import ProjectListingManagement from './components/ProjectListingManagement';
+import NewProject from './components/NewProject';
+import NewPoster from './components/NewPoster';
+import ManageProject from './components/ManageProject';
+import ManagePosters from './components/ManagePosters';
+import ManageCategories from './components/ManageCategories';
+import Button from './components/Button';
+import { Card, ContactCard, FooterCard, TitleCard, CardPlain } from './components/Card';
+import { NavBar, Alert } from './components/Widgets';
+
+// Create and export history
+import { createHashHistory } from 'history';
+export const history = createHashHistory();
 
 class Topbar extends Component {
   render() {
@@ -27,6 +32,16 @@ class Topbar extends Component {
         <NavBar.Link to="/">Portfolio</NavBar.Link>
         <NavBar.Link to="/contact">Contact</NavBar.Link>
       </NavBar>
+    );
+  }
+}
+
+class BackToAdmin extends Component {
+  render() {
+    return (
+      <CardPlain>
+        <Button.Light onClick={() => history.push('/admin/')}>Back to admin</Button.Light>
+      </CardPlain>
     );
   }
 }

@@ -21,14 +21,6 @@ export default class ManageCategories extends Component {
   render() {
     return (
       <>
-        <p>
-          Verdier
-          <br />
-          New categoryId: {this.categoryToAdd.categoryId} <br />
-          New categoryName: {this.categoryToAdd.categoryName} <br />
-          Upd categoryId: {this.categoryToUpdate.categoryId} <br />
-          Upd categoryName: {this.categoryToUpdate.categoryName} <br />
-        </p>
         <Card title="Add a category">
           <CardPlain>
             <Row>

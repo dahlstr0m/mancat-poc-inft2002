@@ -7,7 +7,7 @@ import Button from './Button';
 import Form from './Form';
 import { Card } from './Card';
 import { Alert } from './Widgets';
-import { projectService, categoryService, employerService } from '../services';
+import { projectService, categoryService, employerService, posterService } from '../services';
 
 /**
  * Renders page to Mange Project
@@ -26,26 +26,26 @@ export default class ManageProject extends Component<{ pathId: number }> {
   };
   categories: Category[] = [];
   employers: Employer[] = [];
+  posters: Poster[] = [];
   render() {
     return (
       <>
-        <p>
-          Verdier
-          <br />
-          projectId: {this.project.projectId} <br />
-          title: {this.project.title} <br />
-          description: {this.project.projectDescription} <br />
-          date: {this.project.projectDate} <br />
-          category: {this.project.categoryId} <br />
-          employer: {this.project.employerId} <br />
-          active?:{' '}
-          {this.project.active == true
-            ? 'Aktivt'
-            : this.project.active == false
-            ? 'Deaktivert'
-            : 'error'}{' '}
-          <br />
-        </p>
+        <Card title={'Project: ' + this.project.title}>
+          <Card>
+            {this.posters.length > 0 ? (
+              this.posters.map((poster) => (
+                <img
+                  src={poster.thumbnailUrl}
+                  alt={'Thumbnail for ' + poster.posterId + 'kan ikke vises'}
+                  height={'150'}
+                  width={'105'}
+                />
+              ))
+            ) : (
+              <p>No posters in project</p>
+            )}
+          </Card>
+        </Card>
         <Card title={'Project: ' + this.project.title}>
           <Form.Label> Title:</Form.Label>
           <Form.Input
@@ -111,19 +111,29 @@ export default class ManageProject extends Component<{ pathId: number }> {
           >
             Save project
           </Button.Success>
-          <Button.Danger
-            onClick={() =>
-              projectService
-                .deleteProject(this.project.projectId)
-                .then(() => {
-                  history.push('/admin');
-                  Alert.success('Project successfully deleted');
-                })
-                .catch((error: Error) => Alert.danger('Error deleting project: ' + error))
-            }
-          >
-            Delete project
-          </Button.Danger>
+          {this.posters.length > 0 ? (
+            <Button.Light
+              onClick={() => {
+                Alert.info('Project cannot be deleted while posters are connected');
+              }}
+            >
+              Delete project
+            </Button.Light>
+          ) : (
+            <Button.Danger
+              onClick={() =>
+                projectService
+                  .deleteProject(this.project.projectId)
+                  .then(() => {
+                    history.push('/admin');
+                    Alert.success('Project successfully deleted');
+                  })
+                  .catch((error: Error) => Alert.danger('Error deleting project: ' + error))
+              }
+            >
+              Delete project
+            </Button.Danger>
+          )}
         </Card>
       </>
     );
@@ -143,5 +153,10 @@ export default class ManageProject extends Component<{ pathId: number }> {
       .getEmployers()
       .then((employers) => (this.employers = employers))
       .catch((error: Error) => Alert.danger('Error getting employers: ' + error));
+
+    posterService
+      .getProjectPosters(this.props.pathId)
+      .then((posters) => (this.posters = posters))
+      .catch((error: Error) => Alert.danger('Error fetching connected posters: ' + error));
   }
 }

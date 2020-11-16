@@ -22,14 +22,6 @@ export default class ManageEmployers extends Component {
   render() {
     return (
       <>
-        <p>
-          Verdier
-          <br />
-          New employerId: {this.employerToAdd.employerId} <br />
-          New employerName: {this.employerToAdd.employerName} <br />
-          Upd employerId: {this.employerToUpdate.employerId} <br />
-          Upd employerName: {this.employerToUpdate.employerName} <br />
-        </p>
         <Card title="Add a employer">
           <CardPlain>
             <Row>

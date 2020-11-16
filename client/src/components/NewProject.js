@@ -30,23 +30,6 @@ export default class NewProject extends Component {
   render() {
     return (
       <>
-        <p>
-          Verdier
-          <br />
-          projectId: {this.project.projectId} <br />
-          title: {this.project.title} <br />
-          description: {this.project.projectDescription} <br />
-          date: {this.project.projectDate} <br />
-          category: {this.project.categoryId} <br />
-          employer: {this.project.employerId} <br />
-          active?:{' '}
-          {this.project.active == true
-            ? 'Aktivt'
-            : this.project.active == false
-            ? 'Deaktivert'
-            : 'error'}{' '}
-          <br />
-        </p>
         <Card title="New Project">
           <Form.Label> Title:</Form.Label>
           <Form.Input

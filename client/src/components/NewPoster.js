@@ -27,16 +27,6 @@ export default class NewPoster extends Component {
   render() {
     return (
       <>
-        <p>
-          Verdier
-          <br />
-          posterId: {this.poster.posterId} <br />
-          projectId: {this.poster.projectId} <br />
-          posterDescription: {this.poster.posterDescription} <br />
-          posterUrl: {this.poster.posterUrl} <br />
-          thumbnailUrl: {this.poster.thumbnailUrl} <br />
-        </p>
-
         <Card title="Add a new poster">
           <Form.Label> Connect to project:</Form.Label>
           <Form.Select

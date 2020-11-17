@@ -22,7 +22,7 @@ import Button from './components/Button';
 import { Card, ContactCard, FooterCard, TitleCard, CardPlain } from './components/Card';
 import { NavBar, Alert } from './components/Widgets';
 
-import { authService } from './services';
+import { authService } from './services/auth-service';
 // Create and export history
 import { createHashHistory } from 'history';
 export const history = createHashHistory();

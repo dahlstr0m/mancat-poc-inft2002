@@ -7,7 +7,14 @@ import { Card } from './Card';
 import Form from './Form';
 import Button from './Button';
 import { Alert } from './Widgets';
-import { categoryService, employerService } from '../services';
+import {
+  projectService,
+  categoryService,
+  employerService,
+  type Project,
+  type Category,
+  type Employer,
+} from '../services/portfolio-service';
 
 /**
  * Renders page to add New Project
@@ -90,7 +97,9 @@ export default class NewProject extends Component {
                   history.push('/admin');
                   Alert.success('Project successfully created');
                 })
-                .catch((error: Error) => Alert.danger('Error storing new project: ' + error))
+                .catch((error: Error) =>
+                  Alert.danger('Error storing new project: ' + error.message)
+                )
             }
           >
             Create project
@@ -103,11 +112,11 @@ export default class NewProject extends Component {
     categoryService
       .getCategories()
       .then((categories) => (this.categories = categories))
-      .catch((error: Error) => Alert.danger('Error getting categories: ' + error));
+      .catch((error: Error) => Alert.danger('Error getting categories: ' + error.message));
 
     employerService
       .getEmployers()
       .then((employers) => (this.employers = employers))
-      .catch((error: Error) => Alert.danger('Error getting employers: ' + error));
+      .catch((error: Error) => Alert.danger('Error getting employers: ' + error.message));
   }
 }

@@ -4,7 +4,7 @@ import Form from './Form';
 import Button from './Button';
 import { Card } from './Card';
 import { Alert } from './Widgets';
-import { authService } from '../services';
+import { authService } from '../services/auth-service';
 import { history } from '../index';
 
 export default class LoginPage extends Component {

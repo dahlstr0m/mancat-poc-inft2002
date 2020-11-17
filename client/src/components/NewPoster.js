@@ -7,7 +7,12 @@ import Button from './Button';
 import Form from './Form';
 import { Card, CardPlain } from './Card';
 import { Alert } from './Widgets';
-import { projectService, posterService } from '../services';
+import {
+  projectService,
+  posterService,
+  type Project,
+  type Poster,
+} from '../services/portfolio-service';
 
 /**
  * New Poster page
@@ -71,7 +76,7 @@ export default class NewPoster extends Component {
                   history.push('/admin');
                   Alert.success('Poster added successfully');
                 })
-                .catch((error: Error) => Alert.danger('Error storing new poster: ' + error))
+                .catch((error: Error) => Alert.danger('Error storing new poster: ' + error.message))
             }
           >
             Add new poster
@@ -97,10 +102,10 @@ export default class NewPoster extends Component {
     projectService
       .getProjects()
       .then((projects) => (this.projects = projects))
-      .catch((error: Error) => Alert.danger('Error getting employers: ' + error));
+      .catch((error: Error) => Alert.danger('Error getting employers: ' + error.message));
     posterService
       .getPosters()
       .then((posters) => (this.posters = posters))
-      .catch((error: Error) => Alert.danger('Error fetching connected posters: ' + error));
+      .catch((error: Error) => Alert.danger('Error fetching connected posters: ' + error.message));
   }
 }

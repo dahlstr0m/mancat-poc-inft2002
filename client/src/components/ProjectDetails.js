@@ -4,7 +4,16 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { ProjectCard, PosterCard } from './Card';
 import { Alert } from './Widgets';
-import { projectService, posterService, categoryService, employerService } from '../services';
+import {
+  projectService,
+  posterService,
+  categoryService,
+  employerService,
+  type Project,
+  type Poster,
+  type Category,
+  type Employer,
+} from '../services/portfolio-service';
 
 /**
  * Renders project details.

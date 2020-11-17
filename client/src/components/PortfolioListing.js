@@ -2,7 +2,14 @@
 
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { projectService, posterService, categoryService } from '../services';
+import {
+  projectService,
+  posterService,
+  categoryService,
+  type Project,
+  type Poster,
+  type Category,
+} from '../services/portfolio-service';
 import { PortfolioCard, Card } from './Card';
 import Form from './Form';
 import { Alert } from './Widgets';
@@ -28,7 +35,10 @@ export default class PortfolioListing extends Component {
             onChange={(event) => (this.searchFilter = event.currentTarget.value)}
           />
           <Form.Label>Category:</Form.Label>
-          <Form.Select onChange={(event) => (this.selectedCategory = event.currentTarget.value)}>
+          <Form.Select
+            value={0}
+            onChange={(event) => (this.selectedCategory = parseInt(event.currentTarget.value))}
+          >
             <option key={0} value={0}>
               All
             </option>
@@ -55,18 +65,18 @@ export default class PortfolioListing extends Component {
               projectId={project.projectId}
               title={project.title}
               link={'/projects/' + project.projectId}
-              imageUrl={
-                this.posters.find((poster) => poster.projectId === project.projectId)
-                  ? this.posters.find((poster) => poster.projectId === project.projectId)
-                      .thumbnailUrl
-                  : ''
-              }
+              imageUrl={this.getPosterUrl(project)}
             >
               {'ingen data'}
             </PortfolioCard>
           ))}
       </>
     );
+  }
+
+  getPosterUrl(project: Project) {
+    const poster = this.posters.find((poster) => poster.projectId === project.projectId);
+    return poster ? poster.thumbnailUrl : '';
   }
 
   mounted() {

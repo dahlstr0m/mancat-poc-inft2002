@@ -38,8 +38,14 @@ export class TitleCard extends Component<{ img?: React.Node, children?: React.No
     return (
       <div className="card">
         <h1>
-          <img src={this.props.img} alt={'-No img-'} width={140} height={140} />
-          {'         ' + this.props.children}
+          <img
+            src={this.props.img}
+            alt={'-No img-'}
+            width={140}
+            height={140}
+            style={{ marginRight: '15px' }}
+          />
+          {this.props.children}
         </h1>
       </div>
     );
@@ -61,10 +67,10 @@ export class CardImage extends Component<{
   img?: React.Node,
   imgAlt?: React.Node,
   imgWidth?: number,
-  imgHeight?: numer,
+  imgHeight?: number,
   title?: React.Node,
   buttonText?: React.Node,
-  buttonOnClick?: React.Node,
+  buttonOnClick: () => mixed,
   children?: React.Node,
 }> {
   render() {
@@ -97,10 +103,10 @@ export class CardColumn extends Component<{
 }
 
 export class CardGrid extends Component<{
-  columns: React.Node,
-  columnsSm?: React.Node,
-  columnsMd?: React.Node,
-  columnsLg?: React.Node,
+  columns: number,
+  columnsSm?: number,
+  columnsMd?: number,
+  columnsLg?: number,
   children?: React.Node,
 }> {
   render() {
@@ -108,10 +114,10 @@ export class CardGrid extends Component<{
       <div
         className={
           'row row-cols-' +
-          this.props.columns +
-          (this.props.columnsSm ? ' row-cols-sm-' + this.props.columnsSm : '') +
-          (this.props.columnsMd ? ' row-cols-md-' + this.props.columnsMd : '') +
-          (this.props.columnsLg ? ' row-cols-lg-' + this.props.columnsLg : '')
+          this.props.columns.toString() +
+          (this.props.columnsSm ? ' row-cols-sm-' + this.props.columnsSm.toString() : '') +
+          (this.props.columnsMd ? ' row-cols-md-' + this.props.columnsMd.toString() : '') +
+          (this.props.columnsLg ? ' row-cols-lg-' + this.props.columnsLg.toString() : '')
         }
       >
         {this.props.children}
@@ -124,10 +130,10 @@ export class CardGrid extends Component<{
  * Renders a PortfolioCard for portfoliolisting
  */
 export class PortfolioCard extends Component<{
-  projectid: number,
-  title: React.Node,
+  projectId: number,
+  title: string,
   link: string,
-  imageurl?: React.Node,
+  imageUrl?: string,
   children?: React.Node,
 }> {
   render() {

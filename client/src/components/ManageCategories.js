@@ -1,7 +1,12 @@
 // @flow
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { projectService, categoryService, type Project, type Category } from '../services';
+import {
+  projectService,
+  categoryService,
+  type Project,
+  type Category,
+} from '../services/portfolio-service';
 import Button from './Button';
 import Form from './Form';
 import { Card, CardPlain, CardBody } from './Card';
@@ -47,7 +52,9 @@ export default class ManageCategories extends Component {
                         history.push('/admin');
                         Alert.success('Category successfully added');
                       })
-                      .catch((error: Error) => Alert.danger('Error updating category: ' + error))
+                      .catch((error: Error) =>
+                        Alert.danger('Error updating category: ' + error.message)
+                      )
                   }
                 >
                   Add category
@@ -59,19 +66,7 @@ export default class ManageCategories extends Component {
         <Card title="Select a category to change">
           <Form.Select
             value={this.categoryToUpdate.categoryId}
-            onChange={(event) => (
-              (this.categoryToUpdate.categoryId = parseInt(event.currentTarget.value)),
-              ((this.categoryToUpdate.categoryName = this.categories.find(
-                (category) => category.categoryId === parseInt(event.currentTarget.value)
-              )
-                ? this.categories.find(
-                    (category) => category.categoryId === parseInt(event.currentTarget.value)
-                  ).categoryName
-                : ''),
-              (this.categoryUsed = this.projects.filter(
-                (project) => project.categoryId == event.currentTarget.value
-              ).length))
-            )}
+            onChange={(event) => this.updateCategory(event)}
           >
             <option value="0">Select a category to change</option>
             {this.categories.map((category) => (
@@ -109,7 +104,9 @@ export default class ManageCategories extends Component {
                           history.push('/admin');
                           Alert.success('Category successfully updated');
                         })
-                        .catch((error: Error) => Alert.danger('Error updating category: ' + error))
+                        .catch((error: Error) =>
+                          Alert.danger('Error updating category: ' + error.message)
+                        )
                     }
                   >
                     Update category
@@ -134,7 +131,7 @@ export default class ManageCategories extends Component {
                             Alert.success('Category successfully deleted');
                           })
                           .catch((error: Error) =>
-                            Alert.danger('Error deleting category: ' + error)
+                            Alert.danger('Error deleting category: ' + error.message)
                           )
                       }
                     >
@@ -150,6 +147,19 @@ export default class ManageCategories extends Component {
         </Card>
       </>
     );
+  }
+
+  updateCategory(e: SyntheticEvent<HTMLSelectElement>) {
+    this.categoryToUpdate.categoryId = parseInt(e.currentTarget.value);
+
+    const foundCategory = this.categories.find(
+      (category) => category.categoryId === parseInt(e.currentTarget.value)
+    );
+    if (foundCategory) this.categoryToUpdate.categoryName = foundCategory.categoryName;
+
+    this.categoryUsed = this.projects.filter(
+      (project) => project.categoryId === parseInt(e.currentTarget.value)
+    ).length;
   }
 
   mounted() {

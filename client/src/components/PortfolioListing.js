@@ -36,7 +36,7 @@ export default class PortfolioListing extends Component {
           />
           <Form.Label>Category:</Form.Label>
           <Form.Select
-            value={0}
+            value={this.selectedCategory}
             onChange={(event) => (this.selectedCategory = parseInt(event.currentTarget.value))}
           >
             <option key={0} value={0}>

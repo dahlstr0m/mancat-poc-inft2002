@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { projectService, posterService } from '../services';
+import { projectService, posterService, categoryService } from '../services';
 import { PortfolioCard } from './Card';
+import Form from './Form';
 import { Alert } from './Widgets';
 
 /**
@@ -12,12 +13,36 @@ import { Alert } from './Widgets';
 export default class PortfolioListing extends Component {
   projects: Project[] = [];
   posters: Poster[] = [];
+  categories: Category[] = [];
+  searchFilter: string = ''; // Is converted to RegExp object when used in string.match()
+  selectedCategory: number = 0;
 
   render() {
     return (
       <>
+        <Form.Input
+          type="text"
+          placeholder="Søk..."
+          value={this.searchFilter}
+          onChange={(event) => (this.searchFilter = event.currentTarget.value)}
+        />
+        <Form.Select onChange={(event) => (this.selectedCategory = event.currentTarget.value)}>
+          <option key={0} value={0}>
+            Alle
+          </option>
+          {this.categories.map((category) => (
+            <option key={category.categoryId} value={category.categoryId}>
+              {category.categoryName}
+            </option>
+          ))}
+        </Form.Select>
         {this.projects
           .filter((project) => project.active === true) // Filter to ensure only Active projects will be displayed
+          .filter(
+            (project) =>
+              this.selectedCategory != 0 ? project.categoryId == this.selectedCategory : true // Filter only selected category.
+          )
+          .filter((project) => project.title.match(new RegExp(`^.*${this.searchFilter}.*$`, 'i'))) // Filter out all projects with title not matching search string
           .sort((projectA, projectB) => projectA.ranking - projectB.ranking) // Sorting to display by asc ranking
           .map((
             project // Mapping to display all left projects with PortfolioCard widget & fetching correct corresponding thumbnail for url attrib.
@@ -51,5 +76,10 @@ export default class PortfolioListing extends Component {
       .getPosters()
       .then((posters) => (this.posters = posters))
       .catch((error: Error) => Alert.danger('Error getting posters: ' + error.message));
+
+    categoryService
+      .getCategories()
+      .then((categories) => (this.categories = categories))
+      .catch((error: Error) => Alert.danger('Error getting categories: ' + error.message));
   }
 }

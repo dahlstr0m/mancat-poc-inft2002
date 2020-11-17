@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { projectService, posterService, categoryService } from '../services';
-import { PortfolioCard } from './Card';
+import { PortfolioCard, Card } from './Card';
 import Form from './Form';
 import { Alert } from './Widgets';
 
@@ -20,23 +20,25 @@ export default class PortfolioListing extends Component {
   render() {
     return (
       <>
-        <Form.Label>Search:</Form.Label>
-        <Form.Input
-          type="text"
-          value={this.searchFilter}
-          onChange={(event) => (this.searchFilter = event.currentTarget.value)}
-        />
-        <Form.Label>Category:</Form.Label>
-        <Form.Select onChange={(event) => (this.selectedCategory = event.currentTarget.value)}>
-          <option key={0} value={0}>
-            All
-          </option>
-          {this.categories.map((category) => (
-            <option key={category.categoryId} value={category.categoryId}>
-              {category.categoryName}
+        <Card>
+          <Form.Label>Search:</Form.Label>
+          <Form.Input
+            type="text"
+            value={this.searchFilter}
+            onChange={(event) => (this.searchFilter = event.currentTarget.value)}
+          />
+          <Form.Label>Category:</Form.Label>
+          <Form.Select onChange={(event) => (this.selectedCategory = event.currentTarget.value)}>
+            <option key={0} value={0}>
+              All
             </option>
-          ))}
-        </Form.Select>
+            {this.categories.map((category) => (
+              <option key={category.categoryId} value={category.categoryId}>
+                {category.categoryName}
+              </option>
+            ))}
+          </Form.Select>
+        </Card>
         {this.projects
           .filter((project) => project.active === true) // Filter to ensure only Active projects will be displayed
           .filter(

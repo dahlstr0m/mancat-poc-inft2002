@@ -54,6 +54,7 @@ CREATE TABLE Posters
 	,CONSTRAINT FK_PosterProject 
 		FOREIGN KEY(ProjectId) 
 		REFERENCES Projects(ProjectId)
+		ON DELETE CASCADE
 );
 
 CREATE TABLE Users

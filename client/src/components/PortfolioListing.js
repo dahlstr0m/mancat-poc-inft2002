@@ -20,15 +20,16 @@ export default class PortfolioListing extends Component {
   render() {
     return (
       <>
+        <Form.Label>Search:</Form.Label>
         <Form.Input
           type="text"
-          placeholder="Søk..."
           value={this.searchFilter}
           onChange={(event) => (this.searchFilter = event.currentTarget.value)}
         />
+        <Form.Label>Category:</Form.Label>
         <Form.Select onChange={(event) => (this.selectedCategory = event.currentTarget.value)}>
           <option key={0} value={0}>
-            Alle
+            All
           </option>
           {this.categories.map((category) => (
             <option key={category.categoryId} value={category.categoryId}>

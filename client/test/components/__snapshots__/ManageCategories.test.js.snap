@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ManageCategories component tests ManageCategories draws correctly 1`] = `
+<Fragment>
+  <Card
+    title="Add a category"
+  >
+    <Card>
+      <Row>
+        <Column
+          width={2}
+        >
+          <FormLabel>
+            Set name of category to:
+          </FormLabel>
+        </Column>
+        <Column>
+          <FormInput
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+        </Column>
+      </Row>
+      <Row>
+        <Column
+          width={2}
+        >
+          <ButtonSuccess
+            onClick={[Function]}
+          >
+            Add category
+          </ButtonSuccess>
+        </Column>
+      </Row>
+    </Card>
+  </Card>
+  <Card
+    title="Select a category to change"
+  >
+    <FormSelect
+      onChange={[Function]}
+      value={0}
+    >
+      <option
+        value="0"
+      >
+        Select a category to change
+      </option>
+      <option
+        key="1"
+        value={1}
+      >
+        1) Kategori 1
+      </option>
+      <option
+        key="2"
+        value={2}
+      >
+        2) Kategori 2
+      </option>
+      <option
+        key="3"
+        value={3}
+      >
+        3) Kategori 3
+      </option>
+    </FormSelect>
+    <br />
+  </Card>
+</Fragment>
+`;

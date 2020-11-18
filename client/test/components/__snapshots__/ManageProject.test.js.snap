@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ManageProject component tests ManageProject draws correctly 1`] = `
+<Fragment>
+  <Card
+    title="Project: Project 1"
+  >
+    <Card>
+      <p>
+        No posters in project
+      </p>
+    </Card>
+  </Card>
+  <Card
+    title="Project: Project 1"
+  >
+    <FormLabel>
+       Title:
+    </FormLabel>
+    <FormInput
+      onChange={[Function]}
+      type="text"
+      value="Project 1"
+    />
+    <br />
+    <FormLabel>
+       Description:
+    </FormLabel>
+    <FormTextarea
+      onChange={[Function]}
+      value="Project 1 description"
+    />
+    <br />
+    <FormLabel>
+       Date:
+    </FormLabel>
+    <FormInput
+      onChange={[Function]}
+      type="date"
+      value="10-10-2020"
+    />
+    <br />
+    <FormLabel>
+       Category:
+    </FormLabel>
+    <FormSelect
+      onChange={[Function]}
+      value={1}
+    >
+      <option
+        key="1"
+        value={1}
+      >
+        Kategori 1
+      </option>
+      <option
+        key="2"
+        value={2}
+      >
+        Kategori 2
+      </option>
+      <option
+        key="3"
+        value={3}
+      >
+        Kategori 3
+      </option>
+    </FormSelect>
+    <br />
+    <FormLabel>
+       Employer:
+    </FormLabel>
+    <FormSelect
+      onChange={[Function]}
+      value={1}
+    >
+      <option
+        key="1"
+        value={1}
+      >
+        Employer 1
+      </option>
+      <option
+        key="2"
+        value={2}
+      >
+        Employer 2
+      </option>
+      <option
+        key="3"
+        value={3}
+      >
+        Employer 3
+      </option>
+    </FormSelect>
+    <br />
+    <br />
+    <FormCheckbox
+      checked={true}
+      labeling="Do you want the project active from start?"
+      onChange={[Function]}
+    />
+    <br />
+    <ButtonSuccess
+      onClick={[Function]}
+    >
+      Save project
+    </ButtonSuccess>
+    <ButtonDanger
+      onClick={[Function]}
+    >
+      Delete project
+    </ButtonDanger>
+  </Card>
+</Fragment>
+`;

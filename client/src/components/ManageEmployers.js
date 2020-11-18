@@ -2,12 +2,8 @@
 
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import {
-  projectService,
-  employerService,
-  type Project,
-  type Employer,
-} from '../services/portfolio-service';
+import projectService, { type Project } from '../services/project-service';
+import employerService, { type Employer } from '../services/employer-service';
 import Button from './Button';
 import Form from './Form';
 import { Card, CardBody } from './Card';

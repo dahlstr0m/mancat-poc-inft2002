@@ -5,12 +5,8 @@ import { Component } from 'react-simplified';
 import { history } from '../index';
 import { CardGrid, CardColumn, CardImage } from './Card';
 import { Alert } from './Widgets';
-import {
-  projectService,
-  posterService,
-  type Project,
-  type Poster,
-} from '../services/portfolio-service';
+import projectService, { type Project } from '../services/project-service';
+import posterService, { type Poster } from '../services/poster-service';
 
 /**
  * Renders project listing in management

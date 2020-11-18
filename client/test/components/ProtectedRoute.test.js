@@ -1,0 +1,37 @@
+// @flow
+
+import * as React from 'react';
+import { shallow } from 'enzyme';
+
+// Components
+import ProtectedRoute from '../../src/components/ProtectedRoute';
+
+// Mocks
+jest.mock('../../src/services/auth-service');
+
+// Tests
+describe('ProtectedRoute component tests', () => {
+  test('ProtectedRoute draws correctly', (done) => {
+    const wrapper = shallow(
+      <ProtectedRoute
+        exact
+        path="/admin"
+        component={() => (
+          <div>
+            <Alert />
+            <AdminPage />
+          </div>
+        )}
+      />
+    );
+
+    // Wait for events to complete
+    setTimeout(() => {
+      setTimeout(() => {
+        expect(wrapper).toMatchSnapshot();
+
+        done();
+      });
+    });
+  });
+});

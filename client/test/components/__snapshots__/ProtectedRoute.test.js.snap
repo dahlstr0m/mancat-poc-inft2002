@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProtectedRoute component tests ProtectedRoute draws correctly 1`] = `
+<Route
+  exact={true}
+  path="/admin"
+  render={[Function]}
+/>
+`;

@@ -4,16 +4,10 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { Card, CardImage, CardGrid, CardColumn } from './Card';
 import { Alert } from './Widgets';
-import {
-  projectService,
-  posterService,
-  categoryService,
-  employerService,
-  type Project,
-  type Poster,
-  type Category,
-  type Employer,
-} from '../services/portfolio-service';
+import projectService, { type Project } from '../services/project-service';
+import posterService, { type Poster } from '../services/poster-service';
+import categoryService, { type Category } from '../services/category-service';
+import employerService, { type Employer } from '../services/employer-service';
 
 /**
  * Renders project details.

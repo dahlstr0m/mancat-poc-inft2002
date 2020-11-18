@@ -7,9 +7,10 @@ class AuthService {
     this.authenticated = false;
   }
 
-  login(user: { username: string, password: string }) {
-    if (username === 'admin' && password === 'admin') {
+  login(user: User) {
+    if (user.username === 'admin' && user.password === 'admin') {
       this.authenticated = true;
+      return Promise.resolve();
     }
   }
 
@@ -17,6 +18,5 @@ class AuthService {
     return this.authenticated;
   }
 }
-
 const authService = new AuthService();
-export { authService };
+export default authService;

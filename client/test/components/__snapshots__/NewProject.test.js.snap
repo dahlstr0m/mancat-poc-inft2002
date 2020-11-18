@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewProject component tests NewProject draws correctly 1`] = `
+<Fragment>
+  <Card
+    title="New Project"
+  >
+    <FormLabel>
+       Title:
+    </FormLabel>
+    <FormInput
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+    <br />
+    <FormLabel>
+       Description:
+    </FormLabel>
+    <FormTextarea
+      onChange={[Function]}
+      value=""
+    />
+    <br />
+    <FormLabel>
+       Date:
+    </FormLabel>
+    <FormInput
+      onChange={[Function]}
+      type="date"
+      value=""
+    />
+    <br />
+    <FormLabel>
+       Category:
+    </FormLabel>
+    <FormSelect
+      onChange={[Function]}
+      value={1}
+    >
+      <option
+        key="1"
+        value={1}
+      >
+        Kategori 1
+      </option>
+      <option
+        key="2"
+        value={2}
+      >
+        Kategori 2
+      </option>
+      <option
+        key="3"
+        value={3}
+      >
+        Kategori 3
+      </option>
+    </FormSelect>
+    <br />
+    <FormLabel>
+       Employer:
+    </FormLabel>
+    <FormSelect
+      onChange={[Function]}
+      value={1}
+    >
+      <option
+        key="1"
+        value={1}
+      >
+        Employer 1
+      </option>
+      <option
+        key="2"
+        value={2}
+      >
+        Employer 2
+      </option>
+      <option
+        key="3"
+        value={3}
+      >
+        Employer 3
+      </option>
+    </FormSelect>
+    <br />
+    <br />
+    <FormCheckbox
+      checked={false}
+      labeling="Do you want the project active from start?"
+      onChange={[Function]}
+    />
+    <br />
+    <ButtonSuccess
+      onClick={[Function]}
+    >
+      Create project
+    </ButtonSuccess>
+  </Card>
+</Fragment>
+`;

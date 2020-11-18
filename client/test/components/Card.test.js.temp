@@ -1,0 +1,50 @@
+// @flow
+
+import * as React from 'react';
+import { shallow } from 'enzyme';
+
+// Components
+import {
+  Card,
+  TitleCard,
+  CardBody,
+  CardImage,
+  CardImageEffect,
+  CardColumn,
+  CardGrid,
+} from '../../src/components/Card';
+import Button from '../../src/components/Button';
+
+// Tests
+describe('Card components tests', () => {
+  test('Card component draws correctly', () => {
+    const wrapper = shallow(<Card />);
+
+    expect(
+      wrapper.contains(
+        <div className="card">
+          <div className="card-body">
+            <h5 className="card-title"></h5>
+            <div className="card-text"></div>
+          </div>
+        </div>
+      )
+    ).toBeTruthy();
+  });
+
+  test('TitleCard component draws correctly', () => {
+    const wrapper = shallow(<TitleCard img="image" />);
+
+    console.log(wrapper.debug());
+
+    expect(
+      wrapper.containsMatchingElement(
+        <div className="card">
+          <h1>
+            <img src="image" alt="-No img-" />
+          </h1>
+        </div>
+      )
+    ).toBeTruthy();
+  });
+});

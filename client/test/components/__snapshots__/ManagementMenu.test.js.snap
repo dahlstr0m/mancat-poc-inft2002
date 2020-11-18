@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ManagementMenu component tests ManagementMenu draws correctly 1`] = `
+<CardGrid
+  columns={1}
+  columnsLg={4}
+  columnsMd={3}
+  columnsSm={2}
+>
+  <CardColumn>
+    <CardBody
+      title="Projects"
+    >
+      <Card
+        title="Add new"
+      >
+        <ButtonSuccess
+          onClick={[Function]}
+        >
+          Create
+        </ButtonSuccess>
+      </Card>
+    </CardBody>
+    <CardBody>
+      <Card
+        title="Rearrange order"
+      >
+        <ButtonLight
+          onClick={[Function]}
+        >
+          Manage
+        </ButtonLight>
+      </Card>
+    </CardBody>
+  </CardColumn>
+  <CardColumn>
+    <CardBody
+      title="Poster"
+    >
+      <Card
+        title="Add new poster"
+      >
+        <ButtonSuccess
+          onClick={[Function]}
+        >
+          Create
+        </ButtonSuccess>
+      </Card>
+    </CardBody>
+    <CardBody>
+      <Card
+        title="Existing posters"
+      >
+        <ButtonDanger
+          onClick={[Function]}
+        >
+          Edit
+        </ButtonDanger>
+      </Card>
+    </CardBody>
+  </CardColumn>
+  <CardColumn>
+    <CardBody
+      title="Employers"
+    >
+      <Card
+        title="Manage employers"
+      >
+        <ButtonDanger
+          onClick={[Function]}
+        >
+          Edit
+        </ButtonDanger>
+      </Card>
+    </CardBody>
+  </CardColumn>
+  <CardColumn>
+    <CardBody
+      title="Categories"
+    >
+      <Card
+        title="Manage Categories"
+      >
+        <ButtonDanger
+          onClick={[Function]}
+        >
+          Edit
+        </ButtonDanger>
+      </Card>
+    </CardBody>
+  </CardColumn>
+</CardGrid>
+`;

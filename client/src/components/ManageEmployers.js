@@ -10,7 +10,7 @@ import {
 } from '../services/portfolio-service';
 import Button from './Button';
 import Form from './Form';
-import { Card, CardBody, CardPlain } from './Card';
+import { Card, CardBody } from './Card';
 import { Row, Column, Alert } from './Widgets';
 import { history } from '../index';
 
@@ -28,7 +28,7 @@ export default class ManageEmployers extends Component {
     return (
       <>
         <Card title="Add a employer">
-          <CardPlain>
+          <Card>
             <Row>
               <Column width={2}>
                 <Form.Label>Set name of employer to:</Form.Label>
@@ -62,7 +62,7 @@ export default class ManageEmployers extends Component {
                 </Button.Success>
               </Column>
             </Row>
-          </CardPlain>
+          </Card>
         </Card>
         <Card title="Select a employer to change">
           <Form.Select

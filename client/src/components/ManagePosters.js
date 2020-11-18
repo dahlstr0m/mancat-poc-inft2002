@@ -5,7 +5,7 @@ import { Component } from 'react-simplified';
 import { history } from '../index';
 import Button from './Button';
 import Form from './Form';
-import { Card, CardPlain } from './Card';
+import { Card } from './Card';
 import { Row, Column, Alert } from './Widgets';
 import {
   projectService,
@@ -58,7 +58,7 @@ export default class ManagePosters extends Component {
                     />
                   </Column>
                   <Column>
-                    <CardPlain>
+                    <Card>
                       <Form.Label> Poster description:</Form.Label>
                       <Form.Input
                         type="text"
@@ -110,7 +110,7 @@ export default class ManagePosters extends Component {
                       >
                         Delete poster
                       </Button.Danger>
-                    </CardPlain>
+                    </Card>
                   </Column>
                 </Row>
               ))}

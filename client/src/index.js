@@ -19,7 +19,7 @@ import ManageCategories from './components/ManageCategories';
 import LoginPage from './components/LoginPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import Button from './components/Button';
-import { Card, ContactCard, FooterCard, TitleCard, CardPlain } from './components/Card';
+import { Card, TitleCard, CardPlain } from './components/Card';
 import { NavBar, Alert } from './components/Widgets';
 
 import { authService } from './services/auth-service';
@@ -31,7 +31,6 @@ class Topbar extends Component {
   render() {
     return (
       <NavBar brand="Mancat">
-        <NavBar.Link to="/">Sorter</NavBar.Link>
         <NavBar.Link to="/">Portfolio</NavBar.Link>
         <NavBar.Link to="/contact">Contact</NavBar.Link>
         <NavBar.Link to="/admin">Admin</NavBar.Link>
@@ -43,24 +42,30 @@ class Topbar extends Component {
 class BackToAdmin extends Component {
   render() {
     return (
-      <CardPlain>
+      <Card>
         <Button.Light onClick={() => history.push('/admin/')}>Back to admin</Button.Light>
-      </CardPlain>
+      </Card>
     );
   }
 }
 
 class Contact extends Component {
   render() {
-    return <ContactCard title="Contact">This is contactinfo</ContactCard>;
+    return (
+      <Card title="Contact">
+        <ul>
+          <li>+47 123 45 678</li>
+          <li>fornavn@eposttjeneste.no</li>
+          <li>Bosted 12, 3456 Sted</li>
+        </ul>
+      </Card>
+    );
   }
 }
 
 class Footer extends Component {
   render() {
-    return (
-      <FooterCard title="Footer">Laget av Kevin, Hans Petter, Henrik, Bjarne og Mathias</FooterCard>
-    );
+    return <Card textRight>Laget av Kevin, Hans Petter, Henrik, Bjarne og Mathias</Card>;
   }
 }
 
@@ -78,7 +83,14 @@ class AdminPage extends Component {
   render() {
     return (
       <>
-        <TitleCard img="https://portfolio.hpbastiansen.com/other/logo.png">Mancat admin</TitleCard>
+        <TitleCard
+          img="https://portfolio.hpbastiansen.com/other/logo.png"
+          buttonOnClick={() => history.push('/')}
+          buttonText="Back to homepage"
+          button
+        >
+          Mancat admin
+        </TitleCard>
         <ManagementMenu />
         <hr />
         <ProjectListingManagement />

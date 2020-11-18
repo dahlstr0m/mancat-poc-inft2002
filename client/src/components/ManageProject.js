@@ -36,6 +36,7 @@ export default class ManageProject extends Component<{ pathId: number }> {
   categories: Category[] = [];
   employers: Employer[] = [];
   posters: Poster[] = [];
+  actualDelete = 'd-none';
   render() {
     return (
       <>
@@ -107,6 +108,7 @@ export default class ManageProject extends Component<{ pathId: number }> {
             labeling={'Do you want the project active?'}
           ></Form.Checkbox>
           <br />
+
           <Button.Success
             onClick={() =>
               projectService
@@ -122,15 +124,16 @@ export default class ManageProject extends Component<{ pathId: number }> {
           >
             Save project
           </Button.Success>
-          {this.posters.length > 0 ? (
-            <Button.Light
-              onClick={() => {
-                Alert.info('Project cannot be deleted while posters are connected');
-              }}
-            >
-              Delete project
-            </Button.Light>
-          ) : (
+
+          <Button.Light
+            onClick={() => {
+              this.actualDelete = 'd-inline';
+            }}
+          >
+            Delete project
+          </Button.Light>
+
+          <div className={this.actualDelete}>
             <Button.Danger
               onClick={() =>
                 projectService
@@ -142,9 +145,9 @@ export default class ManageProject extends Component<{ pathId: number }> {
                   .catch((error: Error) => Alert.danger('Error deleting project: ' + error.message))
               }
             >
-              Delete project
+              Posters and project will be deleted
             </Button.Danger>
-          )}
+          </div>
         </Card>
       </>
     );

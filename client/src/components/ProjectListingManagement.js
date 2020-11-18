@@ -5,7 +5,12 @@ import { Component } from 'react-simplified';
 import { history } from '../index';
 import { CardGrid, CardColumn, CardImage } from './Card';
 import { Alert } from './Widgets';
-import { projectService, posterService } from '../services';
+import {
+  projectService,
+  posterService,
+  type Project,
+  type Poster,
+} from '../services/portfolio-service';
 
 /**
  * Renders project listing in management
@@ -24,12 +29,7 @@ export default class ProjectListingManagement extends Component {
             .map((project) => (
               <CardColumn key={project.projectId}>
                 <CardImage
-                  img={
-                    this.posters.find((poster) => poster.projectId === project.projectId)
-                      ? this.posters.find((poster) => poster.projectId === project.projectId)
-                          .thumbnailUrl
-                      : ''
-                  }
+                  img={this.getPosterUrl(project)}
                   title={project.title}
                   imgAlt={'Missing thumbnail for ' + project.title}
                   imgWidth={210}
@@ -48,15 +48,20 @@ export default class ProjectListingManagement extends Component {
     );
   }
 
+  getPosterUrl(project: Project) {
+    const poster = this.posters.find((poster) => poster.projectId === project.projectId);
+    return poster ? poster.thumbnailUrl : '';
+  }
+
   mounted() {
     projectService
       .getProjects()
       .then((projects) => (this.projects = projects))
-      .catch((error: Error) => Alert.danger('Error getting projects: ' + error));
+      .catch((error: Error) => Alert.danger('Error getting projects: ' + error.message));
 
     posterService
       .getPosters()
       .then((posters) => (this.posters = posters))
-      .catch((error: Error) => Alert.danger('Error getting posters: ' + error));
+      .catch((error: Error) => Alert.danger('Error getting posters: ' + error.message));
   }
 }

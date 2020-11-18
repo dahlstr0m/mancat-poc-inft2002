@@ -13,7 +13,7 @@ import { Alert } from './Widgets';
 export default class ManagementMenu extends Component {
   render() {
     return (
-      <CardGrid>
+      <CardGrid columns={1} columnsSm={2} columnsMd={3} columnsLg={4}>
         <CardColumn>
           <CardBody title="Projects">
             <Card title="Add new">

@@ -7,7 +7,16 @@ import Button from './Button';
 import Form from './Form';
 import { Card } from './Card';
 import { Alert } from './Widgets';
-import { projectService, categoryService, employerService, posterService } from '../services';
+import {
+  projectService,
+  categoryService,
+  employerService,
+  posterService,
+  type Project,
+  type Poster,
+  type Category,
+  type Employer,
+} from '../services/portfolio-service';
 
 /**
  * Renders page to Mange Project
@@ -106,7 +115,9 @@ export default class ManageProject extends Component<{ pathId: number }> {
                   history.push('/admin');
                   Alert.success('Project successfully saved');
                 })
-                .catch((error: Error) => Alert.danger('Error storing new project: ' + error))
+                .catch((error: Error) =>
+                  Alert.danger('Error storing new project: ' + error.message)
+                )
             }
           >
             Save project
@@ -128,7 +139,7 @@ export default class ManageProject extends Component<{ pathId: number }> {
                     history.push('/admin');
                     Alert.success('Project successfully deleted');
                   })
-                  .catch((error: Error) => Alert.danger('Error deleting project: ' + error))
+                  .catch((error: Error) => Alert.danger('Error deleting project: ' + error.message))
               }
             >
               Delete project
@@ -143,20 +154,20 @@ export default class ManageProject extends Component<{ pathId: number }> {
       .getProject(this.props.pathId)
       .then((project) => (this.project = project))
       .then(() => (this.project.projectDate = this.project.projectDate.substring(0, 10)))
-      .catch((error: Error) => Alert.danger('Error getting project: ' + error));
+      .catch((error: Error) => Alert.danger('Error getting project: ' + error.message));
     categoryService
       .getCategories()
       .then((categories) => (this.categories = categories))
-      .catch((error: Error) => Alert.danger('Error getting categories: ' + error));
+      .catch((error: Error) => Alert.danger('Error getting categories: ' + error.message));
 
     employerService
       .getEmployers()
       .then((employers) => (this.employers = employers))
-      .catch((error: Error) => Alert.danger('Error getting employers: ' + error));
+      .catch((error: Error) => Alert.danger('Error getting employers: ' + error.message));
 
     posterService
       .getProjectPosters(this.props.pathId)
       .then((posters) => (this.posters = posters))
-      .catch((error: Error) => Alert.danger('Error fetching connected posters: ' + error));
+      .catch((error: Error) => Alert.danger('Error fetching connected posters: ' + error.message));
   }
 }

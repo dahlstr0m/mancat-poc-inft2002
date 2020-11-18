@@ -7,7 +7,12 @@ import Button from './Button';
 import Form from './Form';
 import { Card, CardPlain } from './Card';
 import { Row, Column, Alert } from './Widgets';
-import { projectService, posterService } from '../services';
+import {
+  projectService,
+  posterService,
+  type Project,
+  type Poster,
+} from '../services/portfolio-service';
 
 /**
  * Manage posters page
@@ -31,7 +36,7 @@ export default class ManagePosters extends Component {
           <Form.Label> Choose project:</Form.Label>
           <Form.Select
             value={this.poster.projectId}
-            onChange={(event) => (this.poster.projectId = event.currentTarget.value)}
+            onChange={(event) => (this.poster.projectId = parseInt(event.currentTarget.value))}
           >
             {this.projects.map((project) => (
               <option key={project.projectId} value={project.projectId}>
@@ -84,7 +89,7 @@ export default class ManagePosters extends Component {
                               Alert.success('Poster successfully edited');
                             })
                             .catch((error: Error) =>
-                              Alert.danger('Error storing edited poster: ' + error)
+                              Alert.danger('Error storing edited poster: ' + error.message)
                             )
                         }
                       >
@@ -99,7 +104,7 @@ export default class ManagePosters extends Component {
                               Alert.success('Poster successfully deleted');
                             })
                             .catch((error: Error) =>
-                              Alert.danger('Error deleting poster: ' + error)
+                              Alert.danger('Error deleting poster: ' + error.message)
                             )
                         }
                       >
@@ -119,10 +124,10 @@ export default class ManagePosters extends Component {
     projectService
       .getProjects()
       .then((projects) => (this.projects = projects))
-      .catch((error: Error) => Alert.danger('Error getting employers: ' + error));
+      .catch((error: Error) => Alert.danger('Error getting employers: ' + error.message));
     posterService
       .getPosters()
       .then((posters) => (this.posters = posters))
-      .catch((error: Error) => Alert.danger('Error fetching connected posters: ' + error));
+      .catch((error: Error) => Alert.danger('Error fetching connected posters: ' + error.message));
   }
 }

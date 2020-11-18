@@ -2,7 +2,12 @@
 
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { projectService, employerService, type Project, type Employer } from '../services';
+import {
+  projectService,
+  employerService,
+  type Project,
+  type Employer,
+} from '../services/portfolio-service';
 import Button from './Button';
 import Form from './Form';
 import { Card, CardBody, CardPlain } from './Card';
@@ -48,7 +53,9 @@ export default class ManageEmployers extends Component {
                         history.push('/admin');
                         Alert.success('Employer successfully added');
                       })
-                      .catch((error: Error) => Alert.danger('Error updating employer: ' + error))
+                      .catch((error: Error) =>
+                        Alert.danger('Error updating employer: ' + error.message)
+                      )
                   }
                 >
                   Add employer
@@ -60,15 +67,7 @@ export default class ManageEmployers extends Component {
         <Card title="Select a employer to change">
           <Form.Select
             value={this.employerToUpdate.employerId}
-            onChange={(event) => (
-              (this.employerToUpdate.employerId = event.currentTarget.value),
-              (this.employerToUpdate.employerName = this.employers.find(
-                (employer) => employer.employerId == event.currentTarget.value
-              ).employerName),
-              (this.employerUsed = this.projects.filter(
-                (project) => project.employerId == event.currentTarget.value
-              ).length)
-            )}
+            onChange={(event) => this.updateEmployer(event)}
           >
             <option value="0">Select a employer to change</option>
             {this.employers.map((employer) => (
@@ -106,7 +105,9 @@ export default class ManageEmployers extends Component {
                           history.push('/admin');
                           Alert.success('Employer successfully updated');
                         })
-                        .catch((error: Error) => Alert.danger('Error updating employer: ' + error))
+                        .catch((error: Error) =>
+                          Alert.danger('Error updating employer: ' + error.message)
+                        )
                     }
                   >
                     Update employer
@@ -131,7 +132,7 @@ export default class ManageEmployers extends Component {
                             Alert.success('Employer successfully deleted');
                           })
                           .catch((error: Error) =>
-                            Alert.danger('Error deleting employer: ' + error)
+                            Alert.danger('Error deleting employer: ' + error.message)
                           )
                       }
                     >
@@ -149,11 +150,24 @@ export default class ManageEmployers extends Component {
     );
   }
 
+  updateEmployer(e: SyntheticEvent<HTMLSelectElement>) {
+    this.employerToUpdate.employerId = parseInt(e.currentTarget.value);
+
+    const foundEmployer = this.employers.find(
+      (employer) => employer.employerId === parseInt(e.currentTarget.value)
+    );
+    if (foundEmployer) this.employerToUpdate.employerName = foundEmployer.employerName;
+
+    this.employerUsed = this.projects.filter(
+      (project) => project.employerId === parseInt(e.currentTarget.value)
+    ).length;
+  }
+
   mounted() {
     employerService
       .getEmployers()
       .then((employers) => (this.employers = employers))
-      .catch((error: Error) => Alert.danger('Error getting employers: ' + error));
+      .catch((error: Error) => Alert.danger('Error getting employers: ' + error.message));
 
     projectService
       .getProjects()

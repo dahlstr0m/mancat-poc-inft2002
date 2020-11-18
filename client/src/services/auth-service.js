@@ -3,14 +3,21 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:3000/api/v1';
 
+export type User = {
+  username: string,
+  password: string,
+};
+
 class AuthService {
+  authenticated: boolean;
+
   constructor() {
     this.authenticated = false;
   }
 
-  login(user) {
+  login(user: User) {
     return axios
-      .post<{}, {}>('/auth/login', user)
+      .post<User, {}>('/auth/login', user)
       .then(() => (this.authenticated = true))
       .catch((error) => console.log(error));
   }
@@ -20,6 +27,6 @@ class AuthService {
   }
 }
 
-const authService = new AuthService();
+const authService: AuthService = new AuthService();
 
 export { authService };

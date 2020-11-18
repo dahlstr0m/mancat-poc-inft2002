@@ -11,6 +11,7 @@ import ManagementMenu from './components/ManagementMenu';
 import PortfolioListing from './components/PortfolioListing';
 import ProjectDetails from './components/ProjectDetails';
 import ProjectListingManagement from './components/ProjectListingManagement';
+import ProjectRanking from './components/ProjectRanking';
 import NewProject from './components/NewProject';
 import NewPoster from './components/NewPoster';
 import ManageProject from './components/ManageProject';
@@ -168,6 +169,18 @@ if (root)
               <BackToAdmin />
               <Alert />
               <ManageProject pathId={props.match.params.id} />
+            </div>
+          )}
+        />
+
+        <ProtectedRoute //Rank project
+          exact
+          path="/admin/ranking"
+          component={() => (
+            <div>
+              <BackToAdmin />
+              <Alert />
+              <ProjectRanking />
             </div>
           )}
         />

@@ -126,6 +126,14 @@ export class CardGrid extends Component<{
   }
 }
 
+export class TableCard extends Component<{
+  children?: React.Node,
+}> {
+  render() {
+    return <div className="col mb-4">{this.props.children}</div>;
+  }
+}
+
 /**
  * Renders a PortfolioCard for portfoliolisting
  */

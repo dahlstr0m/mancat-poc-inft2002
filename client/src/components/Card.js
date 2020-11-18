@@ -94,6 +94,34 @@ export class CardImage extends Component<{
   }
 }
 
+export class CardImageTwo extends Component<{
+  img?: React.Node,
+  imgAlt?: React.Node,
+  imgWidth?: number,
+  imgHeight?: number,
+  title?: React.Node,
+  children?: React.Node,
+  link?: string,
+}> {
+  render() {
+    return (
+      <div className="card hover-shadow">
+        <div className="card-body">
+        <NavLink to={this.props.link}>
+          <img
+            src={this.props.img}
+            className="rounded mx-auto d-block hover-shadow"
+            alt={this.props.imgAlt}
+            width={this.props.imgWidth}
+            height={this.props.imgHeight}
+          />
+        </NavLink>
+        </div>
+      </div>
+    );
+  }
+}
+
 export class CardColumn extends Component<{
   children?: React.Node,
 }> {
@@ -141,18 +169,14 @@ export class PortfolioCard extends Component<{
       width: '200px',
       backgroundColor: 'lightgrey',
       margin: '20px',
+      border: '1px',
     };
     return (
       <>
         <div id={'PortfolioCard' + this.props.projectId} style={displaystyleDev}>
-          <p>Prosjekttittel: {this.props.title}</p>
-          <p>
-            Link til prosjekt: <NavLink to={this.props.link}>HER</NavLink>
-          </p>
-          <p>ImageUrl: {this.props.imageUrl}</p>
-          <img src={this.props.imageUrl} alt={'Thumbnail kan ikke vises for ' + this.props.title} />
-          <p>Data(?): {this.props.children}</p>
-          <p>Link til prosjektvisning: {this.props.children}</p>
+          <NavLink to={this.props.link}>
+            <img src={this.props.imageUrl} alt={'Thumbnail kan ikke vises for ' + this.props.title} />
+          </NavLink>
         </div>
       </>
     );
@@ -176,12 +200,12 @@ export class ProjectCard extends Component<{
     const displaystyleDev2 = {
       width: '100%',
       height: '80%',
-      backgroundColor: 'lightgreen',
+      backgroundColor: 'white',
       margin: '20px',
     };
     return (
       <>
-        <div id={this.props.projectId} style={displaystyleDev2}>
+        <div style={displaystyleDev2}>
           <p>Tittel: {this.props.title}</p>
           <p>Beskrivelse: {this.props.description}</p>
           <p>Dato: {this.props.date}</p>

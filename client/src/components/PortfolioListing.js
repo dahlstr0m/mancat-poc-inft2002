@@ -10,7 +10,7 @@ import {
   type Poster,
   type Category,
 } from '../services/portfolio-service';
-import { Card, CardGrid, CardColumn, CardImageTwo } from './Card';
+import { Card, CardGrid, CardColumn, CardImageEffect } from './Card';
 import Form from './Form';
 import { Alert } from './Widgets';
 
@@ -36,7 +36,7 @@ export default class PortfolioListing extends Component {
           />
           <Form.Label>Category:</Form.Label>
           <Form.Select
-            value={0}
+            value={this.selectedCategory}
             onChange={(event) => (this.selectedCategory = parseInt(event.currentTarget.value))}
           >
             <option key={0} value={0}>
@@ -50,29 +50,28 @@ export default class PortfolioListing extends Component {
           </Form.Select>
         </Card>
         <CardGrid columns={1} columnsSm={2} columnsMd={3} columnsLg={4}>
-        {this.projects
-          .filter((project) => project.active === true) // Filter to ensure only Active projects will be displayed
-          .filter(
-            (project) =>
-              this.selectedCategory != 0 ? project.categoryId == this.selectedCategory : true // Filter only selected category.
-          )
-          .filter((project) => project.title.match(new RegExp(`^.*${this.searchFilter}.*$`, 'i'))) // Filter out all projects with title not matching search string
-          .sort((projectA, projectB) => projectA.ranking - projectB.ranking) // Sorting to display by asc ranking
-          .map((
-            project // Mapping to display all left projects with PortfolioCard widget & fetching correct corresponding thumbnail for url attrib.
-          ) => (
-      <CardColumn key={project.projectId}>
-        <CardImageTwo
-          img={this.getPosterUrl(project)}
-          link={'/projects/' + project.projectId}
-          imgAlt={'Missing thumbnail for ' + project.title}
-          imgWidth={210}
-          imgHeight={300}
-        >
-        </CardImageTwo>
-      </CardColumn>
-    ))}
-</CardGrid>
+          {this.projects
+            .filter((project) => project.active === true) // Filter to ensure only Active projects will be displayed
+            .filter(
+              (project) =>
+                this.selectedCategory != 0 ? project.categoryId == this.selectedCategory : true // Filter only selected category.
+            )
+            .filter((project) => project.title.match(new RegExp(`^.*${this.searchFilter}.*$`, 'i'))) // Filter out all projects with title not matching search string
+            .sort((projectA, projectB) => projectA.ranking - projectB.ranking) // Sorting to display by asc ranking
+            .map((
+              project // Mapping to display all left projects with PortfolioCard widget & fetching correct corresponding thumbnail for url attrib.
+            ) => (
+              <CardColumn key={project.projectId}>
+                <CardImageEffect
+                  img={this.getPosterUrl(project)}
+                  link={'/projects/' + project.projectId}
+                  imgAlt={'Missing thumbnail for ' + project.title}
+                  imgWidth={210}
+                  imgHeight={300}
+                ></CardImageEffect>
+              </CardColumn>
+            ))}
+        </CardGrid>
       </>
     );
   }

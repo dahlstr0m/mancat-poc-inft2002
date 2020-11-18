@@ -1,3 +1,3 @@
-hover-shadow:hover {
-    box-shadow: 20px 20px 40px #000000;
+.hover-shadow:hover {
+  box-shadow: 2px 2px 4px #000000;
 }

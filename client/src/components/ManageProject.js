@@ -104,7 +104,7 @@ export default class ManageProject extends Component<{ pathId: number }> {
           <Form.Checkbox
             checked={this.project.active}
             onChange={(event) => (this.project.active = event.currentTarget.checked)}
-            labeling={'Do you want the project active from start?'}
+            labeling={'Do you want the project active?'}
           ></Form.Checkbox>
           <br />
           <Button.Success

@@ -19,20 +19,11 @@ import { Alert } from './Widgets';
 export default class ProjectRanking extends Component {
   projects: Project[] = [];
   posters: Poster[] = [];
-  indexArray = [];
-  setIndexArray(projects: Project[]) {
-    projects
-      .sort((projectA, projectB) => projectB.ranking - projectA.ranking) // Sorting to display by asc ranking
-      .map((
-        project // Mapping to display all projects with Ranking.
-      ) => this.indexArray.push(project.ranking));
-  }
 
   render() {
     return (
       <>
         <Card title="Change projects display-order">
-          <CardPlain>{this.indexArray.map((i) => i)}</CardPlain>
           <CardPlain>
             <table class="table">
               <thead>
@@ -90,7 +81,5 @@ export default class ProjectRanking extends Component {
       .getPosters()
       .then((posters) => (this.posters = posters))
       .catch((error: Error) => Alert.danger('Error getting posters: ' + error.message));
-
-    this.setIndexArray(this.projects);
   }
 }

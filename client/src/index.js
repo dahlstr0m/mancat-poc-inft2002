@@ -80,9 +80,11 @@ class AdminPage extends Component {
     return (
       <>
         <TitleCard img="https://portfolio.hpbastiansen.com/other/logo.png">Mancat admin</TitleCard>
-        <ManagementMenu />
-        <hr />
-        <ProjectListingManagement />
+        <CardPlain>
+          <ManagementMenu />
+          <hr />
+          <ProjectListingManagement />
+        </CardPlain>
       </>
     );
   }

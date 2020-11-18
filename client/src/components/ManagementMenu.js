@@ -24,7 +24,7 @@ export default class ManagementMenu extends Component {
           </CardBody>
           <CardBody>
             <Card title="Rearrange order">
-              <Button.Success onClick={() => history.push('/admin/ranking')}>Manage</Button.Success>
+              <Button.Light onClick={() => history.push('/admin/ranking')}>Manage</Button.Light>
             </Card>
           </CardBody>
         </CardColumn>

@@ -42,6 +42,12 @@ exports[`PortfolioListing component tests PortfolioListing draws correctly 1`] =
       >
         Kategori 3
       </option>
+      <option
+        key="4"
+        value={4}
+      >
+        Kategori 4
+      </option>
     </FormSelect>
   </Card>
   <CardGrid

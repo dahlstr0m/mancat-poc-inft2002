@@ -15,6 +15,10 @@ class CategoryService {
         categoryId: 3,
         categoryName: 'Kategori 3',
       },
+      {
+        categoryId: 4,
+        categoryName: 'Kategori 4',
+      },
     ]);
   }
 

@@ -44,7 +44,7 @@ export default class ManageEmployers extends Component {
                 <Button.Success
                   onClick={() =>
                     employerService
-                      .createEmployers(this.employerToAdd)
+                      .createEmployer(this.employerToAdd)
                       .then(() => {
                         history.push('/admin');
                         Alert.success('Employer successfully added');

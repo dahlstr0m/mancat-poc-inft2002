@@ -65,6 +65,12 @@ exports[`ManageCategories component tests ManageCategories draws correctly 1`] =
       >
         3) Kategori 3
       </option>
+      <option
+        key="4"
+        value={4}
+      >
+        4) Kategori 4
+      </option>
     </FormSelect>
     <br />
   </Card>

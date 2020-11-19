@@ -14,11 +14,9 @@ describe('ManagementMenu component tests', () => {
 
     // Wait for events to complete
     setTimeout(() => {
-      setTimeout(() => {
-        expect(wrapper).toMatchSnapshot();
+      expect(wrapper).toMatchSnapshot();
 
-        done();
-      });
+      done();
     });
   });
 

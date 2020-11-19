@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card components tests Card component draws correctly 1`] = `
+<div
+  className="card"
+>
+  <div
+    className="card-body"
+  >
+    <h5
+      className="card-title"
+    >
+      Title
+    </h5>
+    <div
+      className="card-text text-right"
+    />
+  </div>
+</div>
+`;
+
+exports[`Card components tests CardBody draws correctly 1`] = `
+<div
+  className="card-body"
+>
+  <h5
+    className="card-title"
+  >
+    title
+  </h5>
+  <div
+    className="card-text"
+  />
+</div>
+`;
+
+exports[`Card components tests CardColumn draws correctly 1`] = `
+<div
+  className="col mb-4"
+/>
+`;
+
+exports[`Card components tests CardGrid draws correctly 1`] = `
+<div
+  className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4"
+/>
+`;
+
+exports[`Card components tests CardImage draws correctly 1`] = `
+<div
+  className="card h-100"
+>
+  <div
+    className="card-body"
+  >
+    <img
+      alt="alt"
+      className="card-img-top rounded mx-auto d-block"
+      src="src"
+    />
+    <hr />
+    <h5
+      className="card-title mx-auto d-block"
+    >
+      title
+    </h5>
+    <div
+      className="card-text text-center"
+    />
+    <div
+      className="text-center"
+    >
+      <ButtonDanger>
+        button
+      </ButtonDanger>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Card components tests CardImageEffect draws correctly 1`] = `
+<div
+  className="card hover-shadow"
+>
+  <div
+    className="card-body"
+  >
+    <NavLink
+      to="/link"
+    >
+      <img
+        alt="alt"
+        className="rounded mx-auto d-block"
+        src="src"
+      />
+    </NavLink>
+  </div>
+</div>
+`;
+
+exports[`Card components tests TitleCard component draws correctly 1`] = `
+<div
+  className="card"
+>
+  <h1>
+    <img
+      alt="-No img-"
+      height={140}
+      src="src"
+      style={
+        Object {
+          "marginRight": "15px",
+        }
+      }
+      width={140}
+    />
+  </h1>
+  <ButtonLight>
+    button
+  </ButtonLight>
+</div>
+`;

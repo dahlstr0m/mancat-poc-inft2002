@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form components tests Form.Checkbox draws correctly 1`] = `
+<div
+  className="custom-control custom-checkbox"
+>
+  <input
+    checked={true}
+    className="custom-control-input"
+    id="customCheck"
+    type="checkbox"
+  />
+  <label
+    className="custom-control-label"
+    htmlFor="customCheck"
+  >
+    Check-label
+  </label>
+</div>
+`;
+
+exports[`Form components tests Form.Input draws correctly 1`] = `
+<input
+  className="form-control"
+  type="text"
+  value="value"
+/>
+`;
+
+exports[`Form components tests Form.Label draws correctly 1`] = `
+<label
+  className="col-form-label"
+>
+  Label
+</label>
+`;
+
+exports[`Form components tests Form.Select draws correctly 1`] = `
+<select
+  className="custom-select"
+  value={2}
+/>
+`;
+
+exports[`Form components tests Form.Textarea draws correctly 1`] = `
+<textarea
+  className="form-control"
+  value="value"
+/>
+`;

@@ -102,30 +102,6 @@ class FormSelect extends Component<{
 }
 
 /**
- * Renders a form date using Bootstrap styles.
- */
-class FormDate extends Component<{
-  type: string,
-  value: React.Node,
-  onChange: (SyntheticEvent<HTMLInputElement>) => mixed,
-}> {
-  render() {
-    // ...rest will contain extra passed attributes such as disabled, required, width, height, pattern
-    // For further information, see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
-    const { type, value, onChange, ...rest } = this.props;
-    return (
-      <input
-        {...rest}
-        className="form-control"
-        type={this.props.type}
-        value={this.props.value}
-        onChange={this.props.onChange}
-      />
-    );
-  }
-}
-
-/**
  * Renders form components using Bootstrap styles.
  */
 export default class Form {
@@ -134,5 +110,4 @@ export default class Form {
   static Textarea = FormTextarea;
   static Checkbox = FormCheckbox;
   static Select = FormSelect;
-  static Date = FormDate;
 }

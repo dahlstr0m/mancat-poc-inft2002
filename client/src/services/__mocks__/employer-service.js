@@ -15,6 +15,10 @@ class EmployerService {
         employerId: 3,
         employerName: 'Employer 3',
       },
+      {
+        employerId: 4,
+        employerName: 'Employer 4',
+      },
     ]);
   }
 

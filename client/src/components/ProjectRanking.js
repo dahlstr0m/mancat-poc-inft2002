@@ -8,6 +8,7 @@ import { Card } from './Card';
 import Form from './Form';
 import { Alert } from './Widgets';
 import Button from './Button';
+import { history } from '../index';
 
 /**
  * Renders ranking list
@@ -24,7 +25,19 @@ export default class ProjectRanking extends Component {
     return (
       <>
         <Card title="Change projects display-order">
-          <Button.Success onClick={() => projectService.updateRanking(this.rankIndex)}>
+          <Button.Success
+            onClick={() =>
+              projectService
+                .updateRanking(this.rankIndex)
+                .then(() => {
+                  history.push('/admin');
+                  Alert.success('Vieworder successfully saved');
+                })
+                .catch((error: Error) =>
+                  Alert.danger('Error storing new vieworder: ' + error.message)
+                )
+            }
+          >
             Save ranking
           </Button.Success>
           <Card>

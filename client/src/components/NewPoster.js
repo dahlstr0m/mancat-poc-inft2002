@@ -5,7 +5,7 @@ import { Component } from 'react-simplified';
 import { history } from '../index';
 import Button from './Button';
 import Form from './Form';
-import { Card, CardPlain } from './Card';
+import { Card } from './Card';
 import { Alert } from './Widgets';
 import {
   projectService,
@@ -45,7 +45,7 @@ export default class NewPoster extends Component {
             ))}
           </Form.Select>
           <br />
-          <CardPlain>
+          <Card>
             <Form.Label> Poster description:</Form.Label>
             <Form.Input
               type="text"
@@ -67,7 +67,7 @@ export default class NewPoster extends Component {
               onChange={(event) => (this.poster.thumbnailUrl = event.currentTarget.value)}
             ></Form.Input>
             <br />
-          </CardPlain>
+          </Card>
           <Button.Success
             onClick={() =>
               posterService

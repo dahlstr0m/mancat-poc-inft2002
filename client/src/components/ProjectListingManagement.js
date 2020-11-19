@@ -29,11 +29,10 @@ export default class ProjectListingManagement extends Component {
             .map((project) => (
               <CardColumn key={project.projectId}>
                 <CardImage
+                  button
                   img={this.getPosterUrl(project)}
                   title={project.title}
                   imgAlt={'Missing thumbnail for ' + project.title}
-                  imgWidth={210}
-                  imgHeight={300}
                   buttonText={'Manage project'}
                   buttonOnClick={() => history.push(`/admin/projects/${project.projectId}`)}
                 >

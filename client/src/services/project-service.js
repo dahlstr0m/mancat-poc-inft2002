@@ -35,6 +35,12 @@ class ProjectService {
       .then((response) => response.data);
   }
 
+  updateRanking(projects: Project[]) {
+    return axios
+      .put<Project[], void>('/projects/ranking', projects)
+      .then((response) => response.data);
+  }
+
   deleteProject(projectId: number) {
     return axios.delete<void>('/projects/' + projectId).then((response) => response.data);
   }

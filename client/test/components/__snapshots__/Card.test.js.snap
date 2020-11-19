@@ -70,7 +70,9 @@ exports[`Card components tests CardImage draws correctly 1`] = `
     <div
       className="text-center"
     >
-      <ButtonDanger>
+      <ButtonDanger
+        onClick={[Function]}
+      >
         button
       </ButtonDanger>
     </div>
@@ -115,7 +117,9 @@ exports[`Card components tests TitleCard component draws correctly 1`] = `
       width={140}
     />
   </h1>
-  <ButtonLight>
+  <ButtonLight
+    onClick={[Function]}
+  >
     button
   </ButtonLight>
 </div>

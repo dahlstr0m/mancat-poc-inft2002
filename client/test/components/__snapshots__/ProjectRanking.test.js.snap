@@ -1,0 +1,173 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectRanking component tests ProjectRanking draws correctly 1`] = `
+<Fragment>
+  <Card
+    title="Change projects display-order"
+  >
+    <ButtonSuccess
+      onClick={[Function]}
+    >
+      Save ranking
+    </ButtonSuccess>
+    <Card>
+      <table
+        className="table"
+      >
+        <thead>
+          <tr>
+            <th
+              scope="col"
+            >
+              Projects vieworder
+            </th>
+            <th
+              scope="col"
+            >
+              Project
+            </th>
+            <th
+              scope="col"
+            >
+              Status
+            </th>
+            <th
+              scope="col"
+            >
+              Move
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            key="1"
+          >
+            <th
+              scope="row"
+            >
+              #1
+            </th>
+            <td>
+              <span>
+                <img
+                  alt="No thumb"
+                  height="75"
+                  src="Poster 1 thumb url"
+                  width="53"
+                />
+              </span>
+              <span>
+                 Project 1
+              </span>
+            </td>
+            <td>
+              Active
+            </td>
+            <td>
+              <ButtonLight
+                onClick={[Function]}
+                small={true}
+              >
+                Up
+              </ButtonLight>
+               
+              |
+               
+              <ButtonLight
+                onClick={[Function]}
+                small={true}
+              >
+                Down
+              </ButtonLight>
+            </td>
+          </tr>
+          <tr
+            key="2"
+          >
+            <th
+              scope="row"
+            >
+              #2
+            </th>
+            <td>
+              <span>
+                <img
+                  alt="No thumb"
+                  height="75"
+                  src="Poster 2 thumb url"
+                  width="53"
+                />
+              </span>
+              <span>
+                 Project 2
+              </span>
+            </td>
+            <td>
+              Disabled
+            </td>
+            <td>
+              <ButtonLight
+                onClick={[Function]}
+                small={true}
+              >
+                Up
+              </ButtonLight>
+               
+              |
+               
+              <ButtonLight
+                onClick={[Function]}
+                small={true}
+              >
+                Down
+              </ButtonLight>
+            </td>
+          </tr>
+          <tr
+            key="3"
+          >
+            <th
+              scope="row"
+            >
+              #3
+            </th>
+            <td>
+              <span>
+                <img
+                  alt="No thumb"
+                  height="75"
+                  src="Poster 3 thumb url"
+                  width="53"
+                />
+              </span>
+              <span>
+                 Project 3
+              </span>
+            </td>
+            <td>
+              Active
+            </td>
+            <td>
+              <ButtonLight
+                onClick={[Function]}
+                small={true}
+              >
+                Up
+              </ButtonLight>
+               
+              |
+               
+              <ButtonLight
+                onClick={[Function]}
+                small={true}
+              >
+                Down
+              </ButtonLight>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </Card>
+  </Card>
+</Fragment>
+`;

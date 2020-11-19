@@ -32,7 +32,7 @@ class ProjectService {
         categoryId: 2,
         employerId: 2,
         ranking: 2,
-        active: true,
+        active: false,
       },
       {
         projectId: 3,

@@ -68,17 +68,6 @@ exports[`PortfolioListing component tests PortfolioListing draws correctly 1`] =
       />
     </CardColumn>
     <CardColumn
-      key="2"
-    >
-      <CardImageEffect
-        img="Poster 2 thumb url"
-        imgAlt="Missing thumbnail for Project 2"
-        imgHeight={300}
-        imgWidth={210}
-        link="/projects/2"
-      />
-    </CardColumn>
-    <CardColumn
       key="3"
     >
       <CardImageEffect

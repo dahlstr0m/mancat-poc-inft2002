@@ -44,7 +44,7 @@ exports[`ProjectListingManagement component tests ProjectListingManagement draws
         Project 2 description
         <br />
         Status: 
-        Active
+        Disabled
       </CardImage>
     </CardColumn>
     <CardColumn

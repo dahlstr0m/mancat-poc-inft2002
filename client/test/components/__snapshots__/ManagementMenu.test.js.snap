@@ -25,11 +25,11 @@ exports[`ManagementMenu component tests ManagementMenu draws correctly 1`] = `
       <Card
         title="Rearrange order"
       >
-        <ButtonLight
+        <ButtonDanger
           onClick={[Function]}
         >
           Manage
-        </ButtonLight>
+        </ButtonDanger>
       </Card>
     </CardBody>
   </CardColumn>

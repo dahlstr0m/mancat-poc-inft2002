@@ -20,24 +20,22 @@ export default class ProjectListingManagement extends Component {
       <>
         <h1>Project management</h1>
         <CardGrid columns={1} columnsSm={2} columnsMd={3} columnsLg={4}>
-          {this.projects
-            .sort((projectA, projectB) => projectA.ranking - projectB.ranking) // Sorting to display by asc ranking
-            .map((project) => (
-              <CardColumn key={project.projectId}>
-                <CardImage
-                  button
-                  img={this.getPosterUrl(project)}
-                  title={project.title}
-                  imgAlt={'Missing thumbnail for ' + project.title}
-                  buttonText={'Manage project'}
-                  buttonOnClick={() => history.push(`/admin/projects/${project.projectId}`)}
-                >
-                  Description: {project.projectDescription}
-                  <br />
-                  Status: {project.active == true ? 'Active' : 'Disabled'}
-                </CardImage>
-              </CardColumn>
-            ))}
+          {this.projects.map((project) => (
+            <CardColumn key={project.projectId}>
+              <CardImage
+                button
+                img={this.getPosterUrl(project)}
+                title={project.title}
+                imgAlt={'Missing thumbnail for ' + project.title}
+                buttonText={'Manage project'}
+                buttonOnClick={() => history.push(`/admin/projects/${project.projectId}`)}
+              >
+                Description: {project.projectDescription}
+                <br />
+                Status: {project.active == true ? 'Active' : 'Disabled'}
+              </CardImage>
+            </CardColumn>
+          ))}
         </CardGrid>
       </>
     );
@@ -51,6 +49,9 @@ export default class ProjectListingManagement extends Component {
   mounted() {
     projectService
       .getProjects()
+      .then((projects) =>
+        projects.sort((projectA, projectB) => projectA.ranking - projectB.ranking)
+      ) // Sorting to display by asc ranking
       .then((projects) => (this.projects = projects))
       .catch((error: Error) => Alert.danger('Error getting projects: ' + error.message));
 

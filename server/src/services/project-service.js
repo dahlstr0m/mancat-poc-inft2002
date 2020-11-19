@@ -85,6 +85,34 @@ class ProjectService {
     });
   }
 
+  updateRanking(projects: Project[]) {
+    let query =
+      'INSERT INTO Projects (projectId, title, projectDescription, projectDate, categoryId, employerId, active, ranking) VALUES ';
+    const insertArray = [];
+    projects.forEach((project) => {
+      query += `(?,?,?,?,?,?,?,?),`;
+      insertArray.push(project.projectId);
+      insertArray.push(project.title);
+      insertArray.push(project.projectDescription);
+      insertArray.push(project.projectDate);
+      insertArray.push(project.categoryId);
+      insertArray.push(project.employerId);
+      insertArray.push(project.active);
+      insertArray.push(project.ranking);
+    });
+    query = query.slice(0, -1);
+    query += ' ON DUPLICATE KEY UPDATE ranking=VALUES(ranking)';
+
+    return new Promise<void>((resolve, reject) => {
+      pool.query(query, insertArray, (error, results) => {
+        if (error) return reject(error);
+        if (!results.affectedRows) reject(new Error('No rows updated'));
+
+        resolve();
+      });
+    });
+  }
+
   deleteProject(id: number) {
     return new Promise<void>((resolve, reject) => {
       pool.query('DELETE FROM Projects WHERE projectId=?', [id], (error, results) => {

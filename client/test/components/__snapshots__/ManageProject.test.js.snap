@@ -109,7 +109,7 @@ exports[`ManageProject component tests ManageProject draws correctly 1`] = `
     <br />
     <FormCheckbox
       checked={true}
-      labeling="Do you want the project active from start?"
+      labeling="Do you want the project active?"
       onChange={[Function]}
     />
     <br />
@@ -118,11 +118,20 @@ exports[`ManageProject component tests ManageProject draws correctly 1`] = `
     >
       Save project
     </ButtonSuccess>
-    <ButtonDanger
+    <ButtonLight
       onClick={[Function]}
     >
       Delete project
-    </ButtonDanger>
+    </ButtonLight>
+    <div
+      className="d-none"
+    >
+      <ButtonDanger
+        onClick={[Function]}
+      >
+        Posters and project will be deleted
+      </ButtonDanger>
+    </div>
   </Card>
 </Fragment>
 `;

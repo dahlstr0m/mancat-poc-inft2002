@@ -40,10 +40,20 @@ describe('ManagementMenu component tests', () => {
     });
   });
 
-  test('Edit posters button sets location correctly', (done) => {
+  test('Rearrange projects button sets location correctly', (done) => {
     const wrapper = shallow(<ManagementMenu />);
 
     wrapper.find(Button.Danger).at(0).simulate('click');
+    setTimeout(() => {
+      expect(location.hash).toEqual('#/admin/ranking');
+      done();
+    });
+  });
+
+  test('Edit posters button sets location correctly', (done) => {
+    const wrapper = shallow(<ManagementMenu />);
+
+    wrapper.find(Button.Danger).at(1).simulate('click');
     setTimeout(() => {
       expect(location.hash).toEqual('#/admin/posters/manage');
       done();
@@ -53,7 +63,7 @@ describe('ManagementMenu component tests', () => {
   test('Manage employers button sets location correctly', (done) => {
     const wrapper = shallow(<ManagementMenu />);
 
-    wrapper.find(Button.Danger).at(1).simulate('click');
+    wrapper.find(Button.Danger).at(2).simulate('click');
     setTimeout(() => {
       expect(location.hash).toEqual('#/admin/employers');
       done();
@@ -63,7 +73,7 @@ describe('ManagementMenu component tests', () => {
   test('Manage categories button sets location correctly', (done) => {
     const wrapper = shallow(<ManagementMenu />);
 
-    wrapper.find(Button.Danger).at(2).simulate('click');
+    wrapper.find(Button.Danger).at(3).simulate('click');
     setTimeout(() => {
       expect(location.hash).toEqual('#/admin/categories');
       done();

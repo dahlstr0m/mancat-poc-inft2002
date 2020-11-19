@@ -88,7 +88,7 @@ router.post('/', (req, res) => {
   }
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id(\\d+)', (req, res) => {
   const data = req.body;
   const id = Number(req.params.id);
   if (
@@ -124,6 +124,21 @@ router.put('/:id', (req, res) => {
       .catch((error: Error) => res.status(500).send(error));
   } else {
     res.status(400).send('Missing project data.');
+  }
+});
+
+router.put('/ranking', (req, res) => {
+  const data = req.body;
+  const dataTemp: any = data;
+  if (Array.isArray(dataTemp)) {
+    const projects: Project[] = dataTemp;
+
+    projectService
+      .updateRanking(projects)
+      .then((results) => res.send())
+      .catch((error: Error) => res.status(500).send(error));
+  } else {
+    res.status(400).send('Data is not an array of projects.');
   }
 });
 

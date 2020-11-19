@@ -28,16 +28,15 @@ describe('Main components tests', () => {
     ).toBeTruthy();
   });
 
-  test('BackToAdmin component draws correctly', () => {
+  test('BackToAdmin component draws correctly', (done) => {
     const wrapper = shallow(<BackToAdmin />);
 
-    expect(
-      wrapper.containsMatchingElement(
-        <Card>
-          <Button.Light onClick={() => history.push('/admin/')}>Back to admin</Button.Light>
-        </Card>
-      )
-    ).toBeTruthy();
+    // Wait for events to complete
+    setTimeout(() => {
+      expect(wrapper).toMatchSnapshot();
+
+      done();
+    });
   });
 
   test('BackToAdmin component button takes user to admin page', (done) => {

@@ -281,7 +281,7 @@ Poster tests
 
 describe('Fetch posters (GET)', () => {
   test('Fetch all posters (200 OK)', (done) => {
-    axios.get<Posters[]>('/posters').then((response) => {
+    axios.get<Poster[]>('/posters').then((response) => {
       expect(response.status).toEqual(200);
       expect(response.data).toEqual(testPosters);
       done();
@@ -289,7 +289,7 @@ describe('Fetch posters (GET)', () => {
   });
 
   test('Fetch posters (200 OK)', (done) => {
-    axios.get<Posters>('/posters/1').then((response) => {
+    axios.get<Poster>('/posters/1').then((response) => {
       expect(response.status).toEqual(200);
       expect(response.data).toEqual(testPosters[0]);
       done();
@@ -297,7 +297,7 @@ describe('Fetch posters (GET)', () => {
   });
 
   test('Fetch all posters belonging to a project (200 OK)', (done) => {
-    axios.get<Projects>('/projects/1/posters').then((response) => {
+    axios.get<Project>('/projects/1/posters').then((response) => {
       expect(response.status).toEqual(200);
       expect(response.data).toEqual([testPosters[0]]);
       done();
@@ -376,7 +376,7 @@ Project tests
 
 describe('Fetch projects (GET)', () => {
   test('Fetch all projects (200 OK)', (done) => {
-    axios.get<Projects[]>('/projects').then((response) => {
+    axios.get<Project[]>('/projects').then((response) => {
       expect(response.status).toEqual(200);
       expect(response.data).toEqual(testProjects);
       done();
@@ -384,7 +384,7 @@ describe('Fetch projects (GET)', () => {
   });
 
   test('Fetch project (200 OK)', (done) => {
-    axios.get<Projects>('/projects/1').then((response) => {
+    axios.get<Project>('/projects/1').then((response) => {
       expect(response.status).toEqual(200);
       expect(response.data).toEqual(testProjects[0]);
       done();

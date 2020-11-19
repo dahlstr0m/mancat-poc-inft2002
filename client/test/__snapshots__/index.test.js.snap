@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Main components tests BackToAdmin component draws correctly 1`] = `
+<Card>
+  <ButtonLight
+    onClick={[Function]}
+  >
+    Back to admin
+  </ButtonLight>
+</Card>
+`;

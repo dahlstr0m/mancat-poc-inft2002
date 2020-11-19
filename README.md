@@ -1,61 +1,78 @@
-# inft2002-gr4-portfolio
+<p align="center">
+  <h3 align="center">inft2002-gr4-portfolio</h3>
 
----
+  <p align="center">
+    Simple portfolio app made for Mancat design.
+  </p>
+</p>
 
-## Install
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
 
-### Install client
+<!-- GETTING STARTED -->
 
-`cd client` `npm install`
+## Getting Started
 
-### Build client script file
+To get a local copy up and running follow these steps.
 
-`npm start`
+### Prerequisites
 
-### Test client
+- npm
 
-`npm test`
+```sh
+npm install npm@latest -g
+```
 
-### Install server
+### Installation
 
-`cd server` `npm install`
+1. Clone the repo
 
-### Start server
+```sh
+git clone https://gitlab.stud.idi.ntnu.no/hpbastia/inft2002-gr4-portfolio.git
+```
 
-`npm start`
+2. Install and compile client
 
-### Test server
+```sh
+cd client
+npm install
+npm start
+```
 
-## `npm test`
+3. (Optional) Set up own MySQL connection
 
-## How to git
+MySQL credentials are already set up to connect to DB with testing data.
 
-### Clone project:
+Switch MySQL credentials in `server/src/config.js` and `server/test/config.js`. DB create scripts
+are in `database-scripts/CreateTables.sql`
 
-**1. Åpne command prompt, naviger til ønsket mappe og last ned prosjektet:**
-`git clone https://gitlab.stud.idi.ntnu.no/hpbastia/inft2002-gr4-portfolio.git`
+4. Install and start server
 
-### Etter endringer:
+```sh
+cd server
+npm install
+npm start
+```
 
-**1. Pass på å velge riktig branch:** `git checkout <branch>` Eventuelt lag en ny med:
-`git checkout -b <ny_branch>`
+5. Testing
 
-**2. Legg til filer som skal lastes opp:** `git add <filnavn>` `git add .` (for alle nye/endrede
-filer)
+```sh
+cd client
+npm test
 
-**3. Skriv en commit message (med en god beskrivelse av endringene):** `git commit -m "<melding>"`
+cd server
+npm test
+```
 
-**4. Push filer** For å pushe filer til en ny branch for første gang:
-`git push --set-upstream origin <branch>` Deretter kan man bruke: `git push`
+<!-- USAGE EXAMPLES -->
 
-### Etter alt fungerer og man skal merge til master:
+## Usage
 
-**Pass på at alle filer er formatert med prettier, koden ikke har noen flow-errorer og at alle
-tester fungerer!**
+Admin credentials:
 
-**1. Bytt til master (viktig!):** `git checkout master`
-
-**2. Merge branch:** `git merge <branch>` `git push`
-
-**3. Slett den gamle branchen om den ikke skal brukes mer** `git branch -d <branch>`
-`git push origin --delete <branch>`
+```
+username: admin
+password: admin
+```

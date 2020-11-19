@@ -7,6 +7,7 @@ import { posterService, type Poster } from '../src/services/poster-service';
 import { projectService, type Project } from '../src/services/project-service';
 import { employerService, type Employer } from '../src/services/employer-service';
 import { categoryService, type Category } from '../src/services/category-service';
+import { authService, type User } from '../src/services/auth-service';
 
 const testPosters: Poster[] = [
   {
@@ -67,6 +68,12 @@ const testEmployers: Employer[] = [
   { employerId: 3, employerName: 'Employer 3' },
 ];
 
+const testUser: User = {
+  userId: 1,
+  username: 'admin',
+  password: '$2b$10$5490/ZVN3qU./sYpEzHOjevU0NrWeEA7JH7MF/KBaM0JACz4OJgoW',
+};
+
 axios.defaults.baseURL = 'http://localhost:3003/api/v1';
 
 //SQL statements to reset tables before running tests, note that truncate cannot be used due to foreign key constraints
@@ -75,6 +82,7 @@ const resetCategoriesTable =
 const resetEmployersTable = 'DELETE FROM Employers; ALTER TABLE Employers AUTO_INCREMENT = 1;';
 const resetPostersTable = 'DELETE FROM Posters; ALTER TABLE Posters AUTO_INCREMENT = 1;';
 const resetProjectsTable = 'DELETE FROM Projects; ALTER TABLE Projects AUTO_INCREMENT = 1;';
+const resetUsersTable = 'DELETE FROM Users; ALTER TABLE Users AUTO_INCREMENT = 1;';
 
 let webServer;
 beforeAll((done) => {
@@ -84,7 +92,11 @@ beforeAll((done) => {
 beforeEach((done) => {
   // Delete all data and reset id auto-increment start value
   pool.query(
-    resetPostersTable + resetProjectsTable + resetEmployersTable + resetCategoriesTable,
+    resetPostersTable +
+      resetProjectsTable +
+      resetEmployersTable +
+      resetCategoriesTable +
+      resetUsersTable,
     (error) => {
       if (error) return done.fail(error);
 
@@ -101,6 +113,7 @@ beforeEach((done) => {
         .then(() => posterService.createPoster(testPosters[0]))
         .then(() => posterService.createPoster(testPosters[1]))
         .then(() => posterService.createPoster(testPosters[2]))
+        .then(() => authService.insertUser(testUser))
         .then(() => done());
     }
   );
@@ -453,6 +466,36 @@ describe('Update project (PUT)', () => {
         done();
       });
   });
+
+  test('Update rankings (200 OK)', (done) => {
+    axios
+      .put<Project[], {}>('/projects/ranking', [
+        {
+          projectId: 1,
+          title: 'Test Project',
+          projectDescription: 'Test Project Description',
+          projectDate: '2020-11-17',
+          categoryId: 1,
+          employerId: 1,
+          ranking: 2,
+          active: true,
+        },
+        {
+          projectId: 2,
+          title: 'Test Project 2',
+          projectDescription: 'Test Project 2 Description',
+          projectDate: '2020-11-15',
+          categoryId: 2,
+          employerId: 2,
+          ranking: 1,
+          active: true,
+        },
+      ])
+      .then((response) => {
+        expect(response.status).toEqual(200);
+        done();
+      });
+  });
 });
 
 describe('Delete project (DELETE)', () => {
@@ -461,5 +504,51 @@ describe('Delete project (DELETE)', () => {
       expect(response.status).toEqual(200);
       done();
     });
+  });
+});
+
+/*
+Auth tests
+*/
+
+describe('Login user (POST)', () => {
+  test('Login (200 OK)', (done) => {
+    axios
+      .post<User, User>('/auth/login', { username: 'admin', password: 'admin' })
+      .then((response) => {
+        expect(response.status).toEqual(200);
+        expect(response.data).toEqual(testUser);
+        done();
+      });
+  });
+
+  test('Login (401 Unauthorized, bad username)', (done) => {
+    axios
+      .post<User, User>('/auth/login', { username: 'lars', password: 'adasd' })
+      .then((response) => done.fail(new Error()))
+      .catch((error: Error) => {
+        expect(error.message).toEqual('Request failed with status code 401');
+        done();
+      });
+  });
+
+  test('Login (401 Unauthorized, bad password)', (done) => {
+    axios
+      .post<User, User>('/auth/login', { username: 'admin', password: 'ads' })
+      .then((response) => done.fail(new Error()))
+      .catch((error: Error) => {
+        expect(error.message).toEqual('Request failed with status code 401');
+        done();
+      });
+  });
+
+  test('Login (400 Bad Request)', (done) => {
+    axios
+      .post<{ username: string }, User>('/auth/login', { username: 'admin' })
+      .then((response) => done.fail(new Error()))
+      .catch((error: Error) => {
+        expect(error.message).toEqual('Request failed with status code 400');
+        done();
+      });
   });
 });

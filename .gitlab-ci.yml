@@ -53,3 +53,19 @@ flow-server:
     - master
   script:
     - ./server/node_modules/.bin/flow check server
+
+test-client:
+  stage: test
+  only:
+    - master
+  script:
+    - cd client
+    - npm test
+
+test-server:
+  stage: test
+  only:
+    - master
+  script:
+    - cd server
+    - npm test

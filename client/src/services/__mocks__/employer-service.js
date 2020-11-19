@@ -1,5 +1,10 @@
 // @flow
 
+type Employer = {
+  employerId: number,
+  employerName: string,
+};
+
 class EmployerService {
   getEmployers() {
     return Promise.resolve([

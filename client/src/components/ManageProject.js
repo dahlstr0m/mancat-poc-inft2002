@@ -13,7 +13,7 @@ import categoryService, { type Category } from '../services/category-service';
 import employerService, { type Employer } from '../services/employer-service';
 
 /**
- * Renders page to Mange Project
+ * Renders page to Manage Project
  */
 export default class ManageProject extends Component<{ pathId: number }> {
   project: Project = {
@@ -38,6 +38,7 @@ export default class ManageProject extends Component<{ pathId: number }> {
             {this.posters.length > 0 ? (
               this.posters.map((poster) => (
                 <img
+                  key={poster.posterId}
                   src={poster.thumbnailUrl}
                   alt={'Thumbnail for ' + poster.posterId + 'kan ikke vises'}
                   height={'150'}

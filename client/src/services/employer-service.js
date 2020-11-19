@@ -21,7 +21,7 @@ class EmployerService {
     return axios.get<Employer>(`/projects/${projectId}/employer`).then((response) => response.data);
   }
 
-  createEmployers(employer: Employer) {
+  createEmployer(employer: Employer) {
     return axios
       .post<Employer, { employerId: number }>('/employers', employer)
       .then((response) => response.data);

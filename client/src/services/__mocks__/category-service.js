@@ -1,5 +1,10 @@
 // @flow
 
+type Category = {
+  categoryId: number,
+  categoryName: string,
+};
+
 class CategoryService {
   getCategories() {
     return Promise.resolve([

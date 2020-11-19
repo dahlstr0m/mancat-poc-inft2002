@@ -1,5 +1,16 @@
 // @flow
 
+type Project = {
+  projectId: number,
+  title: string,
+  projectDescription: string,
+  projectDate: string,
+  categoryId: number,
+  employerId: number,
+  ranking: number,
+  active: boolean,
+};
+
 class ProjectService {
   getProjects() {
     return Promise.resolve([

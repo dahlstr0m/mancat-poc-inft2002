@@ -48,7 +48,9 @@ export class TitleCard extends Component<{
           {this.props.children}
         </h1>
         {this.props.button ? (
-          <Button.Light onClick={this.props.buttonOnClick}>{this.props.buttonText}</Button.Light>
+          <Button.Light onClick={this.props.buttonOnClick ? this.props.buttonOnClick : () => {}}>
+            {this.props.buttonText ? this.props.buttonText : ''}
+          </Button.Light>
         ) : (
           ''
         )}
@@ -74,7 +76,7 @@ export class CardImage extends Component<{
   title?: React.Node,
   button?: React.Node,
   buttonText?: React.Node,
-  buttonOnClick: () => mixed,
+  buttonOnClick?: () => mixed,
   children?: React.Node,
 }> {
   render() {
@@ -91,7 +93,9 @@ export class CardImage extends Component<{
           <div className="card-text text-center">{this.props.children}</div>
           <div className="text-center">
             {this.props.button ? (
-              <Button.Danger onClick={this.props.buttonOnClick}>
+              <Button.Danger
+                onClick={this.props.buttonOnClick ? this.props.buttonOnClick : () => {}}
+              >
                 {this.props.buttonText}
               </Button.Danger>
             ) : (
@@ -111,7 +115,7 @@ export class CardImageEffect extends Component<{
   imgHeight?: number,
   title?: React.Node,
   children?: React.Node,
-  link?: string,
+  link: string,
 }> {
   render() {
     return (

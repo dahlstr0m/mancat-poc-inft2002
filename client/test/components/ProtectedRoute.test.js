@@ -5,6 +5,8 @@ import { shallow } from 'enzyme';
 
 // Components
 import ProtectedRoute from '../../src/components/ProtectedRoute';
+import { Alert } from '../../src/components/Widgets';
+import { AdminPage } from '../../src/index';
 
 // Mocks
 jest.mock('../../src/services/auth-service');

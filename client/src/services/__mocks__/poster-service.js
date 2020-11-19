@@ -1,5 +1,13 @@
 // @flow
 
+type Poster = {
+  posterId: number,
+  projectId: number,
+  posterDescription: string,
+  posterUrl: string,
+  thumbnailUrl: string,
+};
+
 class PosterService {
   getPosters() {
     return Promise.resolve([

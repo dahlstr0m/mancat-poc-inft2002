@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { shallow } from 'enzyme';
+import { history } from '../src/index';
 
 // Components
 import { Topbar, BackToAdmin, Contact, Footer, AdminPage } from '../src/index';
@@ -33,7 +34,7 @@ describe('Main components tests', () => {
     expect(
       wrapper.containsMatchingElement(
         <Card>
-          <Button.Light>Back to admin</Button.Light>
+          <Button.Light onClick={() => history.push('/admin/')}>Back to admin</Button.Light>
         </Card>
       )
     ).toBeTruthy();

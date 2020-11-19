@@ -15,24 +15,28 @@ describe('Form components tests', () => {
   });
 
   test('Form.Input draws correctly', () => {
+    // $FlowExpectedError
     const wrapper = shallow(<Form.Input type="text" value="value" />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   test('Form.Textarea draws correctly', () => {
+    // $FlowExpectedError
     const wrapper = shallow(<Form.Textarea value="value" />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   test('Form.Checkbox draws correctly', () => {
+    // $FlowExpectedError
     const wrapper = shallow(<Form.Checkbox checked labeling="Check-label" />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   test('Form.Select draws correctly', () => {
+    // $FlowExpectedError
     const wrapper = shallow(<Form.Select value={2}></Form.Select>);
 
     expect(wrapper).toMatchSnapshot();

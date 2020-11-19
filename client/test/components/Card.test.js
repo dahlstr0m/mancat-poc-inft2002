@@ -37,6 +37,7 @@ describe('Card components tests', () => {
 
   test('CardImage draws correctly', () => {
     const wrapper = shallow(
+      // $FlowExpectedError
       <CardImage title="title" img="src" imgAlt="alt" button buttonText="button"></CardImage>
     );
 

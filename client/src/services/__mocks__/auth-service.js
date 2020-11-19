@@ -1,5 +1,10 @@
 // @flow
 
+type User = {
+  username: string,
+  password: string,
+};
+
 class AuthService {
   authenticated: boolean;
 

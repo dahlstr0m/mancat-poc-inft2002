@@ -19,7 +19,7 @@ import ManageCategories from './components/ManageCategories';
 import LoginPage from './components/LoginPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import Button from './components/Button';
-import { Card, TitleCard, CardPlain } from './components/Card';
+import { Card, TitleCard } from './components/Card';
 import { NavBar, Alert } from './components/Widgets';
 
 // Create and export history
@@ -122,7 +122,7 @@ if (root)
               <Topbar />
               <Alert />
               <Contact />
-              <MainPage />
+              <PortfolioListing />
               <Footer />
             </div>
           )}
@@ -135,7 +135,7 @@ if (root)
               <Topbar />
               <Alert />
               <ProjectDetails pathId={props.match.params.id} />
-              <MainPage />
+              <PortfolioListing />
               <Footer />
             </div>
           )}

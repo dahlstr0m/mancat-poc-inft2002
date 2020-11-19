@@ -11,6 +11,8 @@ const router: express$Router<> = express.Router();
 /**
  * Project API handling
  */
+
+// Get all projects
 router.get('/', (req, res) => {
   projectService
     .getProjects()
@@ -18,6 +20,7 @@ router.get('/', (req, res) => {
     .catch((error: Error) => res.status(500).send(error));
 });
 
+// Get project with id :id
 router.get('/:id', (req, res) => {
   const id = Number(req.params.id);
   projectService
@@ -26,6 +29,7 @@ router.get('/:id', (req, res) => {
     .catch((error: Error) => res.status(500).send(error));
 });
 
+// Get category of project with id :id
 router.get('/:id/category', (req, res) => {
   const id = Number(req.params.id);
   categoryService
@@ -34,6 +38,7 @@ router.get('/:id/category', (req, res) => {
     .catch((error: Error) => res.status(500).send(error));
 });
 
+// Get employer of project with id :id
 router.get('/:id/employer', (req, res) => {
   const id = Number(req.params.id);
   employerService
@@ -42,6 +47,7 @@ router.get('/:id/employer', (req, res) => {
     .catch((error: Error) => res.status(500).send(error));
 });
 
+// Get posters of project with id :id
 router.get('/:id/posters', (req, res) => {
   const id = Number(req.params.id);
   posterService
@@ -50,6 +56,7 @@ router.get('/:id/posters', (req, res) => {
     .catch((error: Error) => res.status(500).send(error));
 });
 
+// Create a new project
 router.post('/', (req, res) => {
   const data = req.body;
   if (
@@ -88,6 +95,7 @@ router.post('/', (req, res) => {
   }
 });
 
+// Update a project with id :id
 router.put('/:id(\\d+)', (req, res) => {
   const data = req.body;
   const id = Number(req.params.id);
@@ -127,6 +135,7 @@ router.put('/:id(\\d+)', (req, res) => {
   }
 });
 
+// Update ranking of all posters
 router.put('/ranking', (req, res) => {
   const data = req.body;
   const dataTemp: any = data;
@@ -142,6 +151,7 @@ router.put('/ranking', (req, res) => {
   }
 });
 
+// Delete a project with id :id
 router.delete('/:id', (req, res) => {
   const id = Number(req.params.id);
   projectService

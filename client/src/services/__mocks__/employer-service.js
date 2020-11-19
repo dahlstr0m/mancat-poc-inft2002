@@ -1,5 +1,9 @@
 // @flow
 
+/**
+ * Mocked version of EmployerService used in testing.
+ */
+
 type Employer = {
   employerId: number,
   employerName: string,

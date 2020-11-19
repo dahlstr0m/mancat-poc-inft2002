@@ -85,6 +85,10 @@ class ProjectService {
     });
   }
 
+  /**
+   * Creates a query based on amount of projects entered.
+   * This is fast but probably not a good idea.
+   */
   updateRanking(projects: Project[]) {
     let query =
       'INSERT INTO Projects (projectId, title, projectDescription, projectDate, categoryId, employerId, active, ranking) VALUES ';

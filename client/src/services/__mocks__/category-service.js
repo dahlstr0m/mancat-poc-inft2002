@@ -1,5 +1,9 @@
 // @flow
 
+/**
+ * Mocked version of CategoryService used in testing.
+ */
+
 type Category = {
   categoryId: number,
   categoryName: string,

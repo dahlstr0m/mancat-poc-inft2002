@@ -8,6 +8,8 @@ const router: express$Router<> = express.Router();
 /**
  * Poster API handling
  */
+
+// Get all posters
 router.get('/', (req, res) => {
   posterService
     .getPosters()
@@ -15,6 +17,7 @@ router.get('/', (req, res) => {
     .catch((error: Error) => res.status(500).send(error));
 });
 
+// Get poster with id :id
 router.get('/:id', (req, res) => {
   const id = Number(req.params.id);
   posterService
@@ -23,6 +26,7 @@ router.get('/:id', (req, res) => {
     .catch((error: Error) => res.status(500).send(error));
 });
 
+// Create a new poster
 router.post('/', (req, res) => {
   const data = req.body;
   if (
@@ -53,6 +57,7 @@ router.post('/', (req, res) => {
   }
 });
 
+// Update poster with id :id
 router.put('/:id', (req, res) => {
   const data = req.body;
   const id = Number(req.params.id);
@@ -84,6 +89,7 @@ router.put('/:id', (req, res) => {
   }
 });
 
+// Delete poster with id :id
 router.delete('/:id', (req, res) => {
   const id = Number(req.params.id);
   posterService

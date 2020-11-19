@@ -1,5 +1,9 @@
 // @flow
 
+/**
+ * Mocked version of AuthService used in testing.
+ */
+
 type User = {
   username: string,
   password: string,

@@ -27,6 +27,9 @@ export class Card extends Component<{
   }
 }
 
+/**
+ * Renders a title card with logo and a button using Bootstrap classes.
+ */
 export class TitleCard extends Component<{
   img?: React.Node,
   children?: React.Node,
@@ -59,6 +62,9 @@ export class TitleCard extends Component<{
   }
 }
 
+/**
+ * Renders a simple information card with a title. Used to build a card with multiple card-bodies.
+ */
 export class CardBody extends Component<{ title?: React.Node, children?: React.Node }> {
   render() {
     return (
@@ -70,6 +76,9 @@ export class CardBody extends Component<{ title?: React.Node, children?: React.N
   }
 }
 
+/**
+ * Renders a card with an image top and a button at the footer using Bootstrap classes.
+ */
 export class CardImage extends Component<{
   img?: React.Node,
   imgAlt?: React.Node,
@@ -108,6 +117,9 @@ export class CardImage extends Component<{
   }
 }
 
+/**
+ * Renders a card with an image top and a shadow-effect on hover using Bootstrap and custom classes.
+ */
 export class CardImageEffect extends Component<{
   img?: React.Node,
   imgAlt?: React.Node,
@@ -136,6 +148,9 @@ export class CardImageEffect extends Component<{
   }
 }
 
+/**
+ * Renders a card-column using Bootstrap classes.
+ */
 export class CardColumn extends Component<{
   children?: React.Node,
 }> {
@@ -144,6 +159,9 @@ export class CardColumn extends Component<{
   }
 }
 
+/**
+ * Renders a card-grid using Bootstrap classes.
+ */
 export class CardGrid extends Component<{
   columns: number,
   columnsSm?: number,

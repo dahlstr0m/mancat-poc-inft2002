@@ -1,5 +1,9 @@
 // @flow
 
+/**
+ * Mocked version of ProjectService used in testing.
+ */
+
 type Project = {
   projectId: number,
   title: string,

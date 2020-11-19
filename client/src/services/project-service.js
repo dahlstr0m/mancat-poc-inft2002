@@ -35,6 +35,10 @@ class ProjectService {
       .then((response) => response.data);
   }
 
+  /**
+   * Special method to update every projects ranking at once.
+   * Used only in <ProjectRanking />.
+   */
   updateRanking(projects: Project[]) {
     return axios
       .put<Project[], void>('/projects/ranking', projects)

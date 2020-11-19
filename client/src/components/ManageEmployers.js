@@ -146,6 +146,7 @@ export default class ManageEmployers extends Component {
     );
   }
 
+  // Helper function to make sure array.find actually finds an employer.
   updateEmployer(e: SyntheticEvent<HTMLSelectElement>) {
     this.employerToUpdate.employerId = parseInt(e.currentTarget.value);
 

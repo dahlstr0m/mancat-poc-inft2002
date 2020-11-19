@@ -145,6 +145,7 @@ export default class ManageCategories extends Component {
     );
   }
 
+  // Helper function to make sure array.find actually finds a category.
   updateCategory(e: SyntheticEvent<HTMLSelectElement>) {
     this.categoryToUpdate.categoryId = parseInt(e.currentTarget.value);
 

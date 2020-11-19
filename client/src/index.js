@@ -27,6 +27,9 @@ import { NavBar, Alert } from './components/Widgets';
 import { createHashHistory } from 'history';
 export const history = createHashHistory();
 
+/**
+ * Renders a header used in all the normal pages.
+ */
 export class Topbar extends Component {
   render() {
     return (
@@ -39,6 +42,9 @@ export class Topbar extends Component {
   }
 }
 
+/**
+ * Renders a button to return from various management pages.
+ */
 export class BackToAdmin extends Component {
   render() {
     return (
@@ -49,6 +55,9 @@ export class BackToAdmin extends Component {
   }
 }
 
+/**
+ * Renders contact information.
+ */
 export class Contact extends Component {
   render() {
     return (
@@ -63,12 +72,18 @@ export class Contact extends Component {
   }
 }
 
+/**
+ * Renders a footer used in all the normal pages.
+ */
 export class Footer extends Component {
   render() {
     return <Card textRight>Laget av Kevin, Hans Petter, Henrik, Bjarne og Mathias</Card>;
   }
 }
 
+/**
+ * Renders the whole admin homepage.
+ */
 export class AdminPage extends Component {
   render() {
     return (

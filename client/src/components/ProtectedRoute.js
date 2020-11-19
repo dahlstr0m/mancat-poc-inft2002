@@ -2,6 +2,10 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import authService from '../services/auth-service';
 
+/**
+ * Used to protect various routes from non-authenticated users.
+ * Non-authenticated users are redirected to the login page.
+ */
 const ProtectedRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}

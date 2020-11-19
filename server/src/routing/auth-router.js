@@ -5,6 +5,9 @@ import bcrypt from 'bcrypt';
 
 const router: express$Router<> = express.Router();
 
+/**
+ * Uses bcrypt to compare the entered password with the one stored in DB.
+ */
 router.post('/login', (req, res) => {
   const data = req.body;
   if (

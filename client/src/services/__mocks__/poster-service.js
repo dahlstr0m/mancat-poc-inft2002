@@ -1,5 +1,9 @@
 // @flow
 
+/**
+ * Mocked version of PosterService used in testing.
+ */
+
 type Poster = {
   posterId: number,
   projectId: number,

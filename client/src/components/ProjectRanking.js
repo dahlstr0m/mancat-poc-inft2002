@@ -11,8 +11,10 @@ import Button from './Button';
 
 /**
  * Renders ranking list
+ *
+ * Assigns a ranking to every poster without a ranking set,
+ * and updates on clicking the save ranking button.
  */
-
 export default class ProjectRanking extends Component {
   projects: Project[] = [];
   posters: Poster[] = [];
@@ -73,6 +75,7 @@ export default class ProjectRanking extends Component {
     );
   }
 
+  // Switches the selected project with the one above it in 'ranking'.
   rankUp(project: Project) {
     if (project.ranking <= 1) {
       Alert.danger('Can not rank project any higher.');
@@ -87,6 +90,7 @@ export default class ProjectRanking extends Component {
     );
   }
 
+  // Switches the selected project with the one below it in 'ranking'.
   rankDown(project: Project) {
     if (project.ranking >= this.rankIndex.length) {
       Alert.danger('Can not rank project any lower.');
@@ -106,6 +110,7 @@ export default class ProjectRanking extends Component {
     return poster ? poster.thumbnailUrl : '';
   }
 
+  // Ranks every project from 1 to the amount of projects, to make it easier to rank up and down.
   sortProjectRanking() {
     this.rankIndex = [];
     this.projects.forEach((project, index) => {

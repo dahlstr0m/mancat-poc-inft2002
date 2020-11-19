@@ -7,6 +7,9 @@ import { Alert } from './Widgets';
 import authService from '../services/auth-service';
 import { history } from '../index';
 
+/**
+ * Renders a simple page with username and password fields.
+ */
 export default class LoginPage extends Component {
   user = { username: '', password: '' };
 
@@ -26,6 +29,7 @@ export default class LoginPage extends Component {
           onChange={(event) => (this.user.password = event.currentTarget.value)}
         />
         <hr />
+        {/* Takes the user to the admin page if the login was successful. */}
         <Button.Success
           onClick={() =>
             authService.login(this.user).then(() => {

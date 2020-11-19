@@ -22,7 +22,7 @@ class AuthService {
     });
   }
 
-  // Only for testing purposes, password should be hashed
+  // Only used for testing purposes, password should be hashed
   insertUser(user: User) {
     return new Promise<number>((resolve, reject) => {
       pool.query(

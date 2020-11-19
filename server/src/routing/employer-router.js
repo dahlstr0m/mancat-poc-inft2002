@@ -8,6 +8,8 @@ const router: express$Router<> = express.Router();
 /**
  * Employer API handling
  */
+
+// Get all employers
 router.get('/', (req, res) => {
   employerService
     .getEmployers()
@@ -15,6 +17,7 @@ router.get('/', (req, res) => {
     .catch((error: Error) => res.status(500).send(error));
 });
 
+// Get employer with id :id
 router.get('/:id', (req, res) => {
   const id = Number(req.params.id);
   employerService
@@ -25,6 +28,7 @@ router.get('/:id', (req, res) => {
     .catch((error: Error) => res.status(500).send(error));
 });
 
+// Create a new employer
 router.post('/', (req, res) => {
   const data = req.body;
   if (data && typeof data.employerName == 'string' && data.employerName.length != 0) {
@@ -42,6 +46,7 @@ router.post('/', (req, res) => {
   }
 });
 
+// Update employer with id :id
 router.put('/:id', (req, res) => {
   const data = req.body;
   const id = Number(req.params.id);
@@ -60,6 +65,7 @@ router.put('/:id', (req, res) => {
   }
 });
 
+// Delete employer with id :id
 router.delete('/:id', (req, res) => {
   const id = Number(req.params.id);
   employerService

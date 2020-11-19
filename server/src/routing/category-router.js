@@ -8,6 +8,8 @@ const router: express$Router<> = express.Router();
 /**
  * Category API handling
  */
+
+// Get all categories
 router.get('/', (req, res) => {
   categoryService
     .getCategories()
@@ -15,6 +17,7 @@ router.get('/', (req, res) => {
     .catch((error: Error) => res.status(500).send(error));
 });
 
+// Get category with id :id
 router.get('/:id', (req, res) => {
   const id = Number(req.params.id);
   categoryService
@@ -25,6 +28,7 @@ router.get('/:id', (req, res) => {
     .catch((error: Error) => res.status(500).send(error));
 });
 
+// Create category
 router.post('/', (req, res) => {
   const data = req.body;
   if (data && typeof data.categoryName == 'string' && data.categoryName.length != 0) {
@@ -42,6 +46,7 @@ router.post('/', (req, res) => {
   }
 });
 
+// Update category with id :id
 router.put('/:id', (req, res) => {
   const data = req.body;
   const id = Number(req.params.id);
@@ -60,6 +65,7 @@ router.put('/:id', (req, res) => {
   }
 });
 
+// Delete category with id :id
 router.delete('/:id', (req, res) => {
   const id = Number(req.params.id);
   categoryService

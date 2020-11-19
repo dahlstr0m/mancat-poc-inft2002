@@ -39,7 +39,6 @@ describe('ProjectRanking component tests', () => {
     });
 
     setTimeout(() => {
-      console.log(wrapper.find('img').at(0).debug());
       expect(
         wrapper
           .find('img')

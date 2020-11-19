@@ -9,6 +9,11 @@ export type User = {
   password: string,
 };
 
+/**
+ * Very simple authentication service.
+ * User is authenticated through username and hashed password.
+ * Session is not stored.
+ */
 class AuthService {
   authenticated: boolean;
 

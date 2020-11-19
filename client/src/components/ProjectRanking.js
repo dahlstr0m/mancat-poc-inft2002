@@ -2,13 +2,9 @@
 
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import {
-  projectService,
-  posterService,
-  type Project,
-  type Poster,
-} from '../services/portfolio-service';
-import { PortfolioCard, Card, CardPlain, TableCard } from './Card';
+import projectService, { type Project } from '../services/project-service';
+import posterService, { type Poster } from '../services/poster-service';
+import { PortfolioCard, Card } from './Card';
 import Form from './Form';
 import { Alert } from './Widgets';
 
@@ -24,7 +20,7 @@ export default class ProjectRanking extends Component {
     return (
       <>
         <Card title="Change projects display-order">
-          <CardPlain>
+          <Card>
             <table class="table">
               <thead>
                 <tr>
@@ -60,7 +56,7 @@ export default class ProjectRanking extends Component {
                   ))}
               </tbody>
             </table>
-          </CardPlain>
+          </Card>
         </Card>
       </>
     );

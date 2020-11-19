@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PortfolioListing component tests PortfolioListing draws correctly 1`] = `
+<Fragment>
+  <Card>
+    <FormLabel>
+      Search:
+    </FormLabel>
+    <FormInput
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+    <FormLabel>
+      Category:
+    </FormLabel>
+    <FormSelect
+      onChange={[Function]}
+      value={0}
+    >
+      <option
+        key="0"
+        value={0}
+      >
+        All
+      </option>
+      <option
+        key="1"
+        value={1}
+      >
+        Kategori 1
+      </option>
+      <option
+        key="2"
+        value={2}
+      >
+        Kategori 2
+      </option>
+      <option
+        key="3"
+        value={3}
+      >
+        Kategori 3
+      </option>
+      <option
+        key="4"
+        value={4}
+      >
+        Kategori 4
+      </option>
+    </FormSelect>
+  </Card>
+  <CardGrid
+    columns={1}
+    columnsLg={4}
+    columnsMd={3}
+    columnsSm={2}
+  >
+    <CardColumn
+      key="1"
+    >
+      <CardImageEffect
+        img="Poster 1 thumb url"
+        imgAlt="Missing thumbnail for Project 1"
+        imgHeight={300}
+        imgWidth={210}
+        link="/projects/1"
+      />
+    </CardColumn>
+    <CardColumn
+      key="2"
+    >
+      <CardImageEffect
+        img="Poster 2 thumb url"
+        imgAlt="Missing thumbnail for Project 2"
+        imgHeight={300}
+        imgWidth={210}
+        link="/projects/2"
+      />
+    </CardColumn>
+    <CardColumn
+      key="3"
+    >
+      <CardImageEffect
+        img="Poster 3 thumb url"
+        imgAlt="Missing thumbnail for Project 3"
+        imgHeight={300}
+        imgWidth={210}
+        link="/projects/3"
+      />
+    </CardColumn>
+  </CardGrid>
+</Fragment>
+`;

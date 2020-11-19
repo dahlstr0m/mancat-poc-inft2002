@@ -31,14 +31,14 @@ prettier-client:
   only:
     - master
   script:
-    - ./client/node_modules/.bin/prettier --check client/src/*.js client/test/*.js
+    - ./client/node_modules/.bin/prettier --check client/src/**/*.js client/test/**/*.js
 
 prettier-server:
   stage: test
   only:
     - master
   script:
-    - ./server/node_modules/.bin/prettier --check server/src/*.js server/test/*.js
+    - ./server/node_modules/.bin/prettier --check server/src/**/*.js server/test/**/*.js
 
 flow-client:
   stage: test

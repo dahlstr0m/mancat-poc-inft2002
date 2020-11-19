@@ -1,12 +1,8 @@
 // @flow
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import {
-  projectService,
-  categoryService,
-  type Project,
-  type Category,
-} from '../services/portfolio-service';
+import projectService, { type Project } from '../services/project-service';
+import categoryService, { type Category } from '../services/category-service';
 import Button from './Button';
 import Form from './Form';
 import { Card, CardBody } from './Card';

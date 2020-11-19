@@ -7,12 +7,8 @@ import Button from './Button';
 import Form from './Form';
 import { Card } from './Card';
 import { Row, Column, Alert } from './Widgets';
-import {
-  projectService,
-  posterService,
-  type Project,
-  type Poster,
-} from '../services/portfolio-service';
+import projectService, { type Project } from '../services/project-service';
+import posterService, { type Poster } from '../services/poster-service';
 
 /**
  * Manage posters page

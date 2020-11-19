@@ -2,14 +2,9 @@
 
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import {
-  projectService,
-  posterService,
-  categoryService,
-  type Project,
-  type Poster,
-  type Category,
-} from '../services/portfolio-service';
+import projectService, { type Project } from '../services/project-service';
+import posterService, { type Poster } from '../services/poster-service';
+import categoryService, { type Category } from '../services/category-service';
 import { Card, CardGrid, CardColumn, CardImageEffect } from './Card';
 import Form from './Form';
 import { Alert } from './Widgets';

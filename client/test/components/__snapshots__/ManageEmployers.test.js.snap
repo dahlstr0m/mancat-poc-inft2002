@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ManageEmployers component tests ManageEmployers draws correctly 1`] = `
+<Fragment>
+  <Card
+    title="Add a employer"
+  >
+    <Card>
+      <Row>
+        <Column
+          width={2}
+        >
+          <FormLabel>
+            Set name of employer to:
+          </FormLabel>
+        </Column>
+        <Column>
+          <FormInput
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+        </Column>
+      </Row>
+      <Row>
+        <Column
+          width={2}
+        >
+          <ButtonSuccess
+            onClick={[Function]}
+          >
+            Add employer
+          </ButtonSuccess>
+        </Column>
+      </Row>
+    </Card>
+  </Card>
+  <Card
+    title="Select a employer to change"
+  >
+    <FormSelect
+      onChange={[Function]}
+      value={0}
+    >
+      <option
+        value="0"
+      >
+        Select a employer to change
+      </option>
+      <option
+        key="1"
+        value={1}
+      >
+        1) Employer 1
+      </option>
+      <option
+        key="2"
+        value={2}
+      >
+        2) Employer 2
+      </option>
+      <option
+        key="3"
+        value={3}
+      >
+        3) Employer 3
+      </option>
+      <option
+        key="4"
+        value={4}
+      >
+        4) Employer 4
+      </option>
+    </FormSelect>
+    <br />
+  </Card>
+</Fragment>
+`;

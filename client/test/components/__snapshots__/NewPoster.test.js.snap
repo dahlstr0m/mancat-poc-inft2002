@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewPoster component tests NewPoster draws correctly 1`] = `
+<Fragment>
+  <Card
+    title="Add a new poster"
+  >
+    <FormLabel>
+       Connect to project:
+    </FormLabel>
+    <FormSelect
+      onChange={[Function]}
+      value={1}
+    >
+      <option
+        key="1"
+        value={1}
+      >
+        Project 1
+      </option>
+      <option
+        key="2"
+        value={2}
+      >
+        Project 2
+      </option>
+      <option
+        key="3"
+        value={3}
+      >
+        Project 3
+      </option>
+    </FormSelect>
+    <br />
+    <Card>
+      <FormLabel>
+         Poster description:
+      </FormLabel>
+      <FormInput
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+      <br />
+      <FormLabel>
+         Url to Poster:
+      </FormLabel>
+      <FormInput
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+      <br />
+      <FormLabel>
+         Url to posters thumbnail:
+      </FormLabel>
+      <FormInput
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+      <br />
+    </Card>
+    <ButtonSuccess
+      onClick={[Function]}
+    >
+      Add new poster
+    </ButtonSuccess>
+  </Card>
+  <Card
+    title="These posters already exists for this project:"
+  >
+    <img
+      alt="Can not display poster with id 1"
+      heigth="150"
+      key="1"
+      src="Poster 1 thumb url"
+      width="105"
+    />
+  </Card>
+</Fragment>
+`;

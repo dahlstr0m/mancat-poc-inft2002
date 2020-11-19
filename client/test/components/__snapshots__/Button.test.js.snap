@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button components tests ButtonDanger draws correctly 1`] = `
+<button
+  className="btn btn-danger btn-sm py-0"
+  type="button"
+>
+  Danger
+</button>
+`;
+
+exports[`Button components tests ButtonLight draws correctly 1`] = `
+<button
+  className="btn btn-light btn-sm py-0"
+  type="button"
+>
+  Light
+</button>
+`;
+
+exports[`Button components tests ButtonSuccess draws correctly 1`] = `
+<button
+  className="btn btn-success btn-sm py-0"
+  type="button"
+>
+  Success
+</button>
+`;

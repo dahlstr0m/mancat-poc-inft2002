@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectListingManagement component tests ProjectListingManagement draws correctly 1`] = `
+<Fragment>
+  <h1>
+    Project management
+  </h1>
+  <CardGrid
+    columns={1}
+    columnsLg={4}
+    columnsMd={3}
+    columnsSm={2}
+  >
+    <CardColumn
+      key="1"
+    >
+      <CardImage
+        button={true}
+        buttonOnClick={[Function]}
+        buttonText="Manage project"
+        img="Poster 1 thumb url"
+        imgAlt="Missing thumbnail for Project 1"
+        title="Project 1"
+      >
+        Description: 
+        Project 1 description
+        <br />
+        Status: 
+        Active
+      </CardImage>
+    </CardColumn>
+    <CardColumn
+      key="2"
+    >
+      <CardImage
+        button={true}
+        buttonOnClick={[Function]}
+        buttonText="Manage project"
+        img="Poster 2 thumb url"
+        imgAlt="Missing thumbnail for Project 2"
+        title="Project 2"
+      >
+        Description: 
+        Project 2 description
+        <br />
+        Status: 
+        Active
+      </CardImage>
+    </CardColumn>
+    <CardColumn
+      key="3"
+    >
+      <CardImage
+        button={true}
+        buttonOnClick={[Function]}
+        buttonText="Manage project"
+        img="Poster 3 thumb url"
+        imgAlt="Missing thumbnail for Project 3"
+        title="Project 3"
+      >
+        Description: 
+        Project 3 description
+        <br />
+        Status: 
+        Active
+      </CardImage>
+    </CardColumn>
+  </CardGrid>
+</Fragment>
+`;

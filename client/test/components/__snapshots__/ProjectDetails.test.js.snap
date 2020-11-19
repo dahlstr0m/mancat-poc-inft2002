@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectDetails component tests ProjectDetails draws correctly 1`] = `
+<Fragment>
+  <Card
+    title="Project 1"
+  >
+    <hr />
+    <p>
+      Project 1 description
+    </p>
+    <hr />
+    <p>
+      Kategori: 
+      Kategori 1
+    </p>
+    <p>
+      Oppdragsgiver: 
+      Employer 1
+    </p>
+    <p>
+      Prosjektdato: 
+      10/10/2020
+    </p>
+  </Card>
+  <CardGrid
+    columns={1}
+    columnsSm={2}
+  />
+</Fragment>
+`;

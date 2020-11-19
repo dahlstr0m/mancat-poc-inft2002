@@ -24,11 +24,7 @@ export default class ManagementMenu extends Component {
           </CardBody>
           <CardBody>
             <Card title="Rearrange order">
-              <Button.Light
-                onClick={() => Alert.info('This feature is not yet fully implemented. ')}
-              >
-                Manage
-              </Button.Light>
+              <Button.Danger onClick={() => history.push('/admin/ranking')}>Manage</Button.Danger>
             </Card>
           </CardBody>
         </CardColumn>

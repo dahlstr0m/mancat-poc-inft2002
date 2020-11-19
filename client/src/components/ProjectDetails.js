@@ -2,18 +2,12 @@
 
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { ProjectCard, PosterCard } from './Card';
+import { Card, CardImage, CardGrid, CardColumn } from './Card';
 import { Alert } from './Widgets';
-import {
-  projectService,
-  posterService,
-  categoryService,
-  employerService,
-  type Project,
-  type Poster,
-  type Category,
-  type Employer,
-} from '../services/portfolio-service';
+import projectService, { type Project } from '../services/project-service';
+import posterService, { type Poster } from '../services/poster-service';
+import categoryService, { type Category } from '../services/category-service';
+import employerService, { type Employer } from '../services/employer-service';
 
 /**
  * Renders project details.
@@ -36,26 +30,23 @@ export default class ProjectDetails extends Component<{ pathId: number }> {
   render() {
     return (
       <>
-        <ProjectCard
-          projectId={this.project.projectId}
-          title={this.project.title}
-          description={this.project.projectDescription}
-          date={this.project.projectDate}
-          category={this.category.categoryName}
-          employer={this.employer.employerName}
-        >
+        <Card title={this.project.title}>
+          <hr />
+          <p>{this.project.projectDescription}</p>
+          <hr />
+          <p>Kategori: {this.category.categoryName}</p>
+          <p>Oppdragsgiver: {this.employer.employerName}</p>
+          <p>Prosjektdato: {new Date(this.project.projectDate).toLocaleDateString()}</p>
+        </Card>
+        <CardGrid columns={1} columnsSm={2}>
           {this.posters.map((poster) => (
-            <PosterCard
-              key={poster.posterId}
-              posterId={poster.posterId}
-              description={poster.posterDescription}
-              url={poster.posterUrl}
-              thumbnailUrl={poster.thumbnailUrl}
-            >
-              {'ingen data'}
-            </PosterCard>
+            <CardColumn key={poster.posterId}>
+              <CardImage img={poster.posterUrl}>
+                <p>{poster.posterDescription}</p>
+              </CardImage>
+            </CardColumn>
           ))}
-        </ProjectCard>
+        </CardGrid>
       </>
     );
   }

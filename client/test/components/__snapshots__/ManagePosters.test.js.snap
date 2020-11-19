@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ManagePosters component tests ManagePosters draws correctly 1`] = `
+<Fragment>
+  <Card
+    title="Edit existing poster"
+  >
+    <FormLabel>
+       Choose project:
+    </FormLabel>
+    <FormSelect
+      onChange={[Function]}
+      value={1}
+    >
+      <option
+        key="1"
+        value={1}
+      >
+        Project 1
+      </option>
+      <option
+        key="2"
+        value={2}
+      >
+        Project 2
+      </option>
+      <option
+        key="3"
+        value={3}
+      >
+        Project 3
+      </option>
+    </FormSelect>
+    <Card
+      title="These posters exists for this project. Click to edit:"
+    >
+      <Row
+        key="1"
+      >
+        <Column
+          width={2}
+        >
+          <img
+            alt="Can not display poster with id 1"
+            heigth="150"
+            src="Poster 1 thumb url"
+            width="105"
+          />
+        </Column>
+        <Column>
+          <Card>
+            <FormLabel>
+               Poster description:
+            </FormLabel>
+            <FormInput
+              onChange={[Function]}
+              type="text"
+              value="Poster 1 description"
+            />
+            <br />
+            <FormLabel>
+               Url to Poster:
+            </FormLabel>
+            <FormInput
+              onChange={[Function]}
+              type="text"
+              value="Poster 1 url"
+            />
+            <br />
+            <FormLabel>
+               Url to posters thumbnail:
+            </FormLabel>
+            <FormInput
+              onChange={[Function]}
+              type="text"
+              value="Poster 1 thumb url"
+            />
+            <br />
+            <ButtonSuccess
+              onClick={[Function]}
+            >
+              Save edit
+            </ButtonSuccess>
+            <ButtonDanger
+              onClick={[Function]}
+            >
+              Delete poster
+            </ButtonDanger>
+          </Card>
+        </Column>
+      </Row>
+    </Card>
+    <br />
+  </Card>
+</Fragment>
+`;

@@ -5,12 +5,8 @@ import { Component } from 'react-simplified';
 import { history } from '../index';
 import { CardGrid, CardColumn, CardImage } from './Card';
 import { Alert } from './Widgets';
-import {
-  projectService,
-  posterService,
-  type Project,
-  type Poster,
-} from '../services/portfolio-service';
+import projectService, { type Project } from '../services/project-service';
+import posterService, { type Poster } from '../services/poster-service';
 
 /**
  * Renders project listing in management
@@ -29,11 +25,10 @@ export default class ProjectListingManagement extends Component {
             .map((project) => (
               <CardColumn key={project.projectId}>
                 <CardImage
+                  button
                   img={this.getPosterUrl(project)}
                   title={project.title}
                   imgAlt={'Missing thumbnail for ' + project.title}
-                  imgWidth={210}
-                  imgHeight={300}
                   buttonText={'Manage project'}
                   buttonOnClick={() => history.push(`/admin/projects/${project.projectId}`)}
                 >

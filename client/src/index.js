@@ -17,21 +17,19 @@ import ManageProject from './components/ManageProject';
 import ManagePosters from './components/ManagePosters';
 import ManageCategories from './components/ManageCategories';
 import LoginPage from './components/LoginPage';
-import { ProtectedRoute } from './components/ProtectedRoute';
+import ProtectedRoute from './components/ProtectedRoute';
 import Button from './components/Button';
-import { Card, ContactCard, FooterCard, TitleCard, CardPlain } from './components/Card';
+import { Card, TitleCard } from './components/Card';
 import { NavBar, Alert } from './components/Widgets';
 
-import { authService } from './services/auth-service';
 // Create and export history
 import { createHashHistory } from 'history';
 export const history = createHashHistory();
 
-class Topbar extends Component {
+export class Topbar extends Component {
   render() {
     return (
       <NavBar brand="Mancat">
-        <NavBar.Link to="/">Sorter</NavBar.Link>
         <NavBar.Link to="/">Portfolio</NavBar.Link>
         <NavBar.Link to="/contact">Contact</NavBar.Link>
         <NavBar.Link to="/admin">Admin</NavBar.Link>
@@ -40,45 +38,48 @@ class Topbar extends Component {
   }
 }
 
-class BackToAdmin extends Component {
+export class BackToAdmin extends Component {
   render() {
     return (
-      <CardPlain>
+      <Card>
         <Button.Light onClick={() => history.push('/admin/')}>Back to admin</Button.Light>
-      </CardPlain>
+      </Card>
     );
   }
 }
 
-class Contact extends Component {
-  render() {
-    return <ContactCard title="Contact">This is contactinfo</ContactCard>;
-  }
-}
-
-class Footer extends Component {
+export class Contact extends Component {
   render() {
     return (
-      <FooterCard title="Footer">Laget av Kevin, Hans Petter, Henrik, Bjarne og Mathias</FooterCard>
+      <Card title="Contact">
+        <ul>
+          <li>+47 123 45 678</li>
+          <li>fornavn@eposttjeneste.no</li>
+          <li>Bosted 12, 3456 Sted</li>
+        </ul>
+      </Card>
     );
   }
 }
 
-class MainPage extends Component {
+export class Footer extends Component {
   render() {
-    return (
-      <>
-        <PortfolioListing />
-      </>
-    );
+    return <Card textRight>Laget av Kevin, Hans Petter, Henrik, Bjarne og Mathias</Card>;
   }
 }
 
-class AdminPage extends Component {
+export class AdminPage extends Component {
   render() {
     return (
       <>
-        <TitleCard img="https://portfolio.hpbastiansen.com/other/logo.png">Mancat admin</TitleCard>
+        <TitleCard
+          img="https://portfolio.hpbastiansen.com/other/logo.png"
+          buttonOnClick={() => history.push('/')}
+          buttonText="Back to homepage"
+          button
+        >
+          Mancat admin
+        </TitleCard>
         <ManagementMenu />
         <hr />
         <ProjectListingManagement />
@@ -99,12 +100,12 @@ if (root)
             <div>
               <Topbar />
               <Alert />
-              <MainPage />
+              <PortfolioListing />
               <Footer />
             </div>
           )}
         />
-        <Route // Main page
+        <Route // Login page
           exact
           path="/login"
           component={() => (
@@ -121,12 +122,12 @@ if (root)
               <Topbar />
               <Alert />
               <Contact />
-              <MainPage />
+              <PortfolioListing />
               <Footer />
             </div>
           )}
         />
-        <Route //Project page
+        <Route // Project page
           exact
           path="/projects/:id(\d+)"
           component={(props) => (
@@ -134,12 +135,12 @@ if (root)
               <Topbar />
               <Alert />
               <ProjectDetails pathId={props.match.params.id} />
-              <MainPage />
+              <PortfolioListing />
               <Footer />
             </div>
           )}
         />
-        <ProtectedRoute //Admin page
+        <ProtectedRoute // Admin page
           exact
           path="/admin"
           component={() => (
@@ -149,7 +150,7 @@ if (root)
             </div>
           )}
         />
-        <ProtectedRoute //New project
+        <ProtectedRoute // New project
           exact
           path="/admin/projects/new"
           component={() => (
@@ -160,7 +161,7 @@ if (root)
             </div>
           )}
         />
-        <ProtectedRoute //Manage project
+        <ProtectedRoute // Manage project
           exact
           path="/admin/projects/:id(\d+)"
           component={(props) => (
@@ -171,7 +172,7 @@ if (root)
             </div>
           )}
         />
-        <ProtectedRoute //New poster
+        <ProtectedRoute // New poster
           exact
           path="/admin/posters/new"
           component={() => (
@@ -182,7 +183,7 @@ if (root)
             </div>
           )}
         />
-        <ProtectedRoute //Manage posters
+        <ProtectedRoute // Manage posters
           exact
           path="/admin/posters/manage"
           component={() => (
@@ -193,7 +194,7 @@ if (root)
             </div>
           )}
         />
-        <ProtectedRoute
+        <ProtectedRoute // Manage categories
           exact
           path="/admin/categories"
           component={() => (
@@ -204,7 +205,7 @@ if (root)
             </div>
           )}
         />
-        <ProtectedRoute
+        <ProtectedRoute // Manage employers
           exact
           path="/admin/employers"
           component={() => (

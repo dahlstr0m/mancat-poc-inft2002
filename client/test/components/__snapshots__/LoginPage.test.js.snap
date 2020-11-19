@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginPage component tests LoginPage draws correctly 1`] = `
+<Card
+  title="Log in"
+>
+  <FormLabel>
+    Username:
+  </FormLabel>
+  <FormInput
+    onChange={[Function]}
+    type="text"
+    value=""
+  />
+  <FormLabel>
+    Password:
+  </FormLabel>
+  <FormInput
+    onChange={[Function]}
+    type="password"
+    value=""
+  />
+  <hr />
+  <ButtonSuccess
+    onClick={[Function]}
+  >
+    Log in
+  </ButtonSuccess>
+</Card>
+`;

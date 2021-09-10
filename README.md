@@ -1,10 +1,9 @@
-<p align="center">
-  <h3 align="center">inft2002-gr4-portfolio</h3>
+# Portfolio [inft2002](https://www.ntnu.no/studier/emner/INFT2002)
 
-  <p align="center">
-    Simple portfolio app made for Mancat design.
-  </p>
-</p>
+Simple portfolio app made as a Proof of Concept for [Mancat design](https://www.instagram.com/mancatdesign/) fall 2020.
+A new project will during fall 2021 be developed with some crucial changes that has been identified. Some of the changes is to utilize an open-source CRM, dockerize the webapp and add a beautiful front-end design.
+
+
 
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
@@ -15,7 +14,7 @@
 
 ## Getting Started
 
-To get a local copy up and running follow these steps.
+To get a local copy up and running of this PoC follow these steps.
 
 ### Prerequisites
 
@@ -30,7 +29,7 @@ npm install npm@latest -g
 1. Clone the repo
 
 ```sh
-git clone https://gitlab.stud.idi.ntnu.no/hpbastia/inft2002-gr4-portfolio.git
+git clone https://github.com/dahlstr0m/mancat-poc-inft2002.git
 ```
 
 2. Install and compile client

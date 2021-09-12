@@ -1,4 +1,4 @@
-# Portfolio [inft2002](https://www.ntnu.no/studier/emner/INFT2002)
+# Portfolio project [inft2002](https://www.ntnu.no/studier/emner/INFT2002)
 
 Simple portfolio app made as a Proof of Concept for [Mancat design](https://www.instagram.com/mancatdesign/) fall 2020.
 A new project will during fall 2021 be developed with some crucial changes that has been identified. Some of the changes is to utilize an open-source CRM, dockerize the webapp and add a beautiful front-end design.
